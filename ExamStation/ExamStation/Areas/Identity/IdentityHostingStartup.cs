@@ -16,9 +16,7 @@ namespace ExamStation.Areas.Identity
         public void Configure(IWebHostBuilder builder)
         {
             builder.ConfigureServices((context, services) => {
-                services.AddDbContext<ExamStationDbContext>(options =>
-                    options.UseSqlServer(
-                        context.Configuration.GetConnectionString("ExamStationDbContextConnection")));
+                
 
                 services.AddDefaultIdentity<ExamStationUser>(options =>
                 {

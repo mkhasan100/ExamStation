@@ -1,27 +1,48 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ExamStation.Areas.Identity.Data;
+using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using ExamStation.Areas.Identity.Data;
+using ExamStation.Models;
 
 namespace ExamStation.Data
 {
     public class ExamStationDbContext : IdentityDbContext<ExamStationUser>
     {
+        public ExamStationDbContext()
+        {
+
+        }
         public ExamStationDbContext(DbContextOptions<ExamStationDbContext> options)
             : base(options)
         {
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            base.OnModelCreating(builder);
-            // Customize the ASP.NET Identity model and override the defaults if needed.
-            // For example, you can rename the ASP.NET Identity table names and more.
-            // Add your customizations after calling base.OnModelCreating(builder);
+            if (!optionsBuilder.IsConfigured)
+            {
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("appsettings.json")
+                    .Build();
+
+                var connectionString = configuration.GetConnectionString("ExamStationConnection");
+
+                optionsBuilder.UseSqlServer(connectionString);
+            }
         }
+
+        public DbSet<ExamStation.Models.QuestionBank> QuestionBank { get; set; }
+
+
+
+
+
     }
 }
+
