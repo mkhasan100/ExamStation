@@ -24,12 +24,14 @@
     ".NETCoreApp,Version=v3.1": {
       "ExamStation/1.0.0": {
         "dependencies": {
+          "CKEditor": "3.6.4",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "3.1.8",
           "Microsoft.AspNetCore.Identity.UI": "3.1.8",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.8",
           "Microsoft.EntityFrameworkCore.Sqlite": "3.1.8",
           "Microsoft.EntityFrameworkCore.Tools": "3.1.8",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "3.1.4",
+          "ckeditor-basic": "4.15.0",
           "Microsoft.AspNetCore.Antiforgery": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Abstractions": "3.1.0.0",
           "Microsoft.AspNetCore.Authentication.Cookies": "3.1.0.0",
@@ -300,6 +302,8 @@
           "ExamStation.dll": {}
         }
       },
+      "CKEditor/3.6.4": {},
+      "ckeditor-basic/4.15.0": {},
       "Microsoft.AspNetCore.Cryptography.Internal/3.1.8": {
         "runtime": {
           "lib/netcoreapp3.1/Microsoft.AspNetCore.Cryptography.Internal.dll": {
@@ -4085,6 +4089,20 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "CKEditor/3.6.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-roGF09wJmp7Zyyvq/bDzbLccKUfMumMpmgPav5U/naoVoDis1izPsSL8H/MEFG3hfFBC4HegSRwlYZG+PWHnaQ==",
+      "path": "ckeditor/3.6.4",
+      "hashPath": "ckeditor.3.6.4.nupkg.sha512"
+    },
+    "ckeditor-basic/4.15.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-u/cWnhqBmBN8VjxoHdQ6YkRy0CnT6vSAo6gdJh9MT9GT/CUb/wd4g+gQyM7jSiYS3Vtx9UpZmKnMZqEQs7YBBA==",
+      "path": "ckeditor-basic/4.15.0",
+      "hashPath": "ckeditor-basic.4.15.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Cryptography.Internal/3.1.8": {
       "type": "package",

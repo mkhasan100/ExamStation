@@ -4,62 +4,67 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
-
-<h4>QuestionBank</h4>
+<h2>Add Question Bank</h2>
 <hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="QuestionGroup" class="control-label"></label>
-                <input asp-for="QuestionGroup" class="form-control" />
-                <span asp-validation-for="QuestionGroup" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DifficultyLevel" class="control-label"></label>
-                <input asp-for="DifficultyLevel" class="form-control" />
-                <span asp-validation-for="DifficultyLevel" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Question" class="control-label"></label>
-                <input asp-for="Question" class="form-control" />
-                <span asp-validation-for="Question" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Explanation" class="control-label"></label>
-                <input asp-for="Explanation" class="form-control" />
-                <span asp-validation-for="Explanation" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Upload" class="control-label"></label>
-                <input asp-for="Upload" class="form-control" />
-                <span asp-validation-for="Upload" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Hints" class="control-label"></label>
-                <input asp-for="Hints" class="form-control" />
-                <span asp-validation-for="Hints" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Mark" class="control-label"></label>
-                <input asp-for="Mark" class="form-control" />
-                <span asp-validation-for="Mark" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="QuestionType" class="control-label"></label>
-                <input asp-for="QuestionType" class="form-control" />
-                <span asp-validation-for="QuestionType" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </form>
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label asp-for="QuestionGroup" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="QuestionGroup" class="form-control" />
+            <span asp-validation-for="QuestionGroup" class="text-danger"></span>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+    <div class="form-group row">
+        <label asp-for="DifficultyLevel" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="DifficultyLevel" class="form-control" />
+            <span asp-validation-for="DifficultyLevel" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Question" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Question" class="form-control" />
+            <span asp-validation-for="Question" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Explanation" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Explanation" class="form-control" />
+            <span asp-validation-for="Explanation" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Upload" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Upload" class="form-control" />
+            <span asp-validation-for="Upload" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Hints" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Hints" class="form-control" />
+            <span asp-validation-for="Hints" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Mark" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Mark" class="form-control" />
+            <span asp-validation-for="Mark" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="QuestionType" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="QuestionType" class="form-control" />
+            <span asp-validation-for="QuestionType" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add Question Bank" class="btn btn-default" />
+    </div>
+</form>

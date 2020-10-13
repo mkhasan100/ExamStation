@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "4aalPMNCs03c+gbY1qRzKxLaj7ge6bIoSLME0nzHpdrSbh4rT75das72l337D+IvnbWSUzTp8odVcgnNC6DdHw==",
+  "dgSpecHash": "FyE6omcdUg5lFPZVGMDVL2I9Gz/WWeQN+PkmEJ4FzKaSnQ1gDCq4+syFmhMy4A54ZGbWufMzu1M+pdW9Bm6Jpw==",
   "success": true,
   "projectFilePath": "E:\\Synesis IT Files\\Learning Period\\Project1\\ExamStation\\ExamStation\\ExamStation\\ExamStation.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\Hasan\\.nuget\\packages\\ckeditor\\3.6.4\\ckeditor.3.6.4.nupkg.sha512",
+    "C:\\Users\\Hasan\\.nuget\\packages\\ckeditor-basic\\4.15.0\\ckeditor-basic.4.15.0.nupkg.sha512",
     "C:\\Users\\Hasan\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.8\\microsoft.aspnetcore.cryptography.internal.3.1.8.nupkg.sha512",
     "C:\\Users\\Hasan\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.8\\microsoft.aspnetcore.cryptography.keyderivation.3.1.8.nupkg.sha512",
     "C:\\Users\\Hasan\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
