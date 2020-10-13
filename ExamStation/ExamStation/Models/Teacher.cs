@@ -9,7 +9,7 @@ namespace ExamStation.Models
 {
     public class Teacher    
     {
-        [Key]
+    [Key]
     public int TeacherId { get; set; }
     [DisplayName("Teacher Name")]
     public string TeacherName { get; set; }

@@ -1,0 +1,156 @@
+﻿@model ExamStation.Models.Student
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Add Student</h2>
+<hr />
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label asp-for="StudentName" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="StudentName" class="form-control" />
+            <span asp-validation-for="StudentName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Guardian" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Guardian" class="form-control" />
+            <span asp-validation-for="Guardian" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="DateOfBirth" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="DateOfBirth" class="form-control" />
+            <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Gender" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Gender" class="form-control" />
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="BloodGroup" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="BloodGroup" class="form-control" />
+            <span asp-validation-for="BloodGroup" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Religion" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Religion" class="form-control" />
+            <span asp-validation-for="Religion" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Email" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Phone" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Phone" class="form-control" />
+            <span asp-validation-for="Phone" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Address" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Address" class="form-control" />
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="State" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="State" class="form-control" />
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Country" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Country" class="form-control" />
+            <span asp-validation-for="Country" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Class" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Class" class="form-control" />
+            <span asp-validation-for="Class" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Section" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Section" class="form-control" />
+            <span asp-validation-for="Section" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Group" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Group" class="form-control" />
+            <span asp-validation-for="Group" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="OptionalSubject" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="OptionalSubject" class="form-control" />
+            <span asp-validation-for="OptionalSubject" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="RegisterNo" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="RegisterNo" class="form-control" />
+            <span asp-validation-for="RegisterNo" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Roll" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Roll" class="form-control" />
+            <span asp-validation-for="Roll" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Photo" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Photo" class="form-control" />
+            <span asp-validation-for="Photo" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="ExtraActivities" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="ExtraActivities" class="form-control" />
+            <span asp-validation-for="ExtraActivities" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Remarks" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Remarks" class="form-control" />
+            <span asp-validation-for="Remarks" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Add Student" class="btn btn-default" />
+    </div>
+</form>
+

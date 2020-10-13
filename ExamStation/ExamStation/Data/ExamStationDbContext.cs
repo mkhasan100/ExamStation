@@ -37,6 +37,25 @@ namespace ExamStation.Data
             }
         }
 
+
+        public DbSet<ExamStation.Models.Event> Event { get; set; }
+
+        public DbSet<ExamStation.Models.Notice> Notice { get; set; }
+
+        public DbSet<ExamStation.Models.OnlineExam> OnlineExam { get; set; }
+
+        public DbSet<ExamStation.Models.Parent> Parent { get; set; }
+
+        public DbSet<ExamStation.Models.QuestionGroup> QuestionGroup { get; set; }
+
+        public DbSet<ExamStation.Models.QuestionLevel> QuestionLevel { get; set; }
+
+        public DbSet<ExamStation.Models.Student> Student { get; set; }
+
+        public DbSet<ExamStation.Models.Teacher> Teacher { get; set; }
+
+        public DbSet<ExamStation.Models.Instruction> Instruction { get; set; }
+
         public DbSet<ExamStation.Models.QuestionBank> QuestionBank { get; set; }
 
 

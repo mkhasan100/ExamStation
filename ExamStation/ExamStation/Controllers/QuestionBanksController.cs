@@ -12,9 +12,9 @@ namespace ExamStation.Controllers
 {
     public class QuestionBanksController : Controller
     {
-        private readonly AppDBContext _context;
+        private readonly ExamStationDbContext _context;
 
-        public QuestionBanksController(AppDBContext context)
+        public QuestionBanksController(ExamStationDbContext context)
         {
             _context = context;
         }
