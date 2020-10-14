@@ -1,0 +1,59 @@
+﻿@model ExamStation.Models.Section
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Add Section</h2>
+<hr />
+<form asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label asp-for="SectionName" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="SectionName" class="form-control" />
+            <span asp-validation-for="SectionName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Category" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Category" class="form-control" />
+            <span asp-validation-for="Category" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Capacity" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Capacity" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Class" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            @*<input asp-for="Class" class="form-control" />*@
+            @Html.DropDownListFor(model => model.Class, new SelectList(ViewBag.ClassList, "Id", "ClassName"), "Select Class", new { @class = "form-control" })
+            <span asp-validation-for="Class" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="TeacherName" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            @*<input asp-for="TeacherName" class="form-control" />*@
+            @Html.DropDownListFor(model => model.TeacherName, new SelectList(ViewBag.ClassList, "Id", "TeacherName"), "Select Section", new { @class = "form-control" })
+            <span asp-validation-for="TeacherName" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="Note" class="control-label col-sm-2"></label>
+        <div class="col-sm-6">
+            <input asp-for="Note" class="form-control" />
+            <span asp-validation-for="Note" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add Section" class="btn btn-default" />
+    </div>
+</form>
+

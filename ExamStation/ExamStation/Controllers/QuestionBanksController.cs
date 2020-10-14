@@ -46,6 +46,10 @@ namespace ExamStation.Controllers
         // GET: QuestionBanks/Create
         public IActionResult Create()
         {
+            ViewBag.QuestionGroupList = _context.QuestionGroup.ToList();
+            ViewBag.QuestionLevelList = _context.QuestionLevel.ToList();
+            ViewBag.QuestionTypeList = _context.QuestionType.ToList();
+
             return View();
         }
 

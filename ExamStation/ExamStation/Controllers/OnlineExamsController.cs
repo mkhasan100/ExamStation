@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Helper;
 
 namespace ExamStation.Controllers
 {
     public class OnlineExamsController : Controller
     {
         private readonly ExamStationDbContext _context;
+        Utility _utility;
+
 
         public OnlineExamsController(ExamStationDbContext context)
         {
             _context = context;
+            _utility = new Utility();
         }
 
         // GET: OnlineExams
@@ -46,6 +50,8 @@ namespace ExamStation.Controllers
         // GET: OnlineExams/Create
         public IActionResult Create()
         {
+            ViewBag.ClassList =_utility.GetClassList();
+            ViewBag.SectionList = _utility.GetSectionList();
             return View();
         }
 
@@ -148,6 +154,12 @@ namespace ExamStation.Controllers
         private bool OnlineExamExists(int id)
         {
             return _context.OnlineExam.Any(e => e.Id == id);
+        }
+
+        [HttpGet]
+        public IActionResult _TakeExam()
+        {
+            return PartialView();
         }
     }
 }

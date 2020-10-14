@@ -5,107 +5,111 @@
 }
 
 <h2>Add Online Exam</h2>
-
-<h4>OnlineExam</h4>
 <hr />
 
 <form asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group">
+    <div class="form-group row">
         <label asp-for="ExamTitle" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
             <input asp-for="ExamTitle" class="form-control" />
             <span asp-validation-for="ExamTitle" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label asp-for="Description" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
-            <input asp-for="Description" class="form-control" />
+            @*<input asp-for="Description" class="form-control" />*@
+            @Html.TextAreaFor(model => model.Description, new { @id = "FullDescription", @class = "form-control", @rows = "5" })
             <span asp-validation-for="Description" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label asp-for="Class" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
-            <input asp-for="Class" class="form-control" />
+            @*<input asp-for="Class" class="form-control" />*@
+            @Html.DropDownListFor(model => model.Class, new SelectList(ViewBag.ClassList, "Id", "ClassName"), "Select Class", new { @class = "form-control" })
             <span asp-validation-for="Class" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label asp-for="Section" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
             <input asp-for="Section" class="form-control" />
             <span asp-validation-for="Section" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label asp-for="StudentGroup" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
             <input asp-for="StudentGroup" class="form-control" />
             <span asp-validation-for="StudentGroup" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label asp-for="Subject" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
             <input asp-for="Subject" class="form-control" />
             <span asp-validation-for="Subject" class="text-danger"></span>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group row">
         <label asp-for="Instruction" class="control-label col-sm-2"></label>
-        <input asp-for="Instruction" class="form-control" />
-        <span asp-validation-for="Instruction" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="ExamStatus" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
-            <input asp-for="ExamStatus" class="form-control" />
-            <span asp-validation-for="ExamStatus" class="text-danger"></span>
+            <input asp-for="Instruction" class="form-control" />
+            <span asp-validation-for="Instruction" class="text-danger"></span>
         </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="ExamType" class="control-label col-sm-2"></label>
-        <input asp-for="ExamType" class="form-control" />
-        <span asp-validation-for="ExamType" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="Duration" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            <input asp-for="Duration" class="form-control" />
-            <span asp-validation-for="Duration" class="text-danger"></span>
         </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="MarkType" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            <input asp-for="MarkType" class="form-control" />
-            <span asp-validation-for="MarkType" class="text-danger"></span>
+        <div class="form-group row">
+            <label asp-for="ExamStatus" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="ExamStatus" class="form-control" />
+                <span asp-validation-for="ExamStatus" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="PassValue" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            <input asp-for="PassValue" class="form-control" />
-            <span asp-validation-for="PassValue" class="text-danger"></span>
+        <div class="form-group row">
+            <label asp-for="ExamType" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="ExamType" class="form-control" />
+                <span asp-validation-for="ExamType" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="PaymentStatus" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            <input asp-for="PaymentStatus" class="form-control" />
-            <span asp-validation-for="PaymentStatus" class="text-danger"></span>
+        <div class="form-group row">
+            <label asp-for="Duration" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <label asp-for="Published" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            <input asp-for="Published" class="form-control" />
-            <span asp-validation-for="Published" class="text-danger"></span>
+        <div class="form-group row">
+            <label asp-for="MarkType" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="MarkType" class="form-control" />
+                <span asp-validation-for="MarkType" class="text-danger"></span>
+            </div>
         </div>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Add Online Exam" class="btn btn-default" />
-    </div>
+        <div class="form-group row">
+            <label asp-for="PassValue" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="PassValue" class="form-control" />
+                <span asp-validation-for="PassValue" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="PaymentStatus" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="PaymentStatus" class="form-control" />
+                <span asp-validation-for="PaymentStatus" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label asp-for="Published" class="control-label col-sm-2"></label>
+            <div class="col-sm-6">
+                <input asp-for="Published" class="form-control" />
+                <span asp-validation-for="Published" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" value="Add Online Exam" class="btn btn-default" />
+        </div>
 </form>

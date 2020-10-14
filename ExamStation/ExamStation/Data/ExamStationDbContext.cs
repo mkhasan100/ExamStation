@@ -58,6 +58,14 @@ namespace ExamStation.Data
 
         public DbSet<ExamStation.Models.QuestionBank> QuestionBank { get; set; }
 
+        public DbSet<ExamStation.Models.QuestionType> QuestionType { get; set; }
+
+        public DbSet<ExamStation.Models.Class> Class { get; set; }
+
+        public DbSet<ExamStation.Models.Subject> Subject { get; set; }
+
+        public DbSet<ExamStation.Models.Section> Section { get; set; }
+
 
 
 
