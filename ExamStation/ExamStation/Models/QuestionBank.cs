@@ -11,10 +11,8 @@ namespace ExamStation.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
         [DisplayName("Question Group")]
         public string QuestionGroup { get; set; }
-        [Required]
         [DisplayName("Difficulty Level")]
         public string DifficultyLevel { get; set; }
         [Required]

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -42,6 +43,39 @@ namespace ExamStation.Controllers
 
             return View(questionGroup);
         }
+
+
+        [HttpGet]
+        public IActionResult QuestionGroupList()
+        {
+            var QuestionGroupListViewModel = new QuestionGroupListViewModel();
+            var questionGroupList = _context.QuestionGroup.AsEnumerable()                                        
+                                        .Select(qgl => new QuestionGroup
+                                        {
+                                            Id = qgl.Id,
+                                            Title = qgl.Title
+                                        }).ToList();
+
+            QuestionGroupListViewModel.QuestionGroupList = questionGroupList;
+            return View(QuestionGroupListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult QuestionGroupList(QuestionGroupListViewModel questionGroupListViewModel)
+        {
+            var QuestionGroupListViewModel = new QuestionGroupListViewModel();
+            var questionGroupList = _context.QuestionGroup.AsEnumerable()
+                                        .Select(qgl => new QuestionGroup
+                                        {
+                                            Id = qgl.Id,
+                                            Title = qgl.Title
+                                        }).ToList();
+            var QGListViewModel = new QuestionGroupListViewModel();
+            QGListViewModel.QuestionGroupList = questionGroupList;
+            return View(QGListViewModel);
+        }
+
+
 
         // GET: QuestionGroups/Create
         public IActionResult Create()
@@ -148,6 +182,26 @@ namespace ExamStation.Controllers
         private bool QuestionGroupExists(int id)
         {
             return _context.QuestionGroup.Any(e => e.Id == id);
+        }
+
+
+
+        public JsonResult GetGroupList(string questionGroupList)
+        {
+            questionGroupList = questionGroupList.ToUpper();
+            var qGroupList = _context.QuestionGroup
+                .Where(a => a.Title.ToUpper().Contains(questionGroupList))
+                .Select(a => new { a.Id, a.Title});
+            return Json(qGroupList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string QuestionGroupKeyword = q.ToUpper();
+            var qGroupList = _context.QuestionGroup
+                .Where(a => a.Title.ToUpper().Contains(QuestionGroupKeyword))
+                .Select(a => new { a.Id, a.Title});
+            return Json(qGroupList);
         }
     }
 }

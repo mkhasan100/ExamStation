@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -41,6 +42,42 @@ namespace ExamStation.Controllers
             }
 
             return View(questionBank);
+        }
+
+        [HttpGet]
+        public IActionResult QuestionBankList()
+        {
+            var QuestionBankListViewModel = new QuestionBankListViewModel();
+            var questionBankList = _context.QuestionBank.AsEnumerable()
+                                        .Select(qbl => new QuestionBank
+                                        {
+                                            Id = qbl.Id,
+                                            Question = qbl.Question,
+                                            DifficultyLevel = qbl.DifficultyLevel,
+                                            QuestionGroup = qbl.QuestionGroup,
+                                            QuestionType = qbl.QuestionType
+                                        }).ToList();
+
+            QuestionBankListViewModel.QuestionBankList = questionBankList;
+            return View(QuestionBankListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult QuestionGroupList(QuestionGroupListViewModel questionGroupListViewModel)
+        {
+            var QuestionBankListViewModel = new QuestionBankListViewModel();
+            var questionBankList = _context.QuestionBank.AsEnumerable()
+                                        .Select(qbl => new QuestionBank
+                                        {
+                                            Id = qbl.Id,
+                                            Question = qbl.Question,
+                                            DifficultyLevel = qbl.DifficultyLevel,
+                                            QuestionGroup = qbl.QuestionGroup,
+                                            QuestionType = qbl.QuestionType
+                                        }).ToList();
+            var QBListViewModel = new QuestionBankListViewModel();
+            QBListViewModel.QuestionBankList = questionBankList;
+            return View(QBListViewModel);
         }
 
         // GET: QuestionBanks/Create
@@ -152,6 +189,24 @@ namespace ExamStation.Controllers
         private bool QuestionBankExists(int id)
         {
             return _context.QuestionBank.Any(e => e.Id == id);
+        }
+
+        public JsonResult GetBankList(string questionBankList)
+        {
+            questionBankList = questionBankList.ToUpper();
+            var qBankList = _context.QuestionBank
+                .Where(a => a.QuestionGroup.ToUpper().Contains(questionBankList))
+                .Select(a => new { a.Id, a.QuestionGroup });
+            return Json(qBankList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string QuestionBankKeyword = q.ToUpper();
+            var qBankList = _context.QuestionBank
+                .Where(a => a.QuestionGroup.ToUpper().Contains(QuestionBankKeyword))
+                .Select(a => new { a.Id, a.QuestionGroup });
+            return Json(qBankList);
         }
     }
 }

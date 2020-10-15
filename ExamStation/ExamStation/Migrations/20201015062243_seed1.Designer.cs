@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExamStation.Migrations
 {
     [DbContext(typeof(ExamStationDbContext))]
-    [Migration("20201014051227_test")]
-    partial class test
+    [Migration("20201015062243_seed1")]
+    partial class seed1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8")
+                .HasAnnotation("ProductVersion", "3.1.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -84,6 +84,30 @@ namespace ExamStation.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("ExamStation.Models.Class", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClassName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ClassNumeric")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TeacherName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Class");
                 });
 
             modelBuilder.Entity("ExamStation.Models.Event", b =>
@@ -295,15 +319,39 @@ namespace ExamStation.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("QuestionGroupId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("QuestionGroup");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Title = "Science"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Title = "Math"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Title = "Chemistry"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Title = "General Knowledge"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Title = "Computer Science"
+                        });
                 });
 
             modelBuilder.Entity("ExamStation.Models.QuestionLevel", b =>
@@ -319,6 +367,51 @@ namespace ExamStation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("QuestionLevel");
+                });
+
+            modelBuilder.Entity("ExamStation.Models.QuestionType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("QuestionTypeName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuestionType");
+                });
+
+            modelBuilder.Entity("ExamStation.Models.Section", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Capacity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Class")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Note")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SectionName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TeacherName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Section");
                 });
 
             modelBuilder.Entity("ExamStation.Models.Student", b =>
@@ -391,6 +484,39 @@ namespace ExamStation.Migrations
                     b.HasKey("StudentId");
 
                     b.ToTable("Student");
+                });
+
+            modelBuilder.Entity("ExamStation.Models.Subject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClassName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FinalMark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PassMark")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SubjectCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SubjectName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TeacherName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subject");
                 });
 
             modelBuilder.Entity("ExamStation.Models.Teacher", b =>

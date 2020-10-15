@@ -30,7 +30,7 @@
         <label asp-for="Question" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
             @*<input asp-for="Question" class="form-control" />*@
-            <textarea id="Question" style="display:none"></textarea>
+            <textarea id="Question" asp-for="Question" style="display:none"></textarea>
             @*@Html.TextAreaFor(model => model.Question, new { @id = "FullDescription", @class = "form-control", @rows = "10" })*@
             <span asp-validation-for="Question" class="text-danger"></span>
         </div>
@@ -39,7 +39,7 @@
         <label asp-for="Explanation" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
             @*<input asp-for="Explanation" class="form-control" />*@
-            @Html.TextAreaFor(model => model.Explanation, new { @id = "FullDescription", @class = "form-control", @rows = "10" })
+            <textarea id="Explanation" asp-for="Explanation" style="display:none"></textarea>            
             <span asp-validation-for="Explanation" class="text-danger"></span>
         </div>
     </div>
@@ -83,6 +83,15 @@
         $(window).load(function () {
             ClassicEditor
                 .create(document.querySelector('#Question'))
+                .catch(error => {
+                    console.error(error);
+                });
+        });
+    </script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            ClassicEditor
+                .create(document.querySelector('#Explanation'))
                 .catch(error => {
                     console.error(error);
                 });

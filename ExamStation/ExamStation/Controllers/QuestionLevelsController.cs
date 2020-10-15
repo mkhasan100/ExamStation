@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -41,6 +42,36 @@ namespace ExamStation.Controllers
             }
 
             return View(questionLevel);
+        }
+
+        [HttpGet]
+        public IActionResult QuestionLevelList()
+        {
+            var QuestionLevelListViewModel = new QuestionLevelListViewModel();
+            var questionLevelList = _context.QuestionLevel.AsEnumerable()
+                                        .Select(qll => new QuestionLevel
+                                        {
+                                            Id = qll.Id,
+                                            Title = qll.Title
+                                        }).ToList();
+
+            QuestionLevelListViewModel.QuestionLevelList = questionLevelList;
+            return View(QuestionLevelListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult QuestionLevelList(QuestionLevelListViewModel questionLevelListViewModel)
+        {
+            var QuestionLevelListViewModel = new QuestionGroupListViewModel();
+            var questionLevelList = _context.QuestionLevel.AsEnumerable()
+                                        .Select(qgl => new QuestionLevel
+                                        {
+                                            Id = qgl.Id,
+                                            Title = qgl.Title
+                                        }).ToList();
+            var QLListViewModel = new QuestionLevelListViewModel();
+            QLListViewModel.QuestionLevelList = questionLevelList;
+            return View(QLListViewModel);
         }
 
         // GET: QuestionLevels/Create
@@ -149,5 +180,24 @@ namespace ExamStation.Controllers
         {
             return _context.QuestionLevel.Any(e => e.Id == id);
         }
+
+        public JsonResult GetLevelList(string questionLevelList)
+        {
+            questionLevelList = questionLevelList.ToUpper();
+            var qLevelList = _context.QuestionLevel
+                .Where(a => a.Title.ToUpper().Contains(questionLevelList))
+                .Select(a => new { a.Id, a.Title });
+            return Json(qLevelList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string QuestionLevelKeyword = q.ToUpper();
+            var qLevelList = _context.QuestionLevel
+                .Where(a => a.Title.ToUpper().Contains(QuestionLevelKeyword))
+                .Select(a => new { a.Id, a.Title });
+            return Json(qLevelList);
+        }
+
     }
 }

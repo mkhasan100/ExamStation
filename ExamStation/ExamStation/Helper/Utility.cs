@@ -24,5 +24,10 @@ namespace ExamStation.Helper
         {
             return _context.Section.ToList();
         }
+
+        public List<Parent> GetGuardianList()
+        {
+            return _context.Parent.ToList();
+        }
     }
 }

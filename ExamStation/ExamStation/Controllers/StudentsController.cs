@@ -7,16 +7,19 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Helper;
 
 namespace ExamStation.Controllers
 {
     public class StudentsController : Controller
     {
         private readonly ExamStationDbContext _context;
+        Utility _utility;
 
         public StudentsController(ExamStationDbContext context)
         {
             _context = context;
+            _utility = new Utility();
         }
 
         // GET: Students
@@ -46,6 +49,7 @@ namespace ExamStation.Controllers
         // GET: Students/Create
         public IActionResult Create()
         {
+            ViewBag.GuardianList = _utility.GetGuardianList();
             return View();
         }
 

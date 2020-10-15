@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -41,6 +42,40 @@ namespace ExamStation.Controllers
             }
 
             return View(parent);
+        }
+
+        [HttpGet]
+        public IActionResult ParentList()
+        {
+            var ParentListViewModel = new ParentListViewModel();
+            var parentList = _context.Parent.AsEnumerable()
+                                        .Select(p => new Parent
+                                        {
+                                            GuardianId = p.GuardianId,
+                                            GuardianName = p.GuardianName,
+                                            Email = p.Email,
+                                            Photo = p.Photo
+                                        }).ToList();
+
+            ParentListViewModel.ParentList = parentList;
+            return View(ParentListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ParentList(ParentListViewModel parentListViewModel)
+        {
+            var ParentListViewModel = new ParentListViewModel();
+            var parentList = _context.Parent.AsEnumerable()
+                                       .Select(p => new Parent
+                                       {
+                                           GuardianId = p.GuardianId,
+                                           GuardianName = p.GuardianName,
+                                           Email = p.Email,
+                                           Photo = p.Photo
+                                       }).ToList();
+            var PListViewModel = new ParentListViewModel();
+            PListViewModel.ParentList = parentList;
+            return View(ParentListViewModel);
         }
 
         // GET: Parents/Create
@@ -148,6 +183,24 @@ namespace ExamStation.Controllers
         private bool ParentExists(int id)
         {
             return _context.Parent.Any(e => e.GuardianId == id);
+        }
+
+        public JsonResult ParentList(string parentList)
+        {
+            parentList = parentList.ToUpper();
+            var pList = _context.Parent
+                .Where(a => a.GuardianName.ToUpper().Contains(parentList))
+                .Select(a => new { a.GuardianId, a.GuardianName });
+            return Json(pList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string ParentKeyword = q.ToUpper();
+            var pList = _context.Parent
+                .Where(a => a.GuardianName.ToUpper().Contains(ParentKeyword))
+                .Select(a => new { a.GuardianId, a.GuardianName });
+            return Json(pList);
         }
     }
 }

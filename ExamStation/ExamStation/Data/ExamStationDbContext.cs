@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using System.IO;
 using ExamStation.Areas.Identity.Data;
 using ExamStation.Models;
+using ExamStation.Extesions;
 
 namespace ExamStation.Data
 {
@@ -20,6 +21,12 @@ namespace ExamStation.Data
         public ExamStationDbContext(DbContextOptions<ExamStationDbContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Seed();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -323,6 +323,33 @@ namespace ExamStation.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("QuestionGroup");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Title = "Science"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Title = "Math"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Title = "Chemistry"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Title = "General Knowledge"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Title = "Computer Science"
+                        });
                 });
 
             modelBuilder.Entity("ExamStation.Models.QuestionLevel", b =>

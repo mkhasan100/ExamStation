@@ -18,7 +18,8 @@
     <div class="form-group row">
         <label asp-for="Guardian" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
-            <input asp-for="Guardian" class="form-control" />
+            @*<input asp-for="Guardian" class="form-control" />*@
+            @Html.DropDownListFor(model => model.Guardian, new SelectList(ViewBag.GuardianList, "GuardianId", "GuardianName"), "Select Guardian", new { @class = "form-control" })
             <span asp-validation-for="Guardian" class="text-danger"></span>
         </div>
     </div>

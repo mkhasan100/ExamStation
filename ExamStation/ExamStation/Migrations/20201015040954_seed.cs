@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExamStation.Migrations
 {
-    public partial class Initial : Migration
+    public partial class seed : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,6 +47,22 @@ namespace ExamStation.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Class",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClassName = table.Column<string>(nullable: true),
+                    ClassNumeric = table.Column<int>(nullable: true),
+                    TeacherName = table.Column<string>(nullable: true),
+                    Note = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Class", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Event",
                 columns: table => new
                 {
@@ -60,6 +76,20 @@ namespace ExamStation.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Event", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Instruction",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Title = table.Column<string>(nullable: true),
+                    Content = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Instruction", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,6 +155,26 @@ namespace ExamStation.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "QuestionBank",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionGroup = table.Column<string>(nullable: false),
+                    DifficultyLevel = table.Column<string>(nullable: false),
+                    Question = table.Column<string>(nullable: false),
+                    Explanation = table.Column<string>(nullable: true),
+                    Upload = table.Column<byte[]>(nullable: true),
+                    Hints = table.Column<string>(nullable: true),
+                    Mark = table.Column<double>(nullable: false),
+                    QuestionType = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuestionBank", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "QuestionGroup",
                 columns: table => new
                 {
@@ -148,6 +198,37 @@ namespace ExamStation.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_QuestionLevel", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QuestionType",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionTypeName = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuestionType", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Section",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    SectionName = table.Column<string>(nullable: true),
+                    Category = table.Column<string>(nullable: true),
+                    Capacity = table.Column<int>(nullable: false),
+                    Class = table.Column<string>(nullable: true),
+                    TeacherName = table.Column<string>(nullable: true),
+                    Note = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Section", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -180,6 +261,25 @@ namespace ExamStation.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Student", x => x.StudentId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Subject",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClassName = table.Column<string>(nullable: true),
+                    TeacherName = table.Column<string>(nullable: true),
+                    Type = table.Column<string>(nullable: true),
+                    PassMark = table.Column<int>(nullable: false),
+                    FinalMark = table.Column<string>(nullable: true),
+                    SubjectName = table.Column<string>(nullable: true),
+                    SubjectCode = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Subject", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -368,7 +468,13 @@ namespace ExamStation.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Class");
+
+            migrationBuilder.DropTable(
                 name: "Event");
+
+            migrationBuilder.DropTable(
+                name: "Instruction");
 
             migrationBuilder.DropTable(
                 name: "Notice");
@@ -380,13 +486,25 @@ namespace ExamStation.Migrations
                 name: "Parent");
 
             migrationBuilder.DropTable(
+                name: "QuestionBank");
+
+            migrationBuilder.DropTable(
                 name: "QuestionGroup");
 
             migrationBuilder.DropTable(
                 name: "QuestionLevel");
 
             migrationBuilder.DropTable(
+                name: "QuestionType");
+
+            migrationBuilder.DropTable(
+                name: "Section");
+
+            migrationBuilder.DropTable(
                 name: "Student");
+
+            migrationBuilder.DropTable(
+                name: "Subject");
 
             migrationBuilder.DropTable(
                 name: "Teacher");

@@ -35,7 +35,8 @@
     <div class="form-group row">
         <label asp-for="Section" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
-            <input asp-for="Section" class="form-control" />
+            @*<input asp-for="Section" class="form-control" />*@
+            @Html.DropDownListFor(model => model.Section, new SelectList(ViewBag.SectionList, "Id", "SectionName"), "Select Section", new { @class = "form-control" })
             <span asp-validation-for="Section" class="text-danger"></span>
         </div>
     </div>

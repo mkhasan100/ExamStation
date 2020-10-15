@@ -75,6 +75,7 @@
     <None Include="wwwroot\js\ckeditor\translations\vi.js" />
     <None Include="wwwroot\js\ckeditor\translations\zh-cn.js" />
     <None Include="wwwroot\js\ckeditor\translations\zh.js" />
+    <None Include="wwwroot\js\jquery-token\js\jquery.tokeninput.js" />
   </ItemGroup>
 
   <ItemGroup>

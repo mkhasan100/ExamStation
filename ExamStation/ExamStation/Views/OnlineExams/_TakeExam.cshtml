@@ -1,17 +1,225 @@
-﻿<table>
-    <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-    </tr>
-    @{
-        for (int i = 1; i < 5; i++)
-        {
-            <tr>
-                <td><a href="#" class="btn btn-danger">@i</a></td>
-               
-            </tr>
-        }
+﻿<!DOCTYPE html>
+<html lang="en" class="no-js">
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>ExamStation | Admin Dashboard Template</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="~/ExamStation/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN THEME STYLES -->
+    <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
+    <link href="~/ExamStation/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css" />
+    <link href="~/ExamStation/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="~/ExamStation/assets/JSCountdown/jquery.countdown.css" rel="stylesheet" />
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<body>
+    <div id="page-content">
+        <div class="container mrg">
+            <div class="row">
+                <form action="/edulite/exams/save/1/1" controller="Exams" name="post_req" id="post_req" method="post" accept-charset="utf-8">
+                    <div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
+                    <div class="col-md-9">
+                        <div class="panel panel-default">
+                            <div class="panel-heading"><strong>Demo Exam</strong></div>
+                            <div class="panel-body">
+                                <p>
+                                    <small>
+                                        You have started the exam on 15 Oct, 2020 [10:15:00].
+                                        Time duration for this exam is 3 Hours 0 MIns. .
+                                        Your exam will be submitted automatically 15 Oct, 2020 [13:15:00].
+                                    </small>
+                                </p>
+                                <div class="panel panel-default">
+                                    <div class="panel-heading"><strong>Question No. 1[ 4 Marks ]Chemistry Section</strong></div>
+                                    <div class="table-responsive">
+                                        <table class="table table-striped table">
+                                            <thead>
+                                                <tr>
+                                                    <td><p>Explain Thermal Body</p></td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>&nbsp;</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="input textarea">
+                                                            <textarea name="data[Exam][answer]" class="form-control" rows="7" cols="30" id="ExamAnswer"></textarea>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <a href="#" class="btn btn-default btn-sm btn-block">← Prev</a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a href="#" onclick="" class="btn btn-success btn-sm btn-block">
+                                                    <span class="glyphicon glyphicon-check"></span>&nbsp;Save
+                                                </a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="#" onclick="" class="btn btn-success btn-sm btn-block">
+                                                    <span class="glyphicon glyphicon-log-out"></span>&nbsp;Save &amp; Next
+                                                </a>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <a href="#" class="btn btn-danger btn-sm btn-block">
+                                                    <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Reset Answer
+                                                </a>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <a href="#" class="btn btn-default btn-sm btn-block">Next →</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p>&nbsp;</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" name="saveNext" value="" id="ExamSave">
+                </form>
+                <div class="col-md-3">
+                    <div id="timer">
+                        <div id="maincount" class="hasCountdown">
+                            <span class="countdown_row countdown_show3">
+                                <span class="countdown_section">
+                                    <span class="countdown_amount">2</span><br>Hours
+                                </span>
+                                <span class="countdown_section">
+                                    <span class="countdown_amount">16</span><br>Minutes
+                                </span>
+                                <span class="countdown_section">
+                                    <span class="countdown_amount">33</span><br>Seconds
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="panel-group" id="accordion">
 
-
-    }
-</table>
+                        <div class="panel panel-primary ">
+                            <div class="panel-heading">
+                                <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#Chemistry">Class Test</a></h4>
+                            </div>
+                            <div id="ClassTest" class="panel-collapse collapse in fixed-content">
+                                <div class="panel-body ">
+                                    <div class="row">
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">1</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">2</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">3</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">4</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">5</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">6</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">7</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">8</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">9</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">11</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">12</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">13</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">14</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">15</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">16</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">17</a>
+                                        </div>
+                                        <div class="col-md-3 mrg-1">
+                                            <a href="#" class="btn btn-info btn-block">18</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <form action="#" name="post_5f87d3ce5481d342512953" id="post_5f87d3ce5481d342512953" style="display:none;" method="post">
+                        <input type="hidden" name="_method" value="POST">
+                    </form>
+                    <a href="#" class="btn btn-danger btn-sm btn-block" onclick=""><span class="glyphicon glyphicon-lock"></span>&nbsp;Finish Exam </a>
+                </div>
+                <div class="col-md-3 mrg-1">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">Legend</h4>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-6 mrg-1"><span class="btn btn-info btn-small">Current Ques</span></div>
+                                <div class="col-md-5 mrg-1"><span class="btn btn-default btn-small">Not Visited&nbsp;&nbsp;</span></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 mrg-1"><span class="btn btn-success btn-small">Answered&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div>
+                                <div class="col-md-5 mrg-1 pr-4"><span class="btn btn-warning btn-small">No Answer&nbsp;&nbsp;</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/ExamStation/assets/JSCountdown/jquery.countdown.js"></script>
+    <script>
+        $(document).ready(function () {
+            liftoffTime = new Date(2020, 10 - 1, 15, 13, 15, 00);
+            $("#maincount").countdown({ until: liftoffTime, format: 'HMS', expiryUrl: "/edulite/Exams/finish/1" });
+            function serverTime() {
+                var time = null;
+                $.ajax({
+                    url: "/edulite/ServerTimes",
+                    async: false, dataType: 'text',
+                    success: function (text) {
+                        time = new Date(text);
+                    }, error: function (http, message, exc) {
+                        time = new Date();
+                    }
+                });
+                return time;
+            }
+        });
+    </script>
+</body>
+</html>

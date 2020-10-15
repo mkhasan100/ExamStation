@@ -104,7 +104,7 @@
                     @Html.DisplayFor(modelItem => item.Published)
                 </td>
                 <td>
-                    <a href="@Url.Action("_TakeExam", "OnlineExams")" class="btn btn-success" target="_blank" onclick="window.open('@Url.Action("_TakeExam", "OnlineExams")','name','width=600,height=400,')">Take Exam</a>
+                    <a href="@Url.Action("_TakeExam", "OnlineExams")" class="btn btn-success" target="_blank" onclick="window.open('@Url.Action("_TakeExam", "OnlineExams")','name','width=1200,height=600,')">Take Exam</a>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
