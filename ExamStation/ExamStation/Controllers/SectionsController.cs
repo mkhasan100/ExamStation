@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -42,6 +43,45 @@ namespace ExamStation.Controllers
 
             return View(section);
         }
+
+        [HttpGet]
+        public IActionResult SectionList()
+        {
+            var SectionListViewModel = new SectionListViewModel();
+            var sectionList = _context.Section.AsEnumerable()
+                                        .Select(s => new Section
+                                        {
+                                            Id = s.Id,
+                                            SectionName = s.SectionName,
+                                            Category = s.Category,
+                                            Capacity = s.Capacity,
+                                            TeacherName = s.TeacherName,
+                                            Note = s.Note
+                                        }).ToList();
+
+            SectionListViewModel.SectionList = sectionList;
+            return View(SectionListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult SectionList(SectionListViewModel sectionListViewModel)        {
+            
+                var SectionListViewModel = new SectionListViewModel();
+                var sectionList = _context.Section.AsEnumerable()
+                                            .Select(s => new Section
+                                            {
+                                                Id = s.Id,
+                                                SectionName = s.SectionName,
+                                                Category = s.Category,
+                                                Capacity = s.Capacity,
+                                                TeacherName = s.TeacherName,
+                                                Note = s.Note
+                                            }).ToList();
+                var SListViewModel = new SectionListViewModel();
+            SListViewModel.SectionList = sectionList;
+            return View(SectionListViewModel);
+        }
+
 
         // GET: Sections/Create
         public IActionResult Create()
@@ -151,5 +191,24 @@ namespace ExamStation.Controllers
         {
             return _context.Section.Any(e => e.Id == id);
         }
+
+        public JsonResult GetSectionList(string sectionList)
+        {
+            sectionList = sectionList.ToUpper();
+            var sList = _context.Section
+                .Where(a => a.SectionName.ToUpper().Contains(sectionList))
+                .Select(a => new { a.Id, a.SectionName });
+            return Json(sList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string SectionKeyword = q.ToUpper();
+            var sList = _context.Section
+                .Where(a => a.SectionName.ToUpper().Contains(SectionKeyword))
+                .Select(a => new { a.Id, a.SectionName });
+            return Json(sList);
+        }
+
     }
 }

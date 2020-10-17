@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExamStation.Migrations
 {
     [DbContext(typeof(ExamStationDbContext))]
-    [Migration("20201015062243_seed1")]
-    partial class seed1
+    [Migration("20201017105604_addd")]
+    partial class addd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -183,6 +183,9 @@ namespace ExamStation.Migrations
                     b.Property<string>("Class")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<double>("Cost")
+                        .HasColumnType("float");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -253,7 +256,6 @@ namespace ExamStation.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("GuardianName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("MotherName")
@@ -281,7 +283,6 @@ namespace ExamStation.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("DifficultyLevel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Explanation")
@@ -298,7 +299,6 @@ namespace ExamStation.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("QuestionGroup")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("QuestionType")
@@ -501,6 +501,9 @@ namespace ExamStation.Migrations
 
                     b.Property<int>("PassMark")
                         .HasColumnType("int");
+
+                    b.Property<string>("SubjectAuthor")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SubjectCode")
                         .HasColumnType("nvarchar(max)");

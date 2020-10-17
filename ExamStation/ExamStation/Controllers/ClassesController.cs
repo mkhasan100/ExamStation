@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -41,6 +42,42 @@ namespace ExamStation.Controllers
             }
 
             return View(@class);
+        }
+
+        [HttpGet]
+        public IActionResult ClassList()
+        {
+            var ClassListViewModel = new ClassListViewModel();
+            var classList = _context.Class.AsEnumerable()
+                                        .Select(c => new Class
+                                        {
+                                            Id = c.Id,
+                                            ClassName = c.ClassName,
+                                            ClassNumeric = c.ClassNumeric,
+                                            TeacherName = c.TeacherName,
+                                            Note = c.Note
+                                        }).ToList();
+
+            ClassListViewModel.ClassList = classList;
+            return View(ClassListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult ClassList(ClassListViewModel classListViewModel)
+        {
+            var ClassListViewModel = new ClassListViewModel();
+            var classList = _context.Class.AsEnumerable()
+                                        .Select(c => new Class
+                                        {
+                                            Id = c.Id,
+                                            ClassName = c.ClassName,
+                                            ClassNumeric = c.ClassNumeric,
+                                            TeacherName = c.TeacherName,
+                                            Note = c.Note
+                                        }).ToList();
+            var CListViewModel = new ClassListViewModel();
+            CListViewModel.ClassList = classList;
+            return View(ClassListViewModel);
         }
 
         // GET: Classes/Create
@@ -149,5 +186,23 @@ namespace ExamStation.Controllers
         {
             return _context.Class.Any(e => e.Id == id);
         }
+        public JsonResult GetClassList(string classList)
+        {
+            classList = classList.ToUpper();
+            var cList = _context.Class
+                .Where(a => a.TeacherName.ToUpper().Contains(classList))
+                .Select(a => new { a.Id, a.ClassName });
+            return Json(cList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string ClassKeyword = q.ToUpper();
+            var cList = _context.Class
+                .Where(a => a.ClassName.ToUpper().Contains(ClassKeyword))
+                .Select(a => new { a.Id, a.ClassName });
+            return Json(cList);
+        }
+
     }
 }

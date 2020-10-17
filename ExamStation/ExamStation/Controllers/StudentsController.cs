@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
 using ExamStation.Helper;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -46,10 +47,51 @@ namespace ExamStation.Controllers
             return View(student);
         }
 
+        [HttpGet]
+        public IActionResult StudentList()
+        {
+            var StudentListViewModel = new StudentListViewModel();
+            var studentList = _context.Student.AsEnumerable()
+                                        .Select(s => new Student
+                                        {
+                                            StudentId = s.StudentId,
+                                            StudentName = s.StudentName,
+                                            Roll = s.Roll,
+                                            Email = s.Email,
+                                            Photo = s.Photo
+                                        }).ToList();
+
+            StudentListViewModel.StudentList = studentList;
+            return View(StudentListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult StudentList(StudentListViewModel studentListViewModel)
+        {
+            var StudentListViewModel = new StudentListViewModel();
+            var studentList = _context.Student.AsEnumerable()
+                                        .Select(s => new Student
+                                        {
+                                            StudentId = s.StudentId,
+                                            StudentName = s.StudentName,
+                                            Roll = s.Roll,
+                                            Email = s.Email,
+                                            Photo = s.Photo
+                                        }).ToList();
+            var SListViewModel = new StudentListViewModel();
+            SListViewModel.StudentList = studentList;
+            return View(StudentListViewModel);
+        }
+
+
+
         // GET: Students/Create
         public IActionResult Create()
         {
             ViewBag.GuardianList = _utility.GetGuardianList();
+            ViewBag.ClassList = _utility.GetClassList(); 
+            ViewBag.SectionList = _utility.GetSectionList();
+            ViewBag.GroupList = _utility.GetGroupList();
             return View();
         }
 
@@ -153,5 +195,24 @@ namespace ExamStation.Controllers
         {
             return _context.Student.Any(e => e.StudentId == id);
         }
+
+        public JsonResult GetStudentList(string studentList)
+        {
+            studentList = studentList.ToUpper();
+            var sList = _context.Student
+                .Where(a => a.StudentName.ToUpper().Contains(studentList))
+                .Select(a => new { a.StudentId, a.StudentName });
+            return Json(sList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string StudentKeyword = q.ToUpper();
+            var sList = _context.Student
+                .Where(a => a.StudentName.ToUpper().Contains(StudentKeyword))
+                .Select(a => new { a.StudentId, a.StudentName });
+            return Json(sList);
+        }
+
     }
 }

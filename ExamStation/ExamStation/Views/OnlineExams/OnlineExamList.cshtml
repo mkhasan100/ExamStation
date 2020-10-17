@@ -1,0 +1,97 @@
+﻿@model ExamStation.Models.ViewModels.OnlineExamListViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Online Exam List</h2>
+<hr />
+<form asp-action="PurchaseLists">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label asp-for="Keyword" class="control-label"></label>
+                <input asp-for="Keyword" class="form-control" />
+                <input type="hidden" asp-for="Keyword" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="panel biz-boxed">
+        <div class="panel-heading">
+            <h4 id="OnlineExamList">Details:</h4>
+        </div>
+        <table id="tblOnlineExamList" class="table table-bordered table-hover">
+            <thead>
+                <tr class="active">
+                    <th>#</th>
+                    <th>Exam Title</th>
+                    <th>Published</th>
+                    <th>Payment Status</th>
+                    <th>Cost</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.OnlineExamList)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.ExamTitle)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Published)</td>
+                        <td>@Html.DisplayFor(modelItem => item.PaymentStatus)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Cost)</td>
+                        <td>
+                            <a href="@Url.Action("_TakeExam", "OnlineExams")" class="btn btn-success" target="_blank" onclick="window.open('@Url.Action("_TakeExam", "OnlineExams")','name','width=1200,height=600,')">Take Exam</a>
+                            <a href="/Purchases/Create" type="submit" id="edit" class="btn btn-default" value="Edit">Edit</a>
+                            <a href="/Purchases/Create" type="submit" id="Delete" class="btn btn-danger" value="Delete">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>
+<div class="form-group row">
+    <a href="" type="submit" id="btnCSVExport" class="btn btn-success" value="Export">Export To CSV</a>
+    <a href="" type="submit" id="btnExcelExport" class="btn btn-success" value="Export">Export To Excel</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //TokenInput Call
+            $("#Keyword").tokenInput("@Url.Action("GetKeyword", "OnlineExams")",
+                    {
+                        theme: 'facebook',
+                        tokeLimit: 1,
+                        preventDuplicates: true
+                    });
+            //SearchBy Value on TokenInput
+            $("#token-input-Keyword").blur(function () {
+                var selectedValues = $("#Keyword").tokenInput("get");
+                //console.log(selectedValues);
+                $("#KeywordId").val(selectedValues[0].Id);
+            })
+
+            //Table To Excel
+            $("#btnExcelExport").click(function () {
+                $("#tblOnlineExamList").table2excel({
+                        filename: "Table.xls"
+                    });
+                });
+
+            //Table To CSV
+            $("#btnCSVExport").click(function () {
+                $("#tblOnlineExamList").table2csv({
+                    filename: "Table.csv"
+                });
+            });
+        });
+    </script>
+
+}
+

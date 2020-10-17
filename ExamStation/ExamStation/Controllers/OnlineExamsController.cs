@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
 using ExamStation.Helper;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -47,11 +48,52 @@ namespace ExamStation.Controllers
             return View(onlineExam);
         }
 
+        [HttpGet]
+        public IActionResult OnlineExamList()
+        {
+            var OnlineExamListListViewModel = new OnlineExamListViewModel();
+            var onlineExamList = _context.OnlineExam.AsEnumerable()
+                                        .Select(oe => new OnlineExam
+                                        {
+                                            Id = oe.Id,
+                                            ExamTitle = oe.ExamTitle,
+                                            Published = oe.Published,
+                                            PaymentStatus = oe.PaymentStatus,
+                                            Cost = oe.Cost
+                                        }).ToList();
+
+            OnlineExamListListViewModel.OnlineExamList = onlineExamList;
+            return View(OnlineExamListListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult OnlineExamList(SubjectListViewModel subjectListViewModel)
+        {
+
+            var OnlineExamListListViewModel = new OnlineExamListViewModel();
+            var onlineExamList = _context.OnlineExam.AsEnumerable()
+                                        .Select(oe => new OnlineExam
+                                        {
+                                            Id = oe.Id,
+                                            ExamTitle = oe.ExamTitle,
+                                            Published = oe.Published,
+                                            PaymentStatus = oe.PaymentStatus,
+                                            Cost = oe.Cost
+                                        }).ToList();
+            var OEListViewModel = new OnlineExamListViewModel();
+            OEListViewModel.OnlineExamList = onlineExamList;
+            return View(OnlineExamListListViewModel);
+        }
+
+
         // GET: OnlineExams/Create
         public IActionResult Create()
         {
             ViewBag.ClassList =_utility.GetClassList();
             ViewBag.SectionList = _utility.GetSectionList();
+            ViewBag.GroupList = _utility.GetGroupList();
+            ViewBag.SubjectList = _utility.GetSubjectList();
+            ViewBag.InstructionList = _utility.GetInstructionList();
             return View();
         }
 
@@ -161,5 +203,24 @@ namespace ExamStation.Controllers
         {
             return PartialView();
         }
+
+        public JsonResult GetOnlineExamList(string onlineExamList)
+        {
+            onlineExamList = onlineExamList.ToUpper();
+            var OEList = _context.OnlineExam
+                .Where(a => a.ExamTitle.ToUpper().Contains(onlineExamList))
+                .Select(a => new { a.Id, a.ExamTitle });
+            return Json(OEList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string OnlineExamKeyword = q.ToUpper();
+            var OEList = _context.OnlineExam
+                .Where(a => a.ExamTitle.ToUpper().Contains(OnlineExamKeyword))
+                .Select(a => new { a.Id, a.ExamTitle });
+            return Json(OEList);
+        }
+
     }
 }

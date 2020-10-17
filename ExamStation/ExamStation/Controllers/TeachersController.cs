@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -42,6 +43,41 @@ namespace ExamStation.Controllers
 
             return View(teacher);
         }
+
+        [HttpGet]
+        public IActionResult TeacherList()
+        {
+            var TeacherListViewModel = new TeacherListViewModel();
+            var teacherList = _context.Teacher.AsEnumerable()
+                                        .Select(t => new Teacher
+                                        {
+                                            TeacherId = t.TeacherId,
+                                            TeacherName = t.TeacherName,
+                                            Email = t.Email,
+                                            Photo = t.Photo
+                                        }).ToList();
+
+            TeacherListViewModel.TeacherList = teacherList;
+            return View(TeacherListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult TeacherList(TeacherListViewModel teacherListViewModel)
+        {
+            var TeacherListViewModel = new TeacherListViewModel();
+            var teacherList = _context.Teacher.AsEnumerable()
+                                        .Select(t => new Teacher
+                                        {
+                                            TeacherId = t.TeacherId,
+                                            TeacherName = t.TeacherName,
+                                            Email = t.Email,
+                                            Photo = t.Photo
+                                        }).ToList();
+            var TListViewModel = new TeacherListViewModel();
+            TListViewModel.TeacherList = teacherList;
+            return View(TeacherListViewModel);
+        }
+
 
         // GET: Teachers/Create
         public IActionResult Create()
@@ -148,6 +184,24 @@ namespace ExamStation.Controllers
         private bool TeacherExists(int id)
         {
             return _context.Teacher.Any(e => e.TeacherId == id);
+        }
+
+        public JsonResult GetTeacherList(string teacherList)
+        {
+            teacherList = teacherList.ToUpper();
+            var tList = _context.Teacher
+                .Where(a => a.TeacherName.ToUpper().Contains(teacherList))
+                .Select(a => new { a.TeacherId, a.TeacherName });
+            return Json(tList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string TeacherKeyword = q.ToUpper();
+            var tList = _context.Teacher
+                .Where(a => a.TeacherName.ToUpper().Contains(TeacherKeyword))
+                .Select(a => new { a.TeacherId, a.TeacherName });
+            return Json(tList);
         }
     }
 }

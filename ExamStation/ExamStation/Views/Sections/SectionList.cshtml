@@ -1,0 +1,98 @@
+﻿@model ExamStation.Models.ViewModels.SectionListViewModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Section List</h2>
+<hr />
+<form asp-action="PurchaseLists">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label asp-for="Keyword" class="control-label"></label>
+                <input asp-for="Keyword" class="form-control" />
+                <input type="hidden" asp-for="Keyword" value="" />
+            </div>
+        </div>
+    </div>
+    <div class="panel biz-boxed">
+        <div class="panel-heading">
+            <h4 id="SectionList">Details:</h4>
+        </div>
+        <table id="tblSectionList" class="table table-bordered table-hover">
+            <thead>
+                <tr class="active">
+                    <th>#</th>
+                    <th>Section</th>
+                    <th>Category</th>
+                    <th>Capacity</th>
+                    <th>Teacher Name</th>
+                    <th>Note</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.SectionList)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.SectionName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Category)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Capacity)</td>
+                        <td>@Html.DisplayFor(modelItem => item.TeacherName)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Note)</td>
+                        <td>
+                            <a href="/Purchases/Create" type="submit" id="edit" class="btn btn-default" value="Edit">Edit</a>
+                            <a href="/Purchases/Create" type="submit" id="Delete" class="btn btn-danger" value="Delete">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>
+<div class="form-group row">
+    <a href="" type="submit" id="btnCSVExport" class="btn btn-success" value="Export">Export To CSV</a>
+    <a href="" type="submit" id="btnExcelExport" class="btn btn-success" value="Export">Export To Excel</a>
+</div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            //TokenInput Call
+            $("#Keyword").tokenInput("@Url.Action("GetKeyword", "Sections")",
+                    {
+                        theme: 'facebook',
+                        tokeLimit: 1,
+                        preventDuplicates: true
+                    });
+            //SearchBy Value on TokenInput
+            $("#token-input-Keyword").blur(function () {
+                var selectedValues = $("#Keyword").tokenInput("get");
+                //console.log(selectedValues);
+                $("#KeywordId").val(selectedValues[0].Id);
+            })
+
+            //Table To Excel
+            $("#btnExcelExport").click(function () {
+                $("#tblSectionList").table2excel({
+                        filename: "Table.xls"
+                    });
+                });
+
+            //Table To CSV
+            $("#btnCSVExport").click(function () {
+                $("#tblSectionList").table2csv({
+                    filename: "Table.csv"
+                });
+            });
+        });
+    </script>
+
+}
+

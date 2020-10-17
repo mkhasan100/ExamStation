@@ -8,16 +8,16 @@ using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
 using ExamStation.Models.ViewModels;
-
 namespace ExamStation.Controllers
 {
     public class ParentsController : Controller
     {
         private readonly ExamStationDbContext _context;
-
+        
         public ParentsController(ExamStationDbContext context)
         {
             _context = context;
+            
         }
 
         // GET: Parents

@@ -16,6 +16,7 @@ namespace ExamStation.Models
         public int PassMark { get; set; }
         public string FinalMark { get; set; }
         public string SubjectName { get; set; }
+        public string SubjectAuthor { get; set; }
         public string SubjectCode { get; set; }
     }
 }

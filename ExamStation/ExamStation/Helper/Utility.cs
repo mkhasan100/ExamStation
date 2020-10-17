@@ -29,5 +29,19 @@ namespace ExamStation.Helper
         {
             return _context.Parent.ToList();
         }
+
+        public List<QuestionGroup> GetGroupList()
+        {
+            return _context.QuestionGroup.ToList();
+        } 
+        
+        public List<Subject> GetSubjectList()
+        {
+            return _context.Subject.ToList();
+        }
+        public List<Instruction> GetInstructionList()
+        {
+            return _context.Instruction.ToList();
+        }
     }
 }

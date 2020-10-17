@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExamStation.Migrations
 {
-    public partial class seed : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -139,7 +139,7 @@ namespace ExamStation.Migrations
                 {
                     GuardianId = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    GuardianName = table.Column<string>(nullable: false),
+                    GuardianName = table.Column<string>(nullable: true),
                     FatherName = table.Column<string>(nullable: true),
                     MotherName = table.Column<string>(nullable: true),
                     FatherProfession = table.Column<string>(nullable: true),
@@ -160,8 +160,8 @@ namespace ExamStation.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    QuestionGroup = table.Column<string>(nullable: false),
-                    DifficultyLevel = table.Column<string>(nullable: false),
+                    QuestionGroup = table.Column<string>(nullable: true),
+                    DifficultyLevel = table.Column<string>(nullable: true),
                     Question = table.Column<string>(nullable: false),
                     Explanation = table.Column<string>(nullable: true),
                     Upload = table.Column<byte[]>(nullable: true),
@@ -408,6 +408,18 @@ namespace ExamStation.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "QuestionGroup",
+                columns: new[] { "Id", "Title" },
+                values: new object[,]
+                {
+                    { 1, "Science" },
+                    { 2, "Math" },
+                    { 3, "Chemistry" },
+                    { 4, "General Knowledge" },
+                    { 5, "Computer Science" }
                 });
 
             migrationBuilder.CreateIndex(

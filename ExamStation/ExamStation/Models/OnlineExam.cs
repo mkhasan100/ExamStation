@@ -36,6 +36,7 @@ namespace ExamStation.Models
         [Required]
         [DisplayName("Payment Status")]
         public string PaymentStatus { get; set; }
+        public double Cost { get; set; }
         [Required]
         public string Published { get; set; }
 

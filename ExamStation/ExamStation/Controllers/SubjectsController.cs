@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -42,6 +43,50 @@ namespace ExamStation.Controllers
 
             return View(subject);
         }
+
+        [HttpGet]
+        public IActionResult SubjectList()
+        {
+            var SubjectListViewModel = new SubjectListViewModel();
+            var subjectList = _context.Subject.AsEnumerable()
+                                        .Select(s => new Subject
+                                        {
+                                            Id = s.Id,
+                                            SubjectName = s.SubjectName,
+                                            SubjectAuthor = s.SubjectAuthor,
+                                            SubjectCode = s.SubjectCode,
+                                            TeacherName = s.TeacherName,
+                                            PassMark = s.PassMark,
+                                            FinalMark = s.FinalMark,
+                                            Type = s.Type
+                                        }).ToList();
+
+            SubjectListViewModel.SubjectList = subjectList;
+            return View(SubjectListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult SubjectList(SubjectListViewModel subjectListViewModel)
+        {
+
+            var SubjectListViewModel = new SubjectListViewModel();
+            var subjectList = _context.Subject.AsEnumerable()
+                                        .Select(s => new Subject
+                                        {
+                                            Id = s.Id,
+                                            SubjectName = s.SubjectName,
+                                            SubjectAuthor = s.SubjectAuthor,
+                                            SubjectCode = s.SubjectCode,
+                                            TeacherName = s.TeacherName,
+                                            PassMark = s.PassMark,
+                                            FinalMark = s.FinalMark,
+                                            Type = s.Type
+                                        }).ToList();
+            var SubListViewModel = new SubjectListViewModel();
+            SubListViewModel.SubjectList = subjectList;
+            return View(SubjectListViewModel);
+        }
+
 
         // GET: Subjects/Create
         public IActionResult Create()
@@ -151,5 +196,24 @@ namespace ExamStation.Controllers
         {
             return _context.Subject.Any(e => e.Id == id);
         }
+
+        public JsonResult GetSubjectList(string subjectList)
+        {
+            subjectList = subjectList.ToUpper();
+            var subList = _context.Subject
+                .Where(a => a.SubjectName.ToUpper().Contains(subjectList))
+                .Select(a => new { a.Id, a.SubjectName });
+            return Json(subList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string SubjectKeyword = q.ToUpper();
+            var subList = _context.Subject
+                .Where(a => a.SubjectName.ToUpper().Contains(SubjectKeyword))
+                .Select(a => new { a.Id, a.SubjectName });
+            return Json(subList);
+        }
+
     }
 }

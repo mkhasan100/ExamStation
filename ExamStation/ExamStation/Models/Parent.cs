@@ -11,7 +11,6 @@ namespace ExamStation.Models
     {
         [Key]
         public int GuardianId { get; set; }
-        [Required]
         [DisplayName("Guardian Name")]
         public string GuardianName { get; set; }
         [DisplayName("Father Name")]
