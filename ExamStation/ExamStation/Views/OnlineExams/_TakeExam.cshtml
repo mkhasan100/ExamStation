@@ -1,4 +1,24 @@
-﻿<!DOCTYPE html>
+﻿@{ 
+    ExamStation.Data.ExamStationDbContext _context = new ExamStation.Data.ExamStationDbContext();
+    int ExamId = @ViewBag.ExamId;
+    int durationInMin = 0;
+    if (!ExamId.Equals(0))
+    {
+        durationInMin = _context.OnlineExam.Where(w => w.Id == ExamId).FirstOrDefault().Duration;
+    }
+
+    int durationInHour = durationInMin / 60;
+    if (!durationInHour.Equals(0))
+    {
+        durationInMin = durationInHour * 60 - durationInMin;
+    }
+
+    DateTime ExamStartTime = DateTime.Now;
+    DateTime ExamEndTime = ExamStartTime.AddHours(durationInHour).AddMinutes(durationInMin);
+
+    //int question 
+}
+<!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
 <head>
@@ -23,8 +43,9 @@
 <!-- END HEAD -->
 <body>
     <div id="page-content">
+        <div class="container">
             <div class="row">
-                <form action="/edulite/exams/save/1/1" controller="Exams" name="post_req" id="post_req" method="post" accept-charset="utf-8">
+                @*<form action="/edulite/exams/save/1/1" controller="Exams" name="post_req" id="post_req" method="post" accept-charset="utf-8">*@
                     <div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
                     <div class="col-md-9">
                         <div class="panel panel-default">
@@ -32,9 +53,9 @@
                             <div class="panel-body">
                                 <p>
                                     <small>
-                                        You have started the exam on 18 Oct, 2020 [10:15:00].
-                                        Time duration for this exam is 2 Hours 0 MIns. .
-                                        Your exam will be submitted automatically 18 Oct, 2020 [12:15:00].
+                                        You have started the exam on @ExamStartTime.
+                                        Time duration for this exam is @durationInHour Hours @durationInMin MIns.
+                                        Your exam will be submitted automatically @ExamEndTime.
                                     </small>
                                 </p>
                                 <div class="panel panel-default">
@@ -81,7 +102,8 @@
                                                 </a>
                                             </div>
                                             <div class="col-md-2">
-                                                <a href="#" class="btn btn-default btn-sm btn-block">Next →</a>
+                                                <input type="button" id="btnNext" value="Next" class="btn btn-info" />
+                                                @*<button id="btnNext" class="btn btn-default btn-sm btn-block">Next →</button>*@
                                             </div>
                                         </div>
                                     </div>
@@ -91,9 +113,9 @@
                         </div>
                     </div>
                     <input type="hidden" name="saveNext" value="" id="ExamSave">
-                </form>
+                @*</form>*@
                 <div class="col-md-3">
-                    <div class="jumbotron countdown show" data-Date='2020/10/18 22:00:00'>
+                    <div class="jumbotron countdown show" data-Date='@ExamEndTime.ToString("yyyy/MM/dd HH:mm:ss")'>
                         <div class="running">
                             <timer>
                                 <span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
@@ -114,57 +136,16 @@
                             <div id="ClassTest" class="panel-collapse collapse in fixed-content">
                                 <div class="panel-body ">
                                     <div class="row">
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">1</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">2</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">3</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">4</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">5</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">6</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">7</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">8</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">9</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">11</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">12</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">13</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">14</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">15</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">16</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">17</a>
-                                        </div>
-                                        <div class="col-md-3 mrg-1">
-                                            <a href="#" class="btn btn-info btn-block">18</a>
-                                        </div>
+                                        @{
+                                            var QuestionBankList = _context.QuestionBank.ToList();
+                                           
+                                            for (int i = 0; i < QuestionBankList.Count; i++)
+                                            {
+                                                <div class="col-md-3 mrg-1">
+                                                    <a href="#" class="btn btn-info btn-block qb">@i</a>
+                                                </div>                                                
+                                            }
+                                        }
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +177,21 @@
                 </div>
             </div>
         </div>
+        </div>
     <script src="~/ExamStation/assets/global/plugins/jquery.min.js"></script>
-    <script src="~/CountdownClock/multi-countdown.js"></script>  
+    <script src="~/CountdownClock/multi-countdown.js"></script> 
+    <script type="text/javascript">
+        $("#btnNext").click(function () {
+         $.ajax({
+                        url: "@Url.Action("GetQuestionById", "OnlineExams")",
+                        data: {'Id': 1 },
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function (data) {
+                            alert(data);
+                        }
+                    });
+    });
+    </script>
 </body>
 </html>

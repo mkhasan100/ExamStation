@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExamStation.Migrations
 {
-    public partial class Init : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -153,26 +153,6 @@ namespace ExamStation.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Parent", x => x.GuardianId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "QuestionBank",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QuestionGroup = table.Column<string>(nullable: true),
-                    DifficultyLevel = table.Column<string>(nullable: true),
-                    Question = table.Column<string>(nullable: false),
-                    Explanation = table.Column<string>(nullable: true),
-                    Upload = table.Column<byte[]>(nullable: true),
-                    Hints = table.Column<string>(nullable: true),
-                    Mark = table.Column<double>(nullable: false),
-                    QuestionType = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_QuestionBank", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -412,6 +392,33 @@ namespace ExamStation.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "QuestionBank",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionGroup = table.Column<string>(nullable: true),
+                    DifficultyLevel = table.Column<string>(nullable: true),
+                    OnlineExamId = table.Column<int>(nullable: true),
+                    Question = table.Column<string>(nullable: false),
+                    Explanation = table.Column<string>(nullable: true),
+                    Upload = table.Column<byte[]>(nullable: true),
+                    Hints = table.Column<string>(nullable: true),
+                    Mark = table.Column<double>(nullable: false),
+                    QuestionType = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuestionBank", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_QuestionBank_OnlineExam_OnlineExamId",
+                        column: x => x.OnlineExamId,
+                        principalTable: "OnlineExam",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "QuestionGroup",
                 columns: new[] { "Id", "Title" },
@@ -462,6 +469,11 @@ namespace ExamStation.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuestionBank_OnlineExamId",
+                table: "QuestionBank",
+                column: "OnlineExamId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -492,9 +504,6 @@ namespace ExamStation.Migrations
 
             migrationBuilder.DropTable(
                 name: "Notice");
-
-            migrationBuilder.DropTable(
-                name: "OnlineExam");
 
             migrationBuilder.DropTable(
                 name: "Parent");
@@ -528,6 +537,9 @@ namespace ExamStation.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "OnlineExam");
         }
     }
 }

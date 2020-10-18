@@ -4,14 +4,16 @@ using ExamStation.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExamStation.Migrations
 {
     [DbContext(typeof(ExamStationDbContext))]
-    partial class ExamStationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201018142737_initial")]
+    partial class initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,8 +189,8 @@ namespace ExamStation.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
+                    b.Property<string>("Duration")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExamStatus")
                         .IsRequired()
@@ -292,6 +294,9 @@ namespace ExamStation.Migrations
                     b.Property<double>("Mark")
                         .HasColumnType("float");
 
+                    b.Property<int?>("OnlineExamId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Question")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -306,6 +311,8 @@ namespace ExamStation.Migrations
                         .HasColumnType("varbinary(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OnlineExamId");
 
                     b.ToTable("QuestionBank");
                 });
@@ -695,6 +702,13 @@ namespace ExamStation.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("ExamStation.Models.QuestionBank", b =>
+                {
+                    b.HasOne("ExamStation.Models.OnlineExam", "OnlineExam")
+                        .WithMany()
+                        .HasForeignKey("OnlineExamId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

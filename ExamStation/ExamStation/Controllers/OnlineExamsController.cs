@@ -48,6 +48,7 @@ namespace ExamStation.Controllers
             return View(onlineExam);
         }
 
+
         [HttpGet]
         public IActionResult OnlineExamList()
         {
@@ -201,9 +202,16 @@ namespace ExamStation.Controllers
         }
 
         [HttpGet]
-        public IActionResult _TakeExam()
+        public IActionResult _TakeExam(int id)
         {
+            ViewBag.ExamId = id;
             return PartialView();
+        }
+
+        public JsonResult GetQuestionById(int Id)
+        {
+            string test = "empty";
+            return Json(test);
         }
 
         public JsonResult GetOnlineExamList(string onlineExamList)

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExamStation.Migrations
 {
     [DbContext(typeof(ExamStationDbContext))]
-    [Migration("20201018075938_Init")]
-    partial class Init
+    [Migration("20201018163809_addInt")]
+    partial class addInt
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -189,8 +189,8 @@ namespace ExamStation.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Duration")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Duration")
+                        .HasColumnType("int");
 
                     b.Property<string>("ExamStatus")
                         .IsRequired()

@@ -28,7 +28,7 @@ namespace ExamStation.Models
         public string ExamType { get; set; }
         
         //[DataType(DataType.Time)]
-        public string Duration { get; set; }
+        public int Duration { get; set; }
         [Required]
         [DisplayName("Mark Type")]
         public string MarkType { get; set; }

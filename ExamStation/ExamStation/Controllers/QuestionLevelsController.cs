@@ -91,7 +91,7 @@ namespace ExamStation.Controllers
             {
                 _context.Add(questionLevel);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(QuestionLevelList));
             }
             return View(questionLevel);
         }

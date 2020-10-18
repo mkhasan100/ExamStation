@@ -4,14 +4,16 @@ using ExamStation.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExamStation.Migrations
 {
     [DbContext(typeof(ExamStationDbContext))]
-    partial class ExamStationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201018142924_RemoveColumnOnlineExam")]
+    partial class RemoveColumnOnlineExam
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -187,8 +189,8 @@ namespace ExamStation.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Duration")
-                        .HasColumnType("int");
+                    b.Property<string>("Duration")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ExamStatus")
                         .IsRequired()

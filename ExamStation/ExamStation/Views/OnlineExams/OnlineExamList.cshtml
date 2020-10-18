@@ -44,7 +44,8 @@
                         <td>@Html.DisplayFor(modelItem => item.PaymentStatus)</td>
                         <td>@Html.DisplayFor(modelItem => item.Cost)</td>
                         <td>
-                            <a href="@Url.Action("_TakeExam", "OnlineExams")" class="btn btn-success" target="_blank" onclick="window.open('@Url.Action("_TakeExam", "OnlineExams")','name','width=1200,height=600,')">Take Exam</a>
+                            @*href="@Url.Action("_TakeExam", "OnlineExams")"*@
+                            <a class="btn btn-success" onclick="window.open('@Url.Action("_TakeExam", "OnlineExams",new { id= @item.Id })','name','width=1200,height=700,')">Take Exam</a>
                             <a href="/Purchases/Create" type="submit" id="edit" class="btn btn-default" value="Edit">Edit</a>
                             <a href="/Purchases/Create" type="submit" id="Delete" class="btn btn-danger" value="Delete">Delete</a>
                         </td>
