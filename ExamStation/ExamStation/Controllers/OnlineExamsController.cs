@@ -58,6 +58,7 @@ namespace ExamStation.Controllers
                                             Id = oe.Id,
                                             ExamTitle = oe.ExamTitle,
                                             Published = oe.Published,
+                                            Duration = oe.Duration,
                                             PaymentStatus = oe.PaymentStatus,
                                             Cost = oe.Cost
                                         }).ToList();
@@ -77,6 +78,7 @@ namespace ExamStation.Controllers
                                             Id = oe.Id,
                                             ExamTitle = oe.ExamTitle,
                                             Published = oe.Published,
+                                            Duration = oe.Duration,
                                             PaymentStatus = oe.PaymentStatus,
                                             Cost = oe.Cost
                                         }).ToList();

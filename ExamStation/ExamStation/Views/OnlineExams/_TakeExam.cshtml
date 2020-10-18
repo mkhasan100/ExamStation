@@ -15,6 +15,8 @@
     <link href="~/ExamStation/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css" />
     <link href="~/ExamStation/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css" />
     <link href="~/ExamStation/assets/JSCountdown/jquery.countdown.css" rel="stylesheet" />
+    <link href="~/CountdownClock/jquerysctipttop.css" rel="stylesheet" />
+    <link href="~/CountdownClock/style.css" rel="stylesheet" />
     <!-- END THEME STYLES -->
     <link rel="shortcut icon" href="favicon.ico" />
 </head>
@@ -92,25 +94,20 @@
                     <input type="hidden" name="saveNext" value="" id="ExamSave">
                 </form>
                 <div class="col-md-3">
-                    <div id="timer">
-                        <div id="maincount" class="hasCountdown">
-                            <span class="countdown_row countdown_show3">
-                                <span class="countdown_section">
-                                    <span class="countdown_amount">2</span><br>Hours
-                                </span>
-                                <span class="countdown_section">
-                                    <span class="countdown_amount">16</span><br>Minutes
-                                </span>
-                                <span class="countdown_section">
-                                    <span class="countdown_amount">33</span><br>Seconds
-                                </span>
-                            </span>
+                    <div class="jumbotron countdown show" data-Date='2020/10/18 13:00:00'>
+                        <div class="running">
+                            <timer>
+                                <span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
+                            </timer>
+                            <div class="break"></div>
+                            <div class="labels">
+                                <span>Hours</span><span>Minutes</span><span>Seconds</span>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="panel-group" id="accordion">
-
                         <div class="panel panel-primary ">
                             <div class="panel-heading">
                                 <h4 class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#Chemistry">Class Test</a></h4>
@@ -201,25 +198,8 @@
             </div>
         </div>
     </div>
-    <script src="~/ExamStation/assets/JSCountdown/jquery.countdown.js"></script>
-    <script>
-        $(document).ready(function () {
-            liftoffTime = new Date(2020, 10 - 1, 15, 13, 15, 00);
-            $("#maincount").countdown({ until: liftoffTime, format: 'HMS', expiryUrl: "/edulite/Exams/finish/1" });
-            function serverTime() {
-                var time = null;
-                $.ajax({
-                    url: "/edulite/ServerTimes",
-                    async: false, dataType: 'text',
-                    success: function (text) {
-                        time = new Date(text);
-                    }, error: function (http, message, exc) {
-                        time = new Date();
-                    }
-                });
-                return time;
-            }
-        });
-    </script>
+    <script src="~/CountdownClock/jquery-1.12.4.min.js"></script>
+    <script src="~/CountdownClock/multi-countdown.js"></script>
+    @*<script src="~/ExamStation/assets/JSCountdown/jquery.countdown.js"></script>*@    
 </body>
 </html>

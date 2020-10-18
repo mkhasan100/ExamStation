@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="wwwroot\CountdownClock\multi-countdown.js" />
     <None Include="wwwroot\js\ckeditor\ckeditor.js" />
     <None Include="wwwroot\js\ckeditor\LICENSE.md" />
     <None Include="wwwroot\js\ckeditor\README.md" />
