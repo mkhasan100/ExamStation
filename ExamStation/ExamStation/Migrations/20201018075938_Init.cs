@@ -122,10 +122,11 @@ namespace ExamStation.Migrations
                     Instruction = table.Column<string>(nullable: true),
                     ExamStatus = table.Column<string>(nullable: false),
                     ExamType = table.Column<string>(nullable: false),
-                    Duration = table.Column<int>(nullable: true),
+                    Duration = table.Column<string>(nullable: true),
                     MarkType = table.Column<string>(nullable: false),
                     PassValue = table.Column<double>(nullable: false),
                     PaymentStatus = table.Column<string>(nullable: false),
+                    Cost = table.Column<double>(nullable: false),
                     Published = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
@@ -275,6 +276,7 @@ namespace ExamStation.Migrations
                     PassMark = table.Column<int>(nullable: false),
                     FinalMark = table.Column<string>(nullable: true),
                     SubjectName = table.Column<string>(nullable: true),
+                    SubjectAuthor = table.Column<string>(nullable: true),
                     SubjectCode = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="en">
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
@@ -23,7 +23,6 @@
 <!-- END HEAD -->
 <body>
     <div id="page-content">
-        <div class="container mrg">
             <div class="row">
                 <form action="/edulite/exams/save/1/1" controller="Exams" name="post_req" id="post_req" method="post" accept-charset="utf-8">
                     <div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
@@ -33,9 +32,9 @@
                             <div class="panel-body">
                                 <p>
                                     <small>
-                                        You have started the exam on 15 Oct, 2020 [10:15:00].
-                                        Time duration for this exam is 3 Hours 0 MIns. .
-                                        Your exam will be submitted automatically 15 Oct, 2020 [13:15:00].
+                                        You have started the exam on 18 Oct, 2020 [10:15:00].
+                                        Time duration for this exam is 2 Hours 0 MIns. .
+                                        Your exam will be submitted automatically 18 Oct, 2020 [12:15:00].
                                     </small>
                                 </p>
                                 <div class="panel panel-default">
@@ -94,7 +93,7 @@
                     <input type="hidden" name="saveNext" value="" id="ExamSave">
                 </form>
                 <div class="col-md-3">
-                    <div class="jumbotron countdown show" data-Date='2020/10/18 13:00:00'>
+                    <div class="jumbotron countdown show" data-Date='2020/10/18 22:00:00'>
                         <div class="running">
                             <timer>
                                 <span class="hours"></span>:<span class="minutes"></span>:<span class="seconds"></span>
@@ -181,7 +180,7 @@
                 <div class="col-md-3 mrg-1">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h4 class="panel-title">Legend</h4>
+                            <h4 class="panel-title">Summary</h4>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -197,9 +196,7 @@
                 </div>
             </div>
         </div>
-    </div>
-    <script src="~/CountdownClock/jquery-1.12.4.min.js"></script>
-    <script src="~/CountdownClock/multi-countdown.js"></script>
-    @*<script src="~/ExamStation/assets/JSCountdown/jquery.countdown.js"></script>*@    
+    <script src="~/ExamStation/assets/global/plugins/jquery.min.js"></script>
+    <script src="~/CountdownClock/multi-countdown.js"></script>  
 </body>
 </html>
