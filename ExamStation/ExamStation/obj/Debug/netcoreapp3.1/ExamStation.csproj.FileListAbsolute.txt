@@ -155,6 +155,7 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csprojAssemblyReference.cache
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.AssemblyInfoInputs.cache
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.AssemblyInfo.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csproj.CoreCompileInputs.cache
@@ -258,6 +259,12 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Subjects\Edit.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Subjects\Index.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Subjects\SubjectList.cshtml.g.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\TakeExamMappers\Create.cshtml.g.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\TakeExamMappers\Delete.cshtml.g.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\TakeExamMappers\Details.cshtml.g.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\TakeExamMappers\Edit.cshtml.g.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\TakeExamMappers\Index.cshtml.g.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\TakeExamMappers\TakeExamMap.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Teachers\Create.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Teachers\Delete.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Teachers\Details.cshtml.g.cs
@@ -275,4 +282,3 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.pdb
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.genruntimeconfig.cache
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csprojAssemblyReference.cache

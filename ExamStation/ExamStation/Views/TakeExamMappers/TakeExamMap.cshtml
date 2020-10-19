@@ -1,0 +1,76 @@
+﻿@model ExamStation.Models.TakeExamMapper
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Take Exam Map</h4>
+<hr />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group row">
+        <label asp-for="ExamId" class="control-label col-sm-2">Exam</label>
+        <div class="col-sm-6">
+            @*<input asp-for="ExamId" class="form-control" />*@
+            @Html.DropDownListFor(model => model.ExamId, new SelectList(ViewBag.ExamTitleList, "Id", "ExamTitle"), "Select Exam", new { @class = "form-control" })
+            <span asp-validation-for="ExamId" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="QuestionBankId" class="control-label col-sm-2">Question Group</label>
+        <div class="col-sm-6">
+            @*<input asp-for="QuestionGroupId" class="form-control" />*@
+            @Html.DropDownListFor(model => model.QuestionBankId, new SelectList(ViewBag.ExamGroupList, "Id", "Title"), "Select Group", new { @class = "form-control" })
+            <span asp-validation-for="QuestionBankId" class="text-danger"></span>
+        </div>
+    </div>
+    <span class="input-group-btn" style="padding-top:10px;">
+        <button type="submit" class="btn btn-info" id="btnShowQuestions">Show Questions</button>
+    </span>
+    <div class="table-responsive" style="padding-top:10px;">
+        <table id="tblQuestionMap" class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th><input type="checkbox"></th>
+                    <th>Question</th>
+                    <th>ID</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Save" id="btnSave" class="btn btn-success" />
+    </div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#btnShowQuestions").click(function () {
+            var questionGroup = $("#QuestionGroupId").val();
+            alert(questionGroup);
+            $.ajax({
+                url: "@Url.Action("GetQuestionBankList", "TakeExamMappers")",
+                type: "GET",
+                data: { 'questionGroupId': questionGroup },
+                dataType: "json",
+                success: function (result) {
+                    console.log(result);
+                    var tableBody;
+                    for (var i = 0; i < result.length; i++) {
+                        tableBody += "<tr><td><input type='checkbox'></td><td>" + result[i].question + "</td><td>" + result[i].id+"</td></tr>"
+                    }
+                    $("#tblQuestionMap > tbody").append(tableBody);
+                    }
+            });
+        });
+
+        $("#btnSave").click(function () {
+            var examId = $("#ExamId").val();
+            var questionGroupId = $("#QuestionGroupId").val();
+        });
+    });
+</script>
+
+}

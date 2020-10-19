@@ -191,22 +191,22 @@ namespace ExamStation.Controllers
             return _context.QuestionBank.Any(e => e.Id == id);
         }
 
-        public JsonResult GetBankList(string questionBankList)
-        {
-            questionBankList = questionBankList.ToUpper();
-            var qBankList = _context.QuestionBank
-                .Where(a => a.QuestionGroup.ToUpper().Contains(questionBankList))
-                .Select(a => new { a.Id, a.QuestionGroup });
-            return Json(qBankList);
-        }
+        //public JsonResult GetBankList(string questionBankList)
+        //{
+        //    questionBankList = questionBankList.ToUpper();
+        //    var qBankList = _context.QuestionBank
+        //        .Where(a => a.QuestionGroup.ToUpper().Contains(questionBankList))
+        //        .Select(a => new { a.Id, a.QuestionGroup });
+        //    return Json(qBankList);
+        //}
 
-        public JsonResult GetKeyword(string q)
-        {
-            string QuestionBankKeyword = q.ToUpper();
-            var qBankList = _context.QuestionBank
-                .Where(a => a.QuestionGroup.ToUpper().Contains(QuestionBankKeyword))
-                .Select(a => new { a.Id, a.QuestionGroup });
-            return Json(qBankList);
-        }
+        //public JsonResult GetKeyword(string q)
+        //{
+        //    string QuestionBankKeyword = q.ToUpper();
+        //    var qBankList = _context.QuestionBank
+        //        .Where(a => a.QuestionGroup.ToUpper().Contains(QuestionBankKeyword))
+        //        .Select(a => new { a.Id, a.QuestionGroup });
+        //    return Json(qBankList);
+        //}
     }
 }

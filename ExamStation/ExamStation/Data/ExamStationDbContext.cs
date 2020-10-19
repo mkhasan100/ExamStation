@@ -73,6 +73,8 @@ namespace ExamStation.Data
 
         public DbSet<ExamStation.Models.Section> Section { get; set; }
 
+        public DbSet<ExamStation.Models.TakeExamMapper> TakeExamMapper { get; set; }
+
 
 
 
