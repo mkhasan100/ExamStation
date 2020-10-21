@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -53,7 +54,8 @@ namespace ExamStation.Controllers
         // GET: TakeExamMappers/Create
         public IActionResult Create()
         {
-            return View();
+            TakeExamMapperViewModel takeExamMapperViewModel = new TakeExamMapperViewModel();
+            return View(takeExamMapperViewModel);
         }
 
         // POST: TakeExamMappers/Create
@@ -61,15 +63,23 @@ namespace ExamStation.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ExamId,QuestionGroupId")] TakeExamMapper takeExamMapper)
+        public IActionResult Create(TakeExamMapperViewModel takeExamMapperViewModel)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(takeExamMapper);
-                await _context.SaveChangesAsync();
+                for (int i = 0; i <takeExamMapperViewModel.TakeExamMapperList.Count; i++)
+                {
+                    TakeExamMapper takeExamMapper = new TakeExamMapper();
+                    takeExamMapper.ExamId = takeExamMapper.ExamId;
+                    takeExamMapper.QuestionBankId = takeExamMapper.QuestionBankId;
+
+                    _context.TakeExamMapper.Add(takeExamMapper);
+                    _context.SaveChanges();
+
+                }
                 return RedirectToAction(nameof(Index));
             }
-            return View(takeExamMapper);
+            return View();
         }
 
         // GET: TakeExamMappers/Edit/5
@@ -175,5 +185,38 @@ namespace ExamStation.Controllers
             return Json(questionBankList);
             
         }
+
+        [HttpPost]
+        public JsonResult SaveExamQuestionMapper(int examId, string questionBankIds )
+        {
+            string savedMessage = string.Empty;
+            try
+            {
+                string[] questionBankIdArray = questionBankIds.Split(',');
+
+                foreach (var item in questionBankIdArray)
+                {
+                    TakeExamMapper examQuestionMapper = new TakeExamMapper();
+
+                    examQuestionMapper.ExamId = examId;
+                    examQuestionMapper.QuestionBankId = Convert.ToInt32(item);
+
+                    _context.Add(examQuestionMapper);
+                    _context.SaveChanges();
+                }
+
+                savedMessage = "Saved Successfully";
+            }
+            catch (Exception ex)
+            {
+                savedMessage = "Save failed. "+ ex.Message.ToString() ;
+            }
+
+
+            return Json(savedMessage);
+            
+
+        }
+
     }
 }

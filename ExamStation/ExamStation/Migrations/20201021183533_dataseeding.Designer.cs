@@ -4,14 +4,16 @@ using ExamStation.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExamStation.Migrations
 {
     [DbContext(typeof(ExamStationDbContext))]
-    partial class ExamStationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201021183533_dataseeding")]
+    partial class dataseeding
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -588,96 +590,6 @@ namespace ExamStation.Migrations
                             Mark = 40.0,
                             Question = "What is Computer",
                             QuestionType = "Single Answer"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DifficultyLevel = "Easy",
-                            Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-                            Hints = "Nothing",
-                            Mark = 40.0,
-                            Question = "What is Computer Describe it",
-                            QuestionType = "Single Answer"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DifficultyLevel = "Very Easy",
-                            Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-                            Hints = "Nothing",
-                            Mark = 40.0,
-                            Question = "What is Math",
-                            QuestionType = "Multi Answer"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DifficultyLevel = "Very Easy",
-                            Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-                            Hints = "Nothing",
-                            Mark = 40.0,
-                            Question = "What is Math Describe it",
-                            QuestionType = "Multi Answer"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DifficultyLevel = "Medium",
-                            Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-                            Hints = "Nothing",
-                            Mark = 40.0,
-                            Question = "What is Chemistry",
-                            QuestionType = "Fill In The Blanks"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DifficultyLevel = "Medium",
-                            Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-                            Hints = "Nothing",
-                            Mark = 40.0,
-                            Question = "What is Chemistry Describe it",
-                            QuestionType = "Fill In The Blanks"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            DifficultyLevel = "Hard",
-                            Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-                            Hints = "Nothing",
-                            Mark = 40.0,
-                            Question = "What is General Knowledge",
-                            QuestionType = "Single Answer"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            DifficultyLevel = "Hard",
-                            Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-                            Hints = "Nothing",
-                            Mark = 40.0,
-                            Question = "What is General Knowledge Describe it",
-                            QuestionType = "Single Answer"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            DifficultyLevel = "Easy",
-                            Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-                            Hints = "Nothing",
-                            Mark = 40.0,
-                            Question = "What is Computer Science",
-                            QuestionType = "Multi Answer"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            DifficultyLevel = "Easy",
-                            Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-                            Hints = "Nothing",
-                            Mark = 40.0,
-                            Question = "What is Computer Science Describe it",
-                            QuestionType = "Multi Answer"
                         });
                 });
 
@@ -700,26 +612,6 @@ namespace ExamStation.Migrations
                         {
                             Id = 1,
                             Title = "Science"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Title = "Math"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Title = "Chemistry"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Title = "General Knowledge"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Title = "Computer Science"
                         });
                 });
 

@@ -60,14 +60,7 @@ namespace ExamStation.Extesions
                new Subject { Id = 5, ClassName = "Five", TeacherName = "Rafi", Type = "Optional", PassMark = 33, FinalMark = "40", SubjectName = "English", SubjectAuthor="Allen", SubjectCode="1126" }
                );
 
-            modeBuilder.Entity<QuestionGroup>().HasData(
-                new QuestionGroup {Id = 1, Title = "Science"},
-                new QuestionGroup {Id = 2, Title = "Math" },
-                new QuestionGroup {Id = 3, Title = "Chemistry" },
-                new QuestionGroup {Id = 4, Title = "General Knowledge" },
-                new QuestionGroup {Id = 5, Title = "Computer Science" }
-            );
-
+           
             modeBuilder.Entity<QuestionLevel>().HasData(
                 new QuestionLevel{ Id = 1, Title = "Easy" },
                 new QuestionLevel{ Id = 2, Title = "Very Easy" },
@@ -75,18 +68,80 @@ namespace ExamStation.Extesions
                 new QuestionLevel{ Id = 4, Title = "Hard" }
               );
 
-            //modeBuilder.Entity<QuestionBank>().HasData(
-            //    new QuestionBank { Id = 1, QuestionGroup = QuestionGroup, DifficultyLevel = "Easy", Question ="What is Computer", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Single Answer" },
-            //    new QuestionBank { Id = 2, QuestionGroupId = Science, DifficultyLevel = "Easy", Question ="What is Computer Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Single Answer" },
-            //    new QuestionBank { Id = 3, QuestionGroupId = Math, DifficultyLevel = "Very Easy", Question = "What is Math", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Multi Answer" },
-            //    new QuestionBank { Id = 4, QuestionGroupId = Math, DifficultyLevel = "Very Easy", Question = "What is Math Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Multi Answer" },
-            //    new QuestionBank { Id = 5, QuestionGroupId = Chemistry, DifficultyLevel = "Medium", Question = "What is Chemistry", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Fill In The Blanks" },
-            //    new QuestionBank { Id = 6, QuestionGroupId = Chemistry, DifficultyLevel = "Medium", Question = "What is Chemistry Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Fill In The Blanks" },
-            //    new QuestionBank { Id = 7, QuestionGroupId = General Knowledge, DifficultyLevel = "Hard", Question = "What is General Knowledge", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType= "Single Answer" },
-            //    new QuestionBank { Id = 8, QuestionGroupId = General Knowledge", DifficultyLevel = "Hard", Question = "What is General Knowledge Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType= "Single Answer" },
-            //    new QuestionBank { Id = 9, QuestionGroupId = "Computer Science", DifficultyLevel = "Easy", Question = "What is Computer Science", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType= "Multi Answer" },
-            //    new QuestionBank { Id = 10, QuestionGroupId = "Computer Science", DifficultyLevel = "Easy", Question = "What is Computer Science Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType= "Multi Answer" }
-            //   );
+            //modeBuilder.Entity<QuestionGroup>(b =>
+            //{
+            //    b.HasData(new QuestionGroup
+            //    {
+            //        Id = 1,
+            //        Title = "Science"
+            //    });
+            //    b.OwnsOne(e => e.Id).HasData(
+            //    new           {
+            //        Id = 1,
+            //        QuestionGroup =1,
+            //        DifficultyLevel = "Easy",
+            //        Question = "What is Computer",
+            //        Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
+            //        Hints = "Nothing",
+            //        Mark = 40,
+            //        QuestionType = "Single Answer"
+            //    });
+            //});
+
+            modeBuilder.Entity<QuestionGroup>().HasData(
+               new QuestionGroup { Id = 1, Title = "Science" },
+               new QuestionGroup { Id = 2, Title = "Math" },
+               new QuestionGroup { Id = 3, Title = "Chemistry" },
+               new QuestionGroup { Id = 4, Title = "General Knowledge" },
+               new QuestionGroup { Id = 5, Title = "Computer Science" }
+           );
+
+            //        modeBuilder.Entity<QuestionGroup>()
+            //                .HasKey(s => new { s.Id });
+
+            //        var questionBank = new[]
+            //         { new QuestionBank { Id = 1,
+            //                DifficultyLevel = "Easy",
+            //                Question ="What is Computer",
+            //                Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
+            //                Hints="Nothing",
+            //                Mark=40,
+            //                QuestionType="Single Answer"
+            //                }
+            //        };
+
+
+            //        var questionGroup = new[]
+            //        {
+            // new QuestionGroup { Id = 1, Title = "Science" }
+            //};
+
+            //        modeBuilder.Entity<QuestionBank>().HasData(questionBank[0]);
+            //        modeBuilder.Entity<QuestionGroup>().HasData(questionGroup[0]);
+
+
+
+            modeBuilder.Entity<QuestionBank>().HasData(
+                new QuestionBank 
+                { Id = 1, 
+                    //QuestionGroupId=1, 
+                    DifficultyLevel = "Easy", 
+                    Question ="What is Computer", 
+                    Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", 
+                    Hints="Nothing", 
+                    Mark=40, 
+                    QuestionType="Single Answer" 
+                    },
+            new QuestionBank { Id = 2,  DifficultyLevel = "Easy", Question ="What is Computer Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Single Answer" },
+            new QuestionBank { Id = 3,  DifficultyLevel = "Very Easy", Question = "What is Math", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Multi Answer" },
+            new QuestionBank { Id = 4, DifficultyLevel = "Very Easy", Question = "What is Math Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Multi Answer" },
+            new QuestionBank { Id = 5,  DifficultyLevel = "Medium", Question = "What is Chemistry", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Fill In The Blanks" },
+            new QuestionBank { Id = 6, DifficultyLevel = "Medium", Question = "What is Chemistry Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Fill In The Blanks" },
+            new QuestionBank { Id = 7,  DifficultyLevel = "Hard", Question = "What is General Knowledge", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType= "Single Answer" },
+            new QuestionBank { Id = 8,  DifficultyLevel = "Hard", Question = "What is General Knowledge Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType= "Single Answer" },
+            new QuestionBank { Id = 9,  DifficultyLevel = "Easy", Question = "What is Computer Science", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType= "Multi Answer" },
+            new QuestionBank { Id = 10, DifficultyLevel = "Easy", Question = "What is Computer Science Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType= "Multi Answer" }
+              );
 
             modeBuilder.Entity<OnlineExam>().HasData(
                 new OnlineExam { Id = 1, ExamTitle = "Quiz", Description = "Description Here", Class = "One", Section = "A", StudentGroup = "Science", Subject = "Physics", Instruction = "Exam Instruction For Student 1", ExamStatus = "One Time", ExamType = "Only Duration", Duration = 10, MarkType = "40", PassValue = 33, PaymentStatus="Free", Published="Yes" },
@@ -110,7 +165,7 @@ namespace ExamStation.Extesions
                 );
 
             modeBuilder.Entity<Event>().HasData(
-                new Event { Id = 1, Title = "EidUlAzha", /*Date = Convert.ToDateTime(16-07-2020),*/ Details = "Eid ul-Azha is an important religious holiday." },
+                new Event { Id = 1, Title = "EidUlAzha", Date = Convert.ToDateTime("16-Jul-2020"), Details = "Eid ul-Azha is an important religious holiday." },
                 new Event { Id = 2, Title = "EidUlFitr", /*Date = Convert.ToDateTime(06-05-2020),*/ Details = "Eid ul-Fitr is an important religious holiday." }
                 );
 
