@@ -8438,7 +8438,8 @@ Grey Cararra
 /* Portlet */
 .portlet > .portlet-body.grey-cararra,
 .portlet.grey-cararra {
-  background-color: #fafafa;
+    background-color: #fafafa;
+    padding-top: 5px;
 }
 
 .portlet.solid.grey-cararra > .portlet-title,

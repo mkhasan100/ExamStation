@@ -13,7 +13,7 @@
     <div class="col-sm-6">
         @*<input asp-for="ExamId" class="form-control" />*@
         @Html.DropDownListFor(model => model.ExamId, new SelectList(ViewBag.ExamTitleList, "Id", "ExamTitle"), "Select Exam", new { @class = "form-control" })
-        <span asp-validation-for="ExamId" class="text-danger"></span>
+        <span asp-validation-for="ExamId" class="text-danger required"></span>
     </div>
 </div>
 <div class="form-group row">
@@ -21,7 +21,7 @@
     <div class="col-sm-6">
         @*<input asp-for="QuestionGroupId" class="form-control" />*@
         @Html.DropDownListFor(model => model.QuestionBankId, new SelectList(ViewBag.ExamGroupList, "Id", "Title"), "Select Group", new { @class = "form-control" })
-        <span asp-validation-for="QuestionBankId" class="text-danger"></span>
+        <span asp-validation-for="QuestionBankId" class="text-danger required"></span>
     </div>
 </div>
 <span class="input-group-btn" style="padding-top:10px;">
@@ -33,7 +33,7 @@
                 <tr>
                     <th><input type="checkbox" id="checkAll" ></th>
                     <th>Question</th>
-                    <th>ID</th>
+                    <th style="display: none;">ID</th>
                 </tr>
             </thead>
             <tbody></tbody>
@@ -48,8 +48,7 @@
     <script type="text/javascript">
     $(document).ready(function () {
 
-
-
+        //Show Questions
         $("#btnShowQuestions").click(function () {
             var questionGroup = $("#QuestionBankId").val();
             //alert(questionGroup);
@@ -61,24 +60,21 @@
                 success: function (result) {
                     //console.log(result);
                     var tableBody;
-
                     $("#tblQuestionMap").find("tbody").empty();
                     for (var i = 0; i < result.length; i++) {
-                        tableBody += "<tr class='row-select'><td><input type='checkbox' ></td><td class='name'>" + result[i].question + "</td><td class='id'>" + result[i].id+"</td></tr>"
+                        tableBody += "<tr class='row-select'><td><input type='checkbox' ></td><td class='name'>" + result[i].question + "</td><td class='id' style='display: none;'>" + result[i].id+"</td></tr>"
                     }
                     $("#tblQuestionMap > tbody").append(tableBody);
                     }
             });
         });
 
-
-
+        //Ceckbox
         $("#checkAll").change(function () {
             $("input:checkbox").prop('checked', $(this).prop("checked"));
         });
 
-
-
+        //BtnSave
         $("#btnSave").click(function () {
             var examId = $("#ExamId").val();
             var questionBankId;
@@ -97,9 +93,6 @@
                 i++;
             });
 
-
-
-
             $.ajax({
                 url: "@Url.Action("SaveExamQuestionMapper", "TakeExamMappers")",
                 type:"POST",
@@ -108,7 +101,6 @@
                 {
                     alert(message);
                 }
-
             });
 
         });       

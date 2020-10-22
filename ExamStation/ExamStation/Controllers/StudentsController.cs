@@ -29,6 +29,11 @@ namespace ExamStation.Controllers
             return View(await _context.Student.ToListAsync());
         }
 
+        public ActionResult StudentProfile()
+        {
+            return View("StudentProfile");
+        }
+
         // GET: Students/Details/5
         public async Task<IActionResult> Details(int? id)
         {
