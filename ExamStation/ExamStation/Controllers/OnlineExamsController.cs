@@ -9,18 +9,24 @@ using ExamStation.Data;
 using ExamStation.Models;
 using ExamStation.Helper;
 using ExamStation.Models.ViewModels;
+using Newtonsoft.Json;
+using Microsoft.AspNetCore.Identity;
+using ExamStation.Areas.Identity.Data;
 
 namespace ExamStation.Controllers
 {
     public class OnlineExamsController : Controller
     {
+
         private readonly ExamStationDbContext _context;
+        private readonly UserManager<ExamStationUser> userManager;
         Utility _utility;
 
 
-        public OnlineExamsController(ExamStationDbContext context)
+        public OnlineExamsController(ExamStationDbContext context,UserManager<ExamStationUser> userManager)
         {
             _context = context;
+            this.userManager = userManager;
             _utility = new Utility();
         }
 
@@ -92,7 +98,7 @@ namespace ExamStation.Controllers
         // GET: OnlineExams/Create
         public IActionResult Create()
         {
-            ViewBag.ClassList =_utility.GetClassList();
+            ViewBag.ClassList = _utility.GetClassList();
             ViewBag.SectionList = _utility.GetSectionList();
             ViewBag.GroupList = _utility.GetGroupList();
             ViewBag.SubjectList = _utility.GetSubjectList();
@@ -205,6 +211,7 @@ namespace ExamStation.Controllers
         public IActionResult _TakeExam(int id)
         {
             ViewBag.ExamId = id;
+            ViewBag.UserEmail = userManager.FindByNameAsync(userManager.GetUserName(User)).Result.Email;
             return PartialView();
         }
 
@@ -230,6 +237,78 @@ namespace ExamStation.Controllers
                 .Where(a => a.ExamTitle.ToUpper().Contains(OnlineExamKeyword))
                 .Select(a => new { a.Id, a.ExamTitle });
             return Json(OEList);
+        }
+
+        [HttpGet]
+        public JsonResult GetNextQuestion(int questionBankId)
+        {
+            QuestionBank questionBank = GetNextQuestionText(questionBankId);
+            return Json(questionBank);
+        }
+
+
+        [HttpGet]
+        public JsonResult GetPrevQuestion(int questionBankId) 
+        {
+
+            var prevQuestionBankId = _context.TakeExamMapper
+                .Where(q => q.QuestionBankId < questionBankId).Max(qb => qb.QuestionBankId);
+
+            var questionBank = _context.QuestionBank
+                                   .Where(q => q.Id == prevQuestionBankId)
+                                   .Select(s => new {s.Id,s.Question});
+            return Json(questionBank);
+        }
+
+
+
+        [HttpPost]
+        public JsonResult SaveAnswers(string StudentEmail, int ExamId, int QuestionBankId, string StudentAnswer)
+        {
+            string message = SaveStudentAnswer(StudentEmail, ExamId, QuestionBankId, StudentAnswer);
+            return Json(message);
+        }        
+
+        public string SaveStudentAnswer(string StudentEmail, int ExamId, int QuestionBankId, string StudentAnswer)
+        {
+            string message = string.Empty;
+            try
+            {
+                Answer answerDetails = new Answer();
+                answerDetails.StudentEmail = StudentEmail;
+                answerDetails.ExamId = ExamId;
+                answerDetails.QuestionBankId = QuestionBankId;
+                answerDetails.StudentAnswer = StudentAnswer;
+
+                _context.Add(answerDetails);
+                _context.SaveChanges();
+
+                message = "Save successfully";
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message.ToString();           
+            }
+            return message;
+        }
+
+        private QuestionBank GetNextQuestionText(int questionBankId)
+        {
+            var NextQuestionBankId = _context.TakeExamMapper
+                   .Where(q => q.QuestionBankId > questionBankId).Min(qb => qb.QuestionBankId);
+
+            QuestionBank questionBank = _context.QuestionBank
+                                   .Where(q => q.Id == NextQuestionBankId)
+                                   .FirstOrDefault();
+            return questionBank;
+        }
+
+        [HttpPost]
+        public IActionResult SaveAnswersAndGetNextQuestion(string StudentEmail, int ExamId, int QuestionBankId, string StudentAnswer)
+        {
+            string message = SaveStudentAnswer(StudentEmail, ExamId, QuestionBankId, StudentAnswer);
+            QuestionBank questionBank = GetNextQuestionText(QuestionBankId);
+            return Json(questionBank);
         }
 
     }

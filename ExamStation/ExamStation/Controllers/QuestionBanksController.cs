@@ -48,14 +48,16 @@ namespace ExamStation.Controllers
         public IActionResult QuestionBankList()
         {
             var QuestionBankListViewModel = new QuestionBankListViewModel();
-            var questionBankList = _context.QuestionBank.AsEnumerable()
+            var questionBankList = _context.QuestionBank
+                .Join(_context.QuestionGroup, qb => qb.QuestionGroup.Id, qg => qg.Id, (qb, qg) => new { qb, qg })
+                .Join(_context.QuestionLevel, qbqg => qbqg.qb.DifficultyLevelId, ql => ql.Id, (qbqg, ql) => new { qbqg, ql })
                                         .Select(qbl => new QuestionBank
                                         {
-                                            Id = qbl.Id,
-                                            Question = qbl.Question,
-                                            DifficultyLevel = qbl.DifficultyLevel,
-                                            QuestionGroup = qbl.QuestionGroup,
-                                            QuestionType = qbl.QuestionType
+                                            Id = qbl.qbqg.qg.Id,
+                                            Question = qbl.qbqg.qb.Question,
+                                            DifficultyLevel = qbl.ql.Title,
+                                            QuestionGroupName = qbl.qbqg.qg.Title,
+                                            QuestionType = qbl.qbqg.qb.QuestionType
                                         }).ToList();
 
             QuestionBankListViewModel.QuestionBankList = questionBankList;
@@ -66,14 +68,16 @@ namespace ExamStation.Controllers
         public IActionResult QuestionGroupList(QuestionGroupListViewModel questionGroupListViewModel)
         {
             var QuestionBankListViewModel = new QuestionBankListViewModel();
-            var questionBankList = _context.QuestionBank.AsEnumerable()
+            var questionBankList = _context.QuestionBank
+                .Join(_context.QuestionGroup, qb => qb.QuestionGroup.Id, qg => qg.Id, (qb, qg) => new { qb, qg })
+                .Join(_context.QuestionLevel, qbqg => qbqg.qb.DifficultyLevelId, ql => ql.Id, (qbqg, ql) => new { qbqg, ql })
                                         .Select(qbl => new QuestionBank
                                         {
-                                            Id = qbl.Id,
-                                            Question = qbl.Question,
-                                            DifficultyLevel = qbl.DifficultyLevel,
-                                            QuestionGroup = qbl.QuestionGroup,
-                                            QuestionType = qbl.QuestionType
+                                            Id = qbl.qbqg.qg.Id,
+                                            Question = qbl.qbqg.qb.Question,
+                                            DifficultyLevel = qbl.ql.Title,
+                                            QuestionGroupName = qbl.qbqg.qg.Title,
+                                            QuestionType = qbl.qbqg.qb.QuestionType
                                         }).ToList();
             var QBListViewModel = new QuestionBankListViewModel();
             QBListViewModel.QuestionBankList = questionBankList;

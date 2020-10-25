@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,6 +14,8 @@ namespace ExamStation.Models
         public int Id { get; set; }
         public virtual QuestionGroup  QuestionGroup{ get; set; }
         [DisplayName("Difficulty Level")]
+        public int? DifficultyLevelId { get; set; }
+        [NotMapped]
         public string DifficultyLevel { get; set; }
         [Required]
         public string Question { get; set; }
@@ -22,5 +25,9 @@ namespace ExamStation.Models
         public double Mark { get; set; }
         [DisplayName("Question Type")]
         public string QuestionType { get; set; }
+
+        [NotMapped]
+        public string QuestionGroupName { get; set; }
+
     }
 }

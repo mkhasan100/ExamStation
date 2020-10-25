@@ -8,6 +8,22 @@ namespace ExamStation.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Answers",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StudentEmail = table.Column<string>(nullable: true),
+                    ExamId = table.Column<int>(nullable: false),
+                    QuestionBankId = table.Column<int>(nullable: false),
+                    StudentAnswer = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Answers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoles",
                 columns: table => new
                 {
@@ -93,6 +109,25 @@ namespace ExamStation.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "MenuMaster",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ParentID = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: true),
+                    URL = table.Column<string>(nullable: true),
+                    SerialNo = table.Column<int>(nullable: false),
+                    isActive = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    isAdmin = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MenuMaster", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Notice",
                 columns: table => new
                 {
@@ -153,26 +188,6 @@ namespace ExamStation.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Parent", x => x.GuardianId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "QuestionBank",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    QuestionGroup = table.Column<string>(nullable: true),
-                    DifficultyLevel = table.Column<string>(nullable: true),
-                    Question = table.Column<string>(nullable: false),
-                    Explanation = table.Column<string>(nullable: true),
-                    Upload = table.Column<byte[]>(nullable: true),
-                    Hints = table.Column<string>(nullable: true),
-                    Mark = table.Column<double>(nullable: false),
-                    QuestionType = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_QuestionBank", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -282,6 +297,20 @@ namespace ExamStation.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Subject", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TakeExamMapper",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ExamId = table.Column<int>(nullable: false),
+                    QuestionBankId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TakeExamMapper", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -412,6 +441,32 @@ namespace ExamStation.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "QuestionBank",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    QuestionGroupId = table.Column<int>(nullable: true),
+                    DifficultyLevelId = table.Column<int>(nullable: true),
+                    Question = table.Column<string>(nullable: false),
+                    Explanation = table.Column<string>(nullable: true),
+                    Upload = table.Column<byte[]>(nullable: true),
+                    Hints = table.Column<string>(nullable: true),
+                    Mark = table.Column<double>(nullable: false),
+                    QuestionType = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuestionBank", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_QuestionBank_QuestionGroup_QuestionGroupId",
+                        column: x => x.QuestionGroupId,
+                        principalTable: "QuestionGroup",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.InsertData(
                 table: "Class",
                 columns: new[] { "Id", "ClassName", "ClassNumeric", "Note", "TeacherName" },
@@ -429,8 +484,8 @@ namespace ExamStation.Migrations
                 columns: new[] { "Id", "Date", "Details", "Photo", "Title" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Eid ul-Azha is an important religious holiday.", (byte)0, "EidUlAzha" },
-                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Eid ul-Fitr is an important religious holiday.", (byte)0, "EidUlFitr" }
+                    { 1, new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "Eid ul-Azha is an important religious holiday.", (byte)0, "EidUlAzha" },
+                    { 2, new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "Eid ul-Fitr is an important religious holiday.", (byte)0, "EidUlFitr" }
                 });
 
             migrationBuilder.InsertData(
@@ -450,8 +505,8 @@ namespace ExamStation.Migrations
                 columns: new[] { "Id", "Date", "Title", "WriteNotice" },
                 values: new object[,]
                 {
-                    { 2, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Holyday", "Have a Good Day" },
-                    { 1, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Programing Contest", "On 16-07-2020 will held a programming contest in Varsity campus" }
+                    { 2, new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "Holyday", "Have a Good Day" },
+                    { 1, new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "Programing Contest", "On 16-07-2020 will held a programming contest in Varsity campus" }
                 });
 
             migrationBuilder.InsertData(
@@ -480,19 +535,19 @@ namespace ExamStation.Migrations
 
             migrationBuilder.InsertData(
                 table: "QuestionBank",
-                columns: new[] { "Id", "DifficultyLevel", "Explanation", "Hints", "Mark", "Question", "QuestionGroup", "QuestionType", "Upload" },
+                columns: new[] { "Id", "DifficultyLevelId", "Explanation", "Hints", "Mark", "Question", "QuestionGroupId", "QuestionType", "Upload" },
                 values: new object[,]
                 {
-                    { 7, "Hard", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge", "General Knowledge", "Single Answer", null },
-                    { 10, "Easy", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science Describe it", "Computer Science", "Multi Answer", null },
-                    { 9, "Easy", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science", "Computer Science", "Multi Answer", null },
-                    { 6, "Medium", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry Describe it", "Chemistry", "Fill In The Blanks", null },
-                    { 8, "Hard", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge Describe it", "General Knowledge", "Single Answer", null },
-                    { 4, "Very Easy", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math Describe it", "Math", "Multi Answer", null },
-                    { 3, "Very Easy", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math", "Math", "Multi Answer", null },
-                    { 2, "Easy", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Describe it", "Science", "Single Answer", null },
-                    { 1, "Easy", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer", "Science", "Single Answer", null },
-                    { 5, "Medium", "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry", "Chemistry", "Fill In The Blanks", null }
+                    { 7, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge", null, "Single Answer", null },
+                    { 10, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science Describe it", null, "Multi Answer", null },
+                    { 9, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science", null, "Multi Answer", null },
+                    { 6, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry Describe it", null, "Fill In The Blanks", null },
+                    { 8, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge Describe it", null, "Single Answer", null },
+                    { 4, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math Describe it", null, "Multi Answer", null },
+                    { 3, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math", null, "Multi Answer", null },
+                    { 2, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Describe it", null, "Single Answer", null },
+                    { 1, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer", null, "Single Answer", null },
+                    { 5, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry", null, "Fill In The Blanks", null }
                 });
 
             migrationBuilder.InsertData(
@@ -535,11 +590,11 @@ namespace ExamStation.Migrations
                 columns: new[] { "StudentId", "Address", "BloodGroup", "Class", "Country", "DateOfBirth", "Email", "ExtraActivities", "Gender", "Group", "Guardian", "OptionalSubject", "Phone", "Photo", "RegisterNo", "Religion", "Remarks", "Roll", "Section", "State", "StudentName" },
                 values: new object[,]
                 {
-                    { 1, null, "B-", "One", "Bangladesh", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "saif100@gmail.com", "Nothing", "Male", "Science", "Abu Siddik", "", 1548959585, null, 1010, "Muslim", "Student-1", 1, "A", "Islambagh", "Saif" },
-                    { 2, null, "A+", "Two", "Bangladesh", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "asif100@gmail.com", "Nothing", "Male", "Computer Science", "Ruma", "", 154895896, null, 1011, "Muslim", "Student-2", 2, "B", "Islambagh", "Asif" },
-                    { 3, null, "AB+", "Three", "Bangladesh", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "musa100@gmail.com", "Nothing", "Male", "General Knowledge", "Kamrunnahar", "", 168548958, null, 1012, "Muslim", "Student-3", 3, "C", "Islambagh", "Musa" },
-                    { 4, null, "A-", "Four", "Bangladesh", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "saad100@gmail.com", "Nothing", "Male", "Math", "Jewel", "", 198758485, null, 1013, "Muslim", "Student-4", 1, "D", "Dhaka", "Saad" },
-                    { 5, null, "B+", "Five", "Bangladesh", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ayisha100@gmail.com", "Nothing", "Female", "Chemistry", "Zaman", "", 178458723, null, 1014, "Muslim", "Student-5", 4, "E", "Dhaka", "Ayisha" }
+                    { 1, null, "B-", "One", "Bangladesh", new DateTime(2002, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "saif100@gmail.com", "Nothing", "Male", "Science", "Abu Siddik", "", 1548959585, null, 1010, "Muslim", "Student-1", 1, "A", "Islambagh", "Saif" },
+                    { 2, null, "A+", "Two", "Bangladesh", new DateTime(2006, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "asif100@gmail.com", "Nothing", "Male", "Computer Science", "Ruma", "", 154895896, null, 1011, "Muslim", "Student-2", 2, "B", "Islambagh", "Asif" },
+                    { 3, null, "AB+", "Three", "Bangladesh", new DateTime(2011, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "musa100@gmail.com", "Nothing", "Male", "General Knowledge", "Kamrunnahar", "", 168548958, null, 1012, "Muslim", "Student-3", 3, "C", "Islambagh", "Musa" },
+                    { 4, null, "A-", "Four", "Bangladesh", new DateTime(2011, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "saad100@gmail.com", "Nothing", "Male", "Math", "Jewel", "", 198758485, null, 1013, "Muslim", "Student-4", 1, "D", "Dhaka", "Saad" },
+                    { 5, null, "B+", "Five", "Bangladesh", new DateTime(2018, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ayisha100@gmail.com", "Nothing", "Female", "Chemistry", "Zaman", "", 178458723, null, 1014, "Muslim", "Student-5", 4, "E", "Dhaka", "Ayisha" }
                 });
 
             migrationBuilder.InsertData(
@@ -559,11 +614,11 @@ namespace ExamStation.Migrations
                 columns: new[] { "TeacherId", "Address", "DateOfBirth", "Designation", "Email", "Gender", "JoiningDate", "Phone", "Photo", "Religion", "TeacherName" },
                 values: new object[,]
                 {
-                    { 4, "Dhaka", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ICT Specialist", "masum100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1245154789, null, "Muslim", "Masum" },
-                    { 1, "Islambagh", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Engineer", "hasan100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1234567895, null, "Muslim", "Hasan" },
-                    { 2, "Dhaka", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "rakib100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1254621458, null, "Muslim", "Rakib" },
-                    { 3, "Dhaka", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Programmer", "imran100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1201201456, null, "Muslim", "Imran" },
-                    { 5, "Dhaka", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Developer", "rafi100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1452548514, null, "Muslim", "Rafi" }
+                    { 4, "Dhaka", new DateTime(1996, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "ICT Specialist", "masum100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1245154789, null, "Muslim", "Masum" },
+                    { 1, "Islambagh", new DateTime(1997, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Engineer", "hasan100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1234567895, null, "Muslim", "Hasan" },
+                    { 2, "Dhaka", new DateTime(1995, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "rakib100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1254621458, null, "Muslim", "Rakib" },
+                    { 3, "Dhaka", new DateTime(1991, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Programmer", "imran100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1201201456, null, "Muslim", "Imran" },
+                    { 5, "Dhaka", new DateTime(1995, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Developer", "rafi100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1452548514, null, "Muslim", "Rafi" }
                 });
 
             migrationBuilder.CreateIndex(
@@ -604,10 +659,18 @@ namespace ExamStation.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_QuestionBank_QuestionGroupId",
+                table: "QuestionBank",
+                column: "QuestionGroupId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Answers");
+
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -633,6 +696,9 @@ namespace ExamStation.Migrations
                 name: "Instruction");
 
             migrationBuilder.DropTable(
+                name: "MenuMaster");
+
+            migrationBuilder.DropTable(
                 name: "Notice");
 
             migrationBuilder.DropTable(
@@ -643,9 +709,6 @@ namespace ExamStation.Migrations
 
             migrationBuilder.DropTable(
                 name: "QuestionBank");
-
-            migrationBuilder.DropTable(
-                name: "QuestionGroup");
 
             migrationBuilder.DropTable(
                 name: "QuestionLevel");
@@ -663,6 +726,9 @@ namespace ExamStation.Migrations
                 name: "Subject");
 
             migrationBuilder.DropTable(
+                name: "TakeExamMapper");
+
+            migrationBuilder.DropTable(
                 name: "Teacher");
 
             migrationBuilder.DropTable(
@@ -670,6 +736,9 @@ namespace ExamStation.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "QuestionGroup");
         }
     }
 }

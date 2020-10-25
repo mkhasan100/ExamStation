@@ -62,7 +62,7 @@
                     var tableBody;
                     $("#tblQuestionMap").find("tbody").empty();
                     for (var i = 0; i < result.length; i++) {
-                        tableBody += "<tr class='row-select'><td><input type='checkbox' ></td><td class='name'>" + result[i].question + "</td><td class='id' style='display: none;'>" + result[i].id+"</td></tr>"
+                        tableBody += "<tr class='row-select'><td><input type='checkbox' ></td><td class='name'>" + result[i].question + "</td><td class='id' >" + result[i].id+"</td></tr>"
                     }
                     $("#tblQuestionMap > tbody").append(tableBody);
                     }

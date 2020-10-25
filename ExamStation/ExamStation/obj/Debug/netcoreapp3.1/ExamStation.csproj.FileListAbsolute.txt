@@ -1,3 +1,10 @@
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.AssemblyInfoInputs.cache
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.AssemblyInfo.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csproj.CoreCompileInputs.cache
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.MvcApplicationPartsAssemblyInfo.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.MvcApplicationPartsAssemblyInfo.cache
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.RazorAssemblyInfo.cache
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.RazorAssemblyInfo.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\appsettings.Development.json
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\appsettings.json
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
@@ -156,13 +163,6 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csprojAssemblyReference.cache
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.AssemblyInfoInputs.cache
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.AssemblyInfo.cs
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csproj.CoreCompileInputs.cache
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.MvcApplicationPartsAssemblyInfo.cs
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.MvcApplicationPartsAssemblyInfo.cache
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.RazorAssemblyInfo.cache
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.RazorAssemblyInfo.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.TagHelpers.input.cache
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.TagHelpers.output.cache
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.RazorCoreGenerate.cache
@@ -246,6 +246,7 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_NavBar.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Students\Create.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Students\Delete.cshtml.g.cs
@@ -253,6 +254,7 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Students\Edit.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Students\Index.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Students\StudentList.cshtml.g.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Students\StudentProfile.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Subjects\Create.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Subjects\Delete.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Subjects\Details.cshtml.g.cs
@@ -271,6 +273,7 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Teachers\Edit.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Teachers\Index.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Teachers\TeacherList.cshtml.g.cs
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Teachers\TeacherProfile.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.RazorTargetAssemblyInfo.cache
@@ -282,6 +285,3 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.pdb
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.genruntimeconfig.cache
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Teachers\TeacherProfile.cshtml.g.cs
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_NavBar.cshtml.g.cs
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\Razor\Views\Students\StudentProfile.cshtml.g.cs

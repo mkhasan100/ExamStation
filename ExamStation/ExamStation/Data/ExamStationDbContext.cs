@@ -77,6 +77,8 @@ namespace ExamStation.Data
 
         public DbSet<MenuMaster> MenuMaster { get; set; }
 
+        public DbSet<ExamStation.Models.Answer> Answers { get; set; }
+
 
 
 

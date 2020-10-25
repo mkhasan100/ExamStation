@@ -13,11 +13,11 @@ namespace ExamStation.Extesions
         public static void Seed(this ModelBuilder modeBuilder)
         {
             modeBuilder.Entity<Student>().HasData(
-                new Student { StudentId = 1, StudentName = "Saif", Guardian = "Abu Siddik", /*DateOfBirth = Convert.ToDateTime(16-05-2002),*/ Gender ="Male", BloodGroup = "B-", Religion = "Muslim", Email = "saif100@gmail.com", Phone = 01548959585, State= "Islambagh", Country= "Bangladesh", Class = "One", Section="A", Group = "Science", OptionalSubject= "", RegisterNo = 1010, Roll = 1, ExtraActivities = "Nothing", Remarks = "Student-1" },
-                new Student { StudentId = 2, StudentName = "Asif", Guardian = "Ruma", /*DateOfBirth = Convert.ToDateTime(01-03-2006),*/ Gender ="Male", BloodGroup = "A+", Religion = "Muslim", Email = "asif100@gmail.com", Phone = 0154895896, State= "Islambagh", Country= "Bangladesh", Class = "Two", Section="B", Group = "Computer Science", OptionalSubject= "", RegisterNo = 1011, Roll = 2, ExtraActivities = "Nothing", Remarks = "Student-2" },
-                new Student { StudentId = 3, StudentName = "Musa", Guardian = "Kamrunnahar",/* DateOfBirth = Convert.ToDateTime(02-04-2011),*/ Gender ="Male", BloodGroup = "AB+", Religion = "Muslim", Email = "musa100@gmail.com", Phone = 0168548958, State= "Islambagh", Country= "Bangladesh", Class = "Three", Section="C", Group = "General Knowledge", OptionalSubject= "", RegisterNo = 1012, Roll = 3, ExtraActivities = "Nothing", Remarks = "Student-3" },
-                new Student { StudentId = 4, StudentName = "Saad", Guardian = "Jewel", /*DateOfBirth = Convert.ToDateTime(08-09-2011),*/ Gender ="Male", BloodGroup = "A-", Religion = "Muslim", Email = "saad100@gmail.com", Phone = 0198758485, State= "Dhaka", Country= "Bangladesh", Class = "Four", Section="D", Group = "Math", OptionalSubject= "", RegisterNo = 1013, Roll = 1, ExtraActivities = "Nothing", Remarks = "Student-4" },
-                new Student { StudentId = 5, StudentName = "Ayisha", Guardian = "Zaman", /*DateOfBirth = Convert.ToDateTime(01-02-2018),*/ Gender ="Female", BloodGroup = "B+", Religion = "Muslim", Email = "ayisha100@gmail.com", Phone = 0178458723, State= "Dhaka", Country= "Bangladesh", Class = "Five", Section="E", Group = "Chemistry", OptionalSubject= "", RegisterNo = 1014, Roll = 4, ExtraActivities = "Nothing", Remarks = "Student-5" }               
+                new Student { StudentId = 1, StudentName = "Saif", Guardian = "Abu Siddik", DateOfBirth = Convert.ToDateTime("16-05-2002"), Gender ="Male", BloodGroup = "B-", Religion = "Muslim", Email = "saif100@gmail.com", Phone = 01548959585, State= "Islambagh", Country= "Bangladesh", Class = "One", Section="A", Group = "Science", OptionalSubject= "", RegisterNo = 1010, Roll = 1, ExtraActivities = "Nothing", Remarks = "Student-1" },
+                new Student { StudentId = 2, StudentName = "Asif", Guardian = "Ruma", DateOfBirth = Convert.ToDateTime("01-03-2006"), Gender ="Male", BloodGroup = "A+", Religion = "Muslim", Email = "asif100@gmail.com", Phone = 0154895896, State= "Islambagh", Country= "Bangladesh", Class = "Two", Section="B", Group = "Computer Science", OptionalSubject= "", RegisterNo = 1011, Roll = 2, ExtraActivities = "Nothing", Remarks = "Student-2" },
+                new Student { StudentId = 3, StudentName = "Musa", Guardian = "Kamrunnahar", DateOfBirth = Convert.ToDateTime("02-04-2011"), Gender ="Male", BloodGroup = "AB+", Religion = "Muslim", Email = "musa100@gmail.com", Phone = 0168548958, State= "Islambagh", Country= "Bangladesh", Class = "Three", Section="C", Group = "General Knowledge", OptionalSubject= "", RegisterNo = 1012, Roll = 3, ExtraActivities = "Nothing", Remarks = "Student-3" },
+                new Student { StudentId = 4, StudentName = "Saad", Guardian = "Jewel", DateOfBirth = Convert.ToDateTime("08-09-2011"), Gender ="Male", BloodGroup = "A-", Religion = "Muslim", Email = "saad100@gmail.com", Phone = 0198758485, State= "Dhaka", Country= "Bangladesh", Class = "Four", Section="D", Group = "Math", OptionalSubject= "", RegisterNo = 1013, Roll = 1, ExtraActivities = "Nothing", Remarks = "Student-4" },
+                new Student { StudentId = 5, StudentName = "Ayisha", Guardian = "Zaman", DateOfBirth = Convert.ToDateTime("01-02-2018"), Gender ="Female", BloodGroup = "B+", Religion = "Muslim", Email = "ayisha100@gmail.com", Phone = 0178458723, State= "Dhaka", Country= "Bangladesh", Class = "Five", Section="E", Group = "Chemistry", OptionalSubject= "", RegisterNo = 1014, Roll = 4, ExtraActivities = "Nothing", Remarks = "Student-5" }               
             );
 
             modeBuilder.Entity<Parent>().HasData(
@@ -29,11 +29,11 @@ namespace ExamStation.Extesions
                 );
 
             modeBuilder.Entity<Teacher>().HasData(
-                new Teacher { TeacherId = 1, TeacherName = "Hasan", Designation = "Software Engineer", /*DateOfBirth = Convert.ToDateTime(01-08-1997),*/ Gender = "Male", Religion = "Muslim", Email = "hasan100@gmail.com", Phone = 01234567895, Address = "Islambagh", /*JoiningDate = Convert.ToDateTime(01 - 10 - 2020)*/ },
-                new Teacher { TeacherId = 2, TeacherName = "Rakib", Designation = "Software Developer",/* DateOfBirth = Convert.ToDateTime(25-05-1995),*/ Gender = "Male", Religion = "Muslim", Email = "rakib100@gmail.com", Phone = 01254621458, Address = "Dhaka", /*JoiningDate = Convert.ToDateTime(02 - 10 - 2020)*/ },
-                new Teacher { TeacherId = 3, TeacherName = "Imran", Designation = "Programmer", /*DateOfBirth = Convert.ToDateTime(01- 09-1991),*/ Gender = "Male", Religion = "Muslim", Email = "imran100@gmail.com", Phone = 01201201456, Address = "Dhaka", /*JoiningDate = Convert.ToDateTime(03 - 10 - 2020)*/ },
-                new Teacher { TeacherId = 4, TeacherName = "Masum", Designation = "ICT Specialist", /*DateOfBirth = Convert.ToDateTime(16-02-1996),*/ Gender = "Male", Religion = "Muslim", Email = "masum100@gmail.com", Phone = 01245154789, Address = "Dhaka", /*JoiningDate = Convert.ToDateTime(04 - 10 - 2020)*/ },
-                new Teacher { TeacherId = 5, TeacherName = "Rafi", Designation = "Developer",/* DateOfBirth = Convert.ToDateTime(30-07-1995),*/ Gender = "Male", Religion = "Muslim", Email = "rafi100@gmail.com", Phone = 01452548514, Address = "Dhaka", /*JoiningDate = Convert.ToDateTime(05 - 10 - 2020)*/ }
+                new Teacher { TeacherId = 1, TeacherName = "Hasan", Designation = "Software Engineer", DateOfBirth = Convert.ToDateTime("01-08-1997"), Gender = "Male", Religion = "Muslim", Email = "hasan100@gmail.com", Phone = 01234567895, Address = "Islambagh", /*JoiningDate = Convert.ToDateTime(01 - 10 - 2020)*/ },
+                new Teacher { TeacherId = 2, TeacherName = "Rakib", Designation = "Software Developer", DateOfBirth = Convert.ToDateTime("25-05-1995"), Gender = "Male", Religion = "Muslim", Email = "rakib100@gmail.com", Phone = 01254621458, Address = "Dhaka", /*JoiningDate = Convert.ToDateTime(02 - 10 - 2020)*/ },
+                new Teacher { TeacherId = 3, TeacherName = "Imran", Designation = "Programmer", DateOfBirth = Convert.ToDateTime("01-09-1991"), Gender = "Male", Religion = "Muslim", Email = "imran100@gmail.com", Phone = 01201201456, Address = "Dhaka", /*JoiningDate = Convert.ToDateTime(03 - 10 - 2020)*/ },
+                new Teacher { TeacherId = 4, TeacherName = "Masum", Designation = "ICT Specialist", DateOfBirth = Convert.ToDateTime("16-02-1996"), Gender = "Male", Religion = "Muslim", Email = "masum100@gmail.com", Phone = 01245154789, Address = "Dhaka", /*JoiningDate = Convert.ToDateTime(04 - 10 - 2020)*/ },
+                new Teacher { TeacherId = 5, TeacherName = "Rafi", Designation = "Developer", DateOfBirth = Convert.ToDateTime("30-07-1995"), Gender = "Male", Religion = "Muslim", Email = "rafi100@gmail.com", Phone = 01452548514, Address = "Dhaka", /*JoiningDate = Convert.ToDateTime(05 - 10 - 2020)*/ }
                );
 
             modeBuilder.Entity<Class>().HasData(
@@ -68,26 +68,6 @@ namespace ExamStation.Extesions
                 new QuestionLevel{ Id = 4, Title = "Hard" }
               );
 
-            //modeBuilder.Entity<QuestionGroup>(b =>
-            //{
-            //    b.HasData(new QuestionGroup
-            //    {
-            //        Id = 1,
-            //        Title = "Science"
-            //    });
-            //    b.OwnsOne(e => e.Id).HasData(
-            //    new           {
-            //        Id = 1,
-            //        QuestionGroup =1,
-            //        DifficultyLevel = "Easy",
-            //        Question = "What is Computer",
-            //        Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-            //        Hints = "Nothing",
-            //        Mark = 40,
-            //        QuestionType = "Single Answer"
-            //    });
-            //});
-
             modeBuilder.Entity<QuestionGroup>().HasData(
                new QuestionGroup { Id = 1, Title = "Science" },
                new QuestionGroup { Id = 2, Title = "Math" },
@@ -96,42 +76,8 @@ namespace ExamStation.Extesions
                new QuestionGroup { Id = 5, Title = "Computer Science" }
            );
 
-            //        modeBuilder.Entity<QuestionGroup>()
-            //                .HasKey(s => new { s.Id });
-
-            //        var questionBank = new[]
-            //         { new QuestionBank { Id = 1,
-            //                DifficultyLevel = "Easy",
-            //                Question ="What is Computer",
-            //                Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
-            //                Hints="Nothing",
-            //                Mark=40,
-            //                QuestionType="Single Answer"
-            //                }
-            //        };
-
-
-            //        var questionGroup = new[]
-            //        {
-            // new QuestionGroup { Id = 1, Title = "Science" }
-            //};
-
-            //        modeBuilder.Entity<QuestionBank>().HasData(questionBank[0]);
-            //        modeBuilder.Entity<QuestionGroup>().HasData(questionGroup[0]);
-
-
-
             modeBuilder.Entity<QuestionBank>().HasData(
-                new QuestionBank 
-                { Id = 1, 
-                    //QuestionGroupId=1, 
-                    DifficultyLevel = "Easy", 
-                    Question ="What is Computer", 
-                    Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", 
-                    Hints="Nothing", 
-                    Mark=40, 
-                    QuestionType="Single Answer" 
-                    },
+            new QuestionBank { Id = 1, DifficultyLevel = "Easy", Question ="What is Computer", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Single Answer"                     },
             new QuestionBank { Id = 2,  DifficultyLevel = "Easy", Question ="What is Computer Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Single Answer" },
             new QuestionBank { Id = 3,  DifficultyLevel = "Very Easy", Question = "What is Math", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Multi Answer" },
             new QuestionBank { Id = 4, DifficultyLevel = "Very Easy", Question = "What is Math Describe it", Explanation= "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", Hints="Nothing", Mark=40, QuestionType="Multi Answer" },
@@ -160,13 +106,13 @@ namespace ExamStation.Extesions
                );
 
             modeBuilder.Entity<Notice>().HasData(
-                new Notice { Id = 1, Title = "Programing Contest", /*Date = Convert.ToDateTime(16 - 07 - 2020),*/ WriteNotice= "On 16-07-2020 will held a programming contest in Varsity campus" },
-                new Notice { Id = 2, Title = "Holyday", /*Date = Convert.ToDateTime(23-10-2020),*/ WriteNotice= "Have a Good Day" }
+                new Notice { Id = 1, Title = "Programing Contest", Date = Convert.ToDateTime("16-Jul-2020"), WriteNotice = "On 16-07-2020 will held a programming contest in Varsity campus" },
+                new Notice { Id = 2, Title = "Holyday", Date = Convert.ToDateTime("16-Jul-2020"), WriteNotice = "Have a Good Day" }
                 );
 
             modeBuilder.Entity<Event>().HasData(
                 new Event { Id = 1, Title = "EidUlAzha", Date = Convert.ToDateTime("16-Jul-2020"), Details = "Eid ul-Azha is an important religious holiday." },
-                new Event { Id = 2, Title = "EidUlFitr", /*Date = Convert.ToDateTime(06-05-2020),*/ Details = "Eid ul-Fitr is an important religious holiday." }
+                new Event { Id = 2, Title = "EidUlFitr", Date = Convert.ToDateTime("16-Jul-2020"), Details = "Eid ul-Fitr is an important religious holiday." }
                 );
 
         }

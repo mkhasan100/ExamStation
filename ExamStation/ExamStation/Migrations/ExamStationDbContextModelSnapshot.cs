@@ -84,6 +84,30 @@ namespace ExamStation.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("ExamStation.Models.Answer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ExamId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionBankId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("StudentAnswer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StudentEmail")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Answers");
+                });
+
             modelBuilder.Entity("ExamStation.Models.Class", b =>
                 {
                     b.Property<int>("Id")
@@ -185,7 +209,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Details = "Eid ul-Fitr is an important religious holiday.",
                             Photo = (byte)0,
                             Title = "EidUlFitr"
@@ -242,6 +266,39 @@ namespace ExamStation.Migrations
                         });
                 });
 
+            modelBuilder.Entity("ExamStation.Models.MenuMaster", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ParentID")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SerialNo")
+                        .HasColumnType("int");
+
+                    b.Property<string>("URL")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("isActive")
+                        .HasColumnType("int");
+
+                    b.Property<int>("isAdmin")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("MenuMaster");
+                });
+
             modelBuilder.Entity("ExamStation.Models.Notice", b =>
                 {
                     b.Property<int>("Id")
@@ -266,14 +323,14 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 1,
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Programing Contest",
                             WriteNotice = "On 16-07-2020 will held a programming contest in Varsity campus"
                         },
                         new
                         {
                             Id = 2,
-                            Date = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Date = new DateTime(2020, 7, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Title = "Holyday",
                             WriteNotice = "Have a Good Day"
                         });
@@ -547,8 +604,8 @@ namespace ExamStation.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DifficultyLevel")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int?>("DifficultyLevelId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Explanation")
                         .HasColumnType("nvarchar(max)");
@@ -582,7 +639,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 1,
-                            DifficultyLevel = "Easy",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -592,7 +648,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 2,
-                            DifficultyLevel = "Easy",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -602,7 +657,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 3,
-                            DifficultyLevel = "Very Easy",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -612,7 +666,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 4,
-                            DifficultyLevel = "Very Easy",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -622,7 +675,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 5,
-                            DifficultyLevel = "Medium",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -632,7 +684,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 6,
-                            DifficultyLevel = "Medium",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -642,7 +693,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 7,
-                            DifficultyLevel = "Hard",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -652,7 +702,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 8,
-                            DifficultyLevel = "Hard",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -662,7 +711,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 9,
-                            DifficultyLevel = "Easy",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -672,7 +720,6 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 10,
-                            DifficultyLevel = "Easy",
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -935,7 +982,7 @@ namespace ExamStation.Migrations
                             BloodGroup = "B-",
                             Class = "One",
                             Country = "Bangladesh",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(2002, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "saif100@gmail.com",
                             ExtraActivities = "Nothing",
                             Gender = "Male",
@@ -957,7 +1004,7 @@ namespace ExamStation.Migrations
                             BloodGroup = "A+",
                             Class = "Two",
                             Country = "Bangladesh",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(2006, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "asif100@gmail.com",
                             ExtraActivities = "Nothing",
                             Gender = "Male",
@@ -979,7 +1026,7 @@ namespace ExamStation.Migrations
                             BloodGroup = "AB+",
                             Class = "Three",
                             Country = "Bangladesh",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(2011, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "musa100@gmail.com",
                             ExtraActivities = "Nothing",
                             Gender = "Male",
@@ -1001,7 +1048,7 @@ namespace ExamStation.Migrations
                             BloodGroup = "A-",
                             Class = "Four",
                             Country = "Bangladesh",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(2011, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "saad100@gmail.com",
                             ExtraActivities = "Nothing",
                             Gender = "Male",
@@ -1023,7 +1070,7 @@ namespace ExamStation.Migrations
                             BloodGroup = "B+",
                             Class = "Five",
                             Country = "Bangladesh",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(2018, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "ayisha100@gmail.com",
                             ExtraActivities = "Nothing",
                             Gender = "Female",
@@ -1203,7 +1250,7 @@ namespace ExamStation.Migrations
                         {
                             TeacherId = 1,
                             Address = "Islambagh",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1997, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Designation = "Software Engineer",
                             Email = "hasan100@gmail.com",
                             Gender = "Male",
@@ -1216,7 +1263,7 @@ namespace ExamStation.Migrations
                         {
                             TeacherId = 2,
                             Address = "Dhaka",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1995, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Designation = "Software Developer",
                             Email = "rakib100@gmail.com",
                             Gender = "Male",
@@ -1229,7 +1276,7 @@ namespace ExamStation.Migrations
                         {
                             TeacherId = 3,
                             Address = "Dhaka",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1991, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Designation = "Programmer",
                             Email = "imran100@gmail.com",
                             Gender = "Male",
@@ -1242,7 +1289,7 @@ namespace ExamStation.Migrations
                         {
                             TeacherId = 4,
                             Address = "Dhaka",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1996, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Designation = "ICT Specialist",
                             Email = "masum100@gmail.com",
                             Gender = "Male",
@@ -1255,7 +1302,7 @@ namespace ExamStation.Migrations
                         {
                             TeacherId = 5,
                             Address = "Dhaka",
-                            DateOfBirth = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DateOfBirth = new DateTime(1995, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Designation = "Developer",
                             Email = "rafi100@gmail.com",
                             Gender = "Male",

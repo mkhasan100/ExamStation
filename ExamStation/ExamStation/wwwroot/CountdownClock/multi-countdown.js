@@ -179,8 +179,8 @@ $(function () {
         //utc = d.getTime() + (d.getTimezoneOffset() * 60000);
         // if (fixTime != undefined) date2 = new Date;
         // else date2 = new Date(utc + (3600000 * OffsetLocation));
-        console.log(d);
-        console.log(date1);
+       // console.log(d);
+       // console.log(date1);
         var diff = date1.getTime() - d.getTime(); //date2;
         var msec = diff;
         var hh = Math.floor(msec / 1000 / 60 / 60);
