@@ -183,7 +183,7 @@ namespace ExamStation.Migrations
                     Email = table.Column<string>(nullable: true),
                     Phone = table.Column<int>(nullable: true),
                     Address = table.Column<string>(nullable: true),
-                    Photo = table.Column<byte[]>(nullable: true)
+                    Photo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -270,7 +270,7 @@ namespace ExamStation.Migrations
                     OptionalSubject = table.Column<string>(nullable: true),
                     RegisterNo = table.Column<int>(nullable: true),
                     Roll = table.Column<int>(nullable: false),
-                    Photo = table.Column<byte[]>(nullable: true),
+                    Photo = table.Column<string>(nullable: true),
                     ExtraActivities = table.Column<string>(nullable: true),
                     Remarks = table.Column<string>(nullable: true)
                 },
@@ -328,7 +328,7 @@ namespace ExamStation.Migrations
                     Phone = table.Column<int>(nullable: true),
                     Address = table.Column<string>(nullable: true),
                     JoiningDate = table.Column<DateTime>(nullable: false),
-                    Photo = table.Column<byte[]>(nullable: true)
+                    Photo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -526,11 +526,11 @@ namespace ExamStation.Migrations
                 columns: new[] { "GuardianId", "Address", "Email", "FatherName", "FatherProfession", "GuardianName", "MotherName", "MotherProfession", "Phone", "Photo" },
                 values: new object[,]
                 {
-                    { 1, "Islambagh", "siddik100@gmail.com", "Abu Siddik", "Teacher", "Abu Siddik", "MST Ruma", "Teacher", 115847895, null },
-                    { 2, "Islambagh", "siddik100@gmail.com", "Abu Siddik", "Teacher", "Ruma", "MST Ruma", "Teacher", 115847895, null },
-                    { 3, "Islambagh", "siddik100@gmail.com", "Abu Siddik", "Teacher", "Kamrunnahar", "MST Ruma", "Teacher", 115847895, null },
-                    { 4, "Dhaka", "jewel100@gmail.com", "Jewel", "Software Engineer", "Jewel", "Shimu", "Teacher", 115847895, null },
-                    { 5, "Dhaka", "jewel100@gmail.com", "Zaman", "Software Engineer", "Zaman", "MST Shimu", "Teacher", 115847895, null }
+                    { 1, "Islambagh", "siddik100@gmail.com", "Abu Siddik", "Teacher", "Abu Siddik", "MST Ruma", "Teacher", 115847895, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg" },
+                    { 2, "Islambagh", "siddik100@gmail.com", "Abu Siddik", "Teacher", "Ruma", "MST Ruma", "Teacher", 115847895, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg" },
+                    { 3, "Islambagh", "siddik100@gmail.com", "Abu Siddik", "Teacher", "Kamrunnahar", "MST Ruma", "Teacher", 115847895, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg" },
+                    { 4, "Dhaka", "jewel100@gmail.com", "Jewel", "Software Engineer", "Jewel", "Shimu", "Teacher", 115847895, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg" },
+                    { 5, "Dhaka", "jewel100@gmail.com", "Zaman", "Software Engineer", "Zaman", "MST Shimu", "Teacher", 115847895, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg" }
                 });
 
             migrationBuilder.InsertData(
@@ -538,16 +538,16 @@ namespace ExamStation.Migrations
                 columns: new[] { "Id", "DifficultyLevelId", "Explanation", "Hints", "Mark", "Question", "QuestionGroupId", "QuestionType", "Upload" },
                 values: new object[,]
                 {
-                    { 7, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge", null, "Single Answer", null },
-                    { 10, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science Describe it", null, "Multi Answer", null },
-                    { 9, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science", null, "Multi Answer", null },
-                    { 6, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry Describe it", null, "Fill In The Blanks", null },
-                    { 8, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge Describe it", null, "Single Answer", null },
-                    { 4, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math Describe it", null, "Multi Answer", null },
-                    { 3, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math", null, "Multi Answer", null },
-                    { 2, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Describe it", null, "Single Answer", null },
-                    { 1, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer", null, "Single Answer", null },
-                    { 5, null, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry", null, "Fill In The Blanks", null }
+                    { 7, 4, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge", null, "Single Answer", null },
+                    { 10, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science Describe it", null, "Multi Answer", null },
+                    { 9, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science", null, "Multi Answer", null },
+                    { 6, 3, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry Describe it", null, "Fill In The Blanks", null },
+                    { 8, 4, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge Describe it", null, "Single Answer", null },
+                    { 4, 2, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math Describe it", null, "Multi Answer", null },
+                    { 3, 2, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math", null, "Multi Answer", null },
+                    { 2, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Describe it", null, "Single Answer", null },
+                    { 1, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer", null, "Single Answer", null },
+                    { 5, 3, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry", null, "Fill In The Blanks", null }
                 });
 
             migrationBuilder.InsertData(
@@ -590,11 +590,11 @@ namespace ExamStation.Migrations
                 columns: new[] { "StudentId", "Address", "BloodGroup", "Class", "Country", "DateOfBirth", "Email", "ExtraActivities", "Gender", "Group", "Guardian", "OptionalSubject", "Phone", "Photo", "RegisterNo", "Religion", "Remarks", "Roll", "Section", "State", "StudentName" },
                 values: new object[,]
                 {
-                    { 1, null, "B-", "One", "Bangladesh", new DateTime(2002, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "saif100@gmail.com", "Nothing", "Male", "Science", "Abu Siddik", "", 1548959585, null, 1010, "Muslim", "Student-1", 1, "A", "Islambagh", "Saif" },
-                    { 2, null, "A+", "Two", "Bangladesh", new DateTime(2006, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "asif100@gmail.com", "Nothing", "Male", "Computer Science", "Ruma", "", 154895896, null, 1011, "Muslim", "Student-2", 2, "B", "Islambagh", "Asif" },
-                    { 3, null, "AB+", "Three", "Bangladesh", new DateTime(2011, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "musa100@gmail.com", "Nothing", "Male", "General Knowledge", "Kamrunnahar", "", 168548958, null, 1012, "Muslim", "Student-3", 3, "C", "Islambagh", "Musa" },
-                    { 4, null, "A-", "Four", "Bangladesh", new DateTime(2011, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "saad100@gmail.com", "Nothing", "Male", "Math", "Jewel", "", 198758485, null, 1013, "Muslim", "Student-4", 1, "D", "Dhaka", "Saad" },
-                    { 5, null, "B+", "Five", "Bangladesh", new DateTime(2018, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ayisha100@gmail.com", "Nothing", "Female", "Chemistry", "Zaman", "", 178458723, null, 1014, "Muslim", "Student-5", 4, "E", "Dhaka", "Ayisha" }
+                    { 1, null, "B-", "One", "Bangladesh", new DateTime(2002, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "saif100@gmail.com", "Nothing", "Male", "Science", "Abu Siddik", "", 1548959585, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", 1010, "Muslim", "Student-1", 1, "A", "Islambagh", "Saif" },
+                    { 2, null, "A+", "Two", "Bangladesh", new DateTime(2006, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "asif100@gmail.com", "Nothing", "Male", "Computer Science", "Ruma", "", 154895896, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", 1011, "Muslim", "Student-2", 2, "B", "Islambagh", "Asif" },
+                    { 3, null, "AB+", "Three", "Bangladesh", new DateTime(2011, 4, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "musa100@gmail.com", "Nothing", "Male", "General Knowledge", "Kamrunnahar", "", 168548958, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", 1012, "Muslim", "Student-3", 3, "C", "Islambagh", "Musa" },
+                    { 4, null, "A-", "Four", "Bangladesh", new DateTime(2011, 9, 8, 0, 0, 0, 0, DateTimeKind.Unspecified), "saad100@gmail.com", "Nothing", "Male", "Math", "Jewel", "", 198758485, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", 1013, "Muslim", "Student-4", 1, "D", "Dhaka", "Saad" },
+                    { 5, null, "B+", "Five", "Bangladesh", new DateTime(2018, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "ayisha100@gmail.com", "Nothing", "Female", "Chemistry", "Zaman", "", 178458723, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", 1014, "Muslim", "Student-5", 4, "E", "Dhaka", "Ayisha" }
                 });
 
             migrationBuilder.InsertData(
@@ -614,11 +614,11 @@ namespace ExamStation.Migrations
                 columns: new[] { "TeacherId", "Address", "DateOfBirth", "Designation", "Email", "Gender", "JoiningDate", "Phone", "Photo", "Religion", "TeacherName" },
                 values: new object[,]
                 {
-                    { 4, "Dhaka", new DateTime(1996, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "ICT Specialist", "masum100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1245154789, null, "Muslim", "Masum" },
-                    { 1, "Islambagh", new DateTime(1997, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Engineer", "hasan100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1234567895, null, "Muslim", "Hasan" },
-                    { 2, "Dhaka", new DateTime(1995, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "rakib100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1254621458, null, "Muslim", "Rakib" },
-                    { 3, "Dhaka", new DateTime(1991, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Programmer", "imran100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1201201456, null, "Muslim", "Imran" },
-                    { 5, "Dhaka", new DateTime(1995, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Developer", "rafi100@gmail.com", "Male", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1452548514, null, "Muslim", "Rafi" }
+                    { 4, "Dhaka", new DateTime(1996, 2, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), "ICT Specialist", "masum100@gmail.com", "Male", new DateTime(2020, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 1245154789, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", "Muslim", "Masum" },
+                    { 1, "Islambagh", new DateTime(1997, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Engineer", "hasan100@gmail.com", "Male", new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), 1234567895, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", "Muslim", "Hasan" },
+                    { 2, "Dhaka", new DateTime(1995, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Software Developer", "rakib100@gmail.com", "Male", new DateTime(2020, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), 1254621458, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", "Muslim", "Rakib" },
+                    { 3, "Dhaka", new DateTime(1991, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Programmer", "imran100@gmail.com", "Male", new DateTime(2020, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified), 1201201456, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", "Muslim", "Imran" },
+                    { 5, "Dhaka", new DateTime(1995, 7, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), "Developer", "rafi100@gmail.com", "Male", new DateTime(2020, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1452548514, "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg", "Muslim", "Rafi" }
                 });
 
             migrationBuilder.CreateIndex(

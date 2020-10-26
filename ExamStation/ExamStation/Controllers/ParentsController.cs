@@ -8,13 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
 using ExamStation.Models.ViewModels;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+
 namespace ExamStation.Controllers
 {
     public class ParentsController : Controller
     {
         private readonly ExamStationDbContext _context;
-        
-        public ParentsController(ExamStationDbContext context)
+        [Obsolete]
+        private readonly IHostingEnvironment hostingEnvironment;
+
+        [Obsolete]
+        public ParentsController(ExamStationDbContext context,
+             IHostingEnvironment hostingEnvironment)
         {
             _context = context;
             
@@ -89,15 +96,37 @@ namespace ExamStation.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("GuardianId,GuardianName,FatherName,MotherName,FatherProfession,MotherProfession,Email,Phone,Address,Photo")] Parent parent)
+        [Obsolete]
+        public IActionResult Create(ParentCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(parent);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string uniqueFileName = null;
+                if (model.Photo != null)
+                {
+                    string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName.Replace(" ", "_");
+                    string filePath = Path.Combine(UploadFolder, uniqueFileName);
+                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+                Parent newParent = new Parent
+                {
+                    GuardianName = model.GuardianName,
+                    FatherName = model.FatherName,
+                    MotherName = model.MotherName,
+                    FatherProfession = model.FatherProfession,
+                    MotherProfession = model.MotherProfession,
+                    Email = model.Email,
+                    Phone = model.Phone,
+                    Address = model.Address,
+                    Photo = uniqueFileName
+                };
+                _context.Add(newParent);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(ParentList));
             }
-            return View(parent);
+            return View();
         }
 
         // GET: Parents/Edit/5

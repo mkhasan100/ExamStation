@@ -9,17 +9,24 @@ using ExamStation.Data;
 using ExamStation.Models;
 using ExamStation.Helper;
 using ExamStation.Models.ViewModels;
+using Microsoft.AspNetCore .Hosting;
+using System.IO;
 
 namespace ExamStation.Controllers
 {
     public class StudentsController : Controller
     {
         private readonly ExamStationDbContext _context;
+        [Obsolete]
+        private readonly IHostingEnvironment hostingEnvironment;
         Utility _utility;
 
-        public StudentsController(ExamStationDbContext context)
+        [Obsolete]
+        public StudentsController(ExamStationDbContext context,
+            IHostingEnvironment hostingEnvironment)
         {
             _context = context;
+            this.hostingEnvironment = hostingEnvironment;
             _utility = new Utility();
         }
 
@@ -97,6 +104,7 @@ namespace ExamStation.Controllers
             ViewBag.ClassList = _utility.GetClassList(); 
             ViewBag.SectionList = _utility.GetSectionList();
             ViewBag.GroupList = _utility.GetGroupList();
+            ViewBag.DateOfBirth = DateTime.Now.ToString("yyyy-MM-dd");
             return View();
         }
 
@@ -105,15 +113,48 @@ namespace ExamStation.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StudentId,StudentName,Guardian,DateOfBirth,Gender,BloodGroup,Religion,Email,Phone,Address,State,Country,Class,Section,Group,OptionalSubject,RegisterNo,Roll,Photo,ExtraActivities,Remarks")] Student student)
+        [Obsolete]
+        public IActionResult Create(StudentCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(student);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string uniqueFileName = null;
+                if (model.Photo != null)
+                {
+                    string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName.Replace(" ","_");
+                    string filePath = Path.Combine(UploadFolder, uniqueFileName);
+                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+                Student newStudent = new Student
+                {
+                    StudentName = model.StudentName,
+                    Guardian = model.Guardian,
+                    DateOfBirth = model.DateOfBirth,
+                    Gender = model.Gender,
+                    BloodGroup = model.BloodGroup,
+                    Religion = model.Religion,
+                    Email = model.Email,
+                    Phone = model.Phone,
+                    Address = model.Address,
+                    State = model.State,
+                    Country = model.Country,
+                    Class = model.Class,
+                    Section = model.Section,
+                    Group = model.Group,
+                    OptionalSubject = model.OptionalSubject,
+                    RegisterNo = model.RegisterNo,
+                    Roll = model.Roll,
+                    Photo = uniqueFileName,
+                    ExtraActivities = model.ExtraActivities,
+                    Remarks = model.Remarks
+                };
+                _context.Add(newStudent);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(StudentList));
             }
-            return View(student);
+            return View();
         }
 
         // GET: Students/Edit/5

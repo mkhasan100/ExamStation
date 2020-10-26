@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ExamStation.Models
+namespace ExamStation.Models.ViewModels
 {
-    public class Student
+    public class StudentCreateViewModel
     {
         [Key]
         public int StudentId { get; set; }
@@ -34,11 +35,9 @@ namespace ExamStation.Models
         [DisplayName("Register No")]
         public int? RegisterNo { get; set; }
         public int Roll { get; set; }
-        public string Photo { get; set; }
+        public IFormFile Photo { get; set; }
         [DisplayName("Extra Activities")]
         public string ExtraActivities { get; set; }
         public string Remarks { get; set; }
-
-
     }
 }

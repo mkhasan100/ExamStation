@@ -8,14 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
 using ExamStation.Models.ViewModels;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace ExamStation.Controllers
 {
     public class TeachersController : Controller
     {
         private readonly ExamStationDbContext _context;
+        [Obsolete]
+        private readonly IHostingEnvironment hostingEnvironment;
 
-        public TeachersController(ExamStationDbContext context)
+        [Obsolete]
+        public TeachersController(ExamStationDbContext context,
+            IHostingEnvironment hostingEnvironment)
         {
             _context = context;
         }
@@ -87,6 +93,8 @@ namespace ExamStation.Controllers
         // GET: Teachers/Create
         public IActionResult Create()
         {
+            ViewBag.DateOfBirth = DateTime.Now.ToString("yyyy-MM-dd");
+            ViewBag.JoiningDate = DateTime.Now.ToString("yyyy-MM-dd");
             return View();
         }
 
@@ -95,15 +103,38 @@ namespace ExamStation.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TeacherId,TeacherName,Designation,DateOfBirth,Gender,Religion,Email,Phone,Address,JoiningDate,Photo")] Teacher teacher)
+        [Obsolete]
+        public IActionResult Create(TeacherCreateViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(teacher);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                string uniqueFileName = null;
+                if (model.Photo != null)
+                {
+                    string UploadFolder = Path.Combine(hostingEnvironment.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + model.Photo.FileName.Replace(" ", "_");
+                    string filePath = Path.Combine(UploadFolder, uniqueFileName);
+                    model.Photo.CopyTo(new FileStream(filePath, FileMode.Create));
+                }
+
+                Teacher newTeacher = new Teacher
+                {
+                   TeacherName = model.TeacherName,
+                   Designation = model.Designation,
+                   DateOfBirth = model.DateOfBirth,
+                   Gender = model.Gender,
+                   Religion = model.Religion,
+                   Email = model.Email,
+                   Phone = model.Phone,
+                   Address = model.Address,
+                   JoiningDate =model.JoiningDate,
+                   Photo = uniqueFileName
+                };
+                _context.Add(newTeacher);
+                _context.SaveChanges();
+                return RedirectToAction(nameof(TeacherList));
             }
-            return View(teacher);
+            return View();
         }
 
         // GET: Teachers/Edit/5

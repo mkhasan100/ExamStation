@@ -25,7 +25,7 @@
     <div class="form-group row">
         <label asp-for="DateOfBirth" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
-            <input asp-for="DateOfBirth" class="form-control" />
+            <input asp-for="DateOfBirth" class="form-control" value="@ViewBag.DateOfBirth"/>
             <span asp-validation-for="DateOfBirth" class="text-danger"></span>
         </div>
     </div>
@@ -71,15 +71,16 @@
     <div class="form-group row">
         <label asp-for="JoiningDate" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
-            <input asp-for="JoiningDate" class="form-control" />
+            <input asp-for="JoiningDate" class="form-control" value="@ViewBag.JoiningDate"/>
             <span asp-validation-for="JoiningDate" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group row">
         <label asp-for="Photo" class="control-label col-sm-2"></label>
         <div class="col-sm-6">
-            <input asp-for="Photo" class="form-control" />
-            <span asp-validation-for="Photo" class="text-danger"></span>
+            <div class="custom-file">
+                <input asp-for="Photo" class="form-control custom-file-input" />
+            </div>
         </div>
     </div>
     <div class="form-group">

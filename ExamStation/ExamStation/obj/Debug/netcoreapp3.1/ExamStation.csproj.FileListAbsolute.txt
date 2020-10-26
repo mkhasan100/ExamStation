@@ -162,7 +162,6 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csprojAssemblyReference.cache
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.TagHelpers.input.cache
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.TagHelpers.output.cache
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.RazorCoreGenerate.cache
@@ -285,3 +284,4 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.pdb
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.genruntimeconfig.cache
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csprojAssemblyReference.cache

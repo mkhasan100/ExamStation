@@ -37,7 +37,7 @@
                         <td>@Html.DisplayFor(modelItem => item.GuardianId)</td>
                         <td>@Html.DisplayFor(modelItem => item.GuardianName)</td>
                         <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Photo)</td>
+                        <td><img src="~/images/@Html.DisplayFor(modelItem => item.Photo)" style="height:40px; width:40px;"/></td>
                         <td>
                             <a href="/Purchases/Create" type="submit" id="edit" class="btn btn-default" value="Edit">Edit</a>
                             <a href="/Purchases/Create" type="submit" id="Delete" class="btn btn-danger" value="Delete">Delete</a>
@@ -48,7 +48,7 @@
         </table>
     </div>
 </form>
-<div class="form-group row">
+<div class="form-group row" style="margin-left:5px">
     <a href="" type="submit" id="btnCSVExport" class="btn btn-success" value="Export">Export To CSV</a>
     <a href="" type="submit" id="btnExcelExport" class="btn btn-success" value="Export">Export To Excel</a>
 </div>

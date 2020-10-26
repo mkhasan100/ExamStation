@@ -527,8 +527,8 @@ namespace ExamStation.Migrations
                     b.Property<int?>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("GuardianId");
 
@@ -545,7 +545,8 @@ namespace ExamStation.Migrations
                             GuardianName = "Abu Siddik",
                             MotherName = "MST Ruma",
                             MotherProfession = "Teacher",
-                            Phone = 115847895
+                            Phone = 115847895,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg"
                         },
                         new
                         {
@@ -557,7 +558,8 @@ namespace ExamStation.Migrations
                             GuardianName = "Ruma",
                             MotherName = "MST Ruma",
                             MotherProfession = "Teacher",
-                            Phone = 115847895
+                            Phone = 115847895,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg"
                         },
                         new
                         {
@@ -569,7 +571,8 @@ namespace ExamStation.Migrations
                             GuardianName = "Kamrunnahar",
                             MotherName = "MST Ruma",
                             MotherProfession = "Teacher",
-                            Phone = 115847895
+                            Phone = 115847895,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg"
                         },
                         new
                         {
@@ -581,7 +584,8 @@ namespace ExamStation.Migrations
                             GuardianName = "Jewel",
                             MotherName = "Shimu",
                             MotherProfession = "Teacher",
-                            Phone = 115847895
+                            Phone = 115847895,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg"
                         },
                         new
                         {
@@ -593,7 +597,8 @@ namespace ExamStation.Migrations
                             GuardianName = "Zaman",
                             MotherName = "MST Shimu",
                             MotherProfession = "Teacher",
-                            Phone = 115847895
+                            Phone = 115847895,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg"
                         });
                 });
 
@@ -639,6 +644,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 1,
+                            DifficultyLevelId = 1,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -648,6 +654,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 2,
+                            DifficultyLevelId = 1,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -657,6 +664,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 3,
+                            DifficultyLevelId = 2,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -666,6 +674,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 4,
+                            DifficultyLevelId = 2,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -675,6 +684,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 5,
+                            DifficultyLevelId = 3,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -684,6 +694,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 6,
+                            DifficultyLevelId = 3,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -693,6 +704,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 7,
+                            DifficultyLevelId = 4,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -702,6 +714,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 8,
+                            DifficultyLevelId = 4,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -711,6 +724,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 9,
+                            DifficultyLevelId = 1,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -720,6 +734,7 @@ namespace ExamStation.Migrations
                         new
                         {
                             Id = 10,
+                            DifficultyLevelId = 1,
                             Explanation = "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.",
                             Hints = "Nothing",
                             Mark = 40.0,
@@ -947,8 +962,8 @@ namespace ExamStation.Migrations
                     b.Property<int?>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("RegisterNo")
                         .HasColumnType("int");
@@ -990,6 +1005,7 @@ namespace ExamStation.Migrations
                             Guardian = "Abu Siddik",
                             OptionalSubject = "",
                             Phone = 1548959585,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             RegisterNo = 1010,
                             Religion = "Muslim",
                             Remarks = "Student-1",
@@ -1012,6 +1028,7 @@ namespace ExamStation.Migrations
                             Guardian = "Ruma",
                             OptionalSubject = "",
                             Phone = 154895896,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             RegisterNo = 1011,
                             Religion = "Muslim",
                             Remarks = "Student-2",
@@ -1034,6 +1051,7 @@ namespace ExamStation.Migrations
                             Guardian = "Kamrunnahar",
                             OptionalSubject = "",
                             Phone = 168548958,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             RegisterNo = 1012,
                             Religion = "Muslim",
                             Remarks = "Student-3",
@@ -1056,6 +1074,7 @@ namespace ExamStation.Migrations
                             Guardian = "Jewel",
                             OptionalSubject = "",
                             Phone = 198758485,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             RegisterNo = 1013,
                             Religion = "Muslim",
                             Remarks = "Student-4",
@@ -1078,6 +1097,7 @@ namespace ExamStation.Migrations
                             Guardian = "Zaman",
                             OptionalSubject = "",
                             Phone = 178458723,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             RegisterNo = 1014,
                             Religion = "Muslim",
                             Remarks = "Student-5",
@@ -1232,8 +1252,8 @@ namespace ExamStation.Migrations
                     b.Property<int?>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Photo")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("Photo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Religion")
                         .HasColumnType("nvarchar(max)");
@@ -1254,8 +1274,9 @@ namespace ExamStation.Migrations
                             Designation = "Software Engineer",
                             Email = "hasan100@gmail.com",
                             Gender = "Male",
-                            JoiningDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            JoiningDate = new DateTime(2020, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Phone = 1234567895,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             Religion = "Muslim",
                             TeacherName = "Hasan"
                         },
@@ -1267,8 +1288,9 @@ namespace ExamStation.Migrations
                             Designation = "Software Developer",
                             Email = "rakib100@gmail.com",
                             Gender = "Male",
-                            JoiningDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            JoiningDate = new DateTime(2020, 10, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Phone = 1254621458,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             Religion = "Muslim",
                             TeacherName = "Rakib"
                         },
@@ -1280,8 +1302,9 @@ namespace ExamStation.Migrations
                             Designation = "Programmer",
                             Email = "imran100@gmail.com",
                             Gender = "Male",
-                            JoiningDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            JoiningDate = new DateTime(2020, 10, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Phone = 1201201456,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             Religion = "Muslim",
                             TeacherName = "Imran"
                         },
@@ -1293,8 +1316,9 @@ namespace ExamStation.Migrations
                             Designation = "ICT Specialist",
                             Email = "masum100@gmail.com",
                             Gender = "Male",
-                            JoiningDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            JoiningDate = new DateTime(2020, 10, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Phone = 1245154789,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             Religion = "Muslim",
                             TeacherName = "Masum"
                         },
@@ -1306,8 +1330,9 @@ namespace ExamStation.Migrations
                             Designation = "Developer",
                             Email = "rafi100@gmail.com",
                             Gender = "Male",
-                            JoiningDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            JoiningDate = new DateTime(2020, 10, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Phone = 1452548514,
+                            Photo = "d5a3b4f1-faad-48a5-b438-8109d1f9be69_hasan.jpg",
                             Religion = "Muslim",
                             TeacherName = "Rafi"
                         });

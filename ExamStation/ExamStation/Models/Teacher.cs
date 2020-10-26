@@ -25,6 +25,6 @@ namespace ExamStation.Models
     [DataType(DataType.Date)]
     [DisplayName("Joining Date")]
     public DateTime JoiningDate { get; set; }
-    public byte[] Photo { get; set; }
+    public string Photo { get; set; }
 }
 }

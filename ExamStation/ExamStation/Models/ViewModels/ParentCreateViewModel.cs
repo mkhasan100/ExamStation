@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ExamStation.Models
+namespace ExamStation.Models.ViewModels
 {
-    public class Parent
+    public class ParentCreateViewModel
     {
         [Key]
         public int GuardianId { get; set; }
@@ -24,6 +25,6 @@ namespace ExamStation.Models
         public string Email { get; set; }
         public int? Phone { get; set; }
         public string Address { get; set; }
-        public String Photo { get; set; }
+        public IFormFile Photo { get; set; }
     }
 }
