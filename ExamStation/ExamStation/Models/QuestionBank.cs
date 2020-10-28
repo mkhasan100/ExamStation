@@ -25,7 +25,7 @@ namespace ExamStation.Models
         public double Mark { get; set; }
         [DisplayName("Question Type")]
         public string QuestionType { get; set; }
-
+        public int? TotalOption { get; set; }
         [NotMapped]
         public string QuestionGroupName { get; set; }
 
