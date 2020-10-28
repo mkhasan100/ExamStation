@@ -1,12 +1,12 @@
-﻿@model ExamStation.Models.ViewModels.TeacherListViewModel
+﻿@model ExamStation.Models.ViewModels.QuestionTypeListViewModel
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h2>Teacher List</h2>
+<h2>Question Type List</h2>
 <hr />
-<form asp-action="PurchaseLists">
+<form asp-action="QuestionTypeList">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
         <div class="col-lg-3">
@@ -19,29 +19,24 @@
     </div>
     <div class="panel biz-boxed">
         <div class="panel-heading">
-            <h4 id="TeacherList">Details:</h4>
+            <h4 id="QuestionType">Details:</h4>
         </div>
-        <table id="tblTeacherList" class="table table-bordered table-hover">
+        <table id="tblQuestionTypeList" class="table table-bordered table-hover">
             <thead>
                 <tr class="active">
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Photo</th>
+                    <th>Type</th>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach (var item in Model.TeacherList)
+                @foreach (var item in Model.QuestionTypeList)
                 {
                     <tr>
-                        <td>@Html.DisplayFor(modelItem => item.TeacherId)</td>
-                        <td>@Html.DisplayFor(modelItem => item.TeacherName)</td>
-                        <td>@Html.DisplayFor(modelItem => item.Email)</td>
-                        <td><img src="~/images/@Html.DisplayFor(modelItem => item.Photo)" style="height:40px; width:40px;"/></td>
+                        <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                        <td>@Html.DisplayFor(modelItem => item.QuestionTypeName)</td>
                         <td>
-                            <a href="~/Teachers/TeacherProfile" type="submit" id="View" class="btn btn-success" value="View">View</a>
-                            <a href="~/Teachers/Create" type="submit" id="edit" class="btn btn-default" value="Edit">Edit</a>
+                            <a href="#" type="submit" id="edit" class="btn btn-default" value="Edit">Edit</a>
                             <a href="#" type="submit" id="Delete" class="btn btn-danger" value="Delete">Delete</a>
                         </td>
                     </tr>
@@ -62,7 +57,7 @@
     <script type="text/javascript">
         $(document).ready(function(){
             //TokenInput Call
-            $("#Keyword").tokenInput("@Url.Action("GetKeyword", "Teachers")",
+            $("#Keyword").tokenInput("@Url.Action("GetKeyword", "QuestionTypes")",
                     {
                         theme: 'facebook',
                         tokeLimit: 1,
@@ -77,14 +72,14 @@
 
             //Table To Excel
             $("#btnExcelExport").click(function () {
-                $("#tblTeacherList").table2excel({
+                $("#tblQuestionTypeList").table2excel({
                         filename: "Table.xls"
                     });
                 });
 
             //Table To CSV
             $("#btnCSVExport").click(function () {
-                $("#tblTeacherList").table2csv({
+                $("#tblQuestionTypeList").table2csv({
                     filename: "Table.csv"
                 });
             });
@@ -92,4 +87,3 @@
     </script>
 
 }
-

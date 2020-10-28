@@ -1,0 +1,122 @@
+﻿@model ExamStation.Models.OnlineExam
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <title>ExamStation | Admin Dashboard Template</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="~/ExamStation/assets/global/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <!-- BEGIN THEME STYLES -->
+    <!-- DOC: To use 'rounded corners' style just load 'components-rounded.css' stylesheet instead of 'components.css' in the below style tag -->
+    <link href="~/ExamStation/assets/global/css/components.css" id="style_components" rel="stylesheet" type="text/css" />
+    <link href="~/ExamStation/assets/admin/layout/css/custom.css" rel="stylesheet" type="text/css" />
+    <link href="~/ExamStation/assets/JSCountdown/jquery.countdown.css" rel="stylesheet" />
+    <link href="~/CountdownClock/jquerysctipttop.css" rel="stylesheet" />
+    <link href="~/CountdownClock/style.css" rel="stylesheet" />
+    <!-- END THEME STYLES -->
+    <link rel="shortcut icon" href="favicon.ico" />
+</head>
+<!-- END HEAD -->
+<body>
+    <div id="page-content">
+        <div class="container">
+            <div id="printablediv">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="box box-primary">
+                            <div class="box-body box-profile">
+                                <img class="profile-user-img img-responsive img-circle" src="~/ExamStation/assets/global/img/ProImage.png">
+                                <h3 class="profile-username text-center">Hasan</h3>
+                                <p class="text-muted text-center">Software Engineer</p>
+                                <ul class="list-group list-group-unbordered">
+                                    <li class="list-group-item" style="background-color: #FFF">
+                                        <b>Gender</b> <a class="pull-right">Male</a>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #FFF">
+                                        <b>Date of Birth</b> <a class="pull-right">01 Aug 1992</a>
+                                    </li>
+                                    <li class="list-group-item" style="background-color: #FFF">
+                                        <b>Phone</b> <a class="pull-right">0123456789</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-9">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#profile" data-toggle="tab">Exam Info</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="active tab-pane" id="profile">
+                                    <div class="panel-body profile-view-dis">
+                                        <div class="row">
+                                            <div>
+                                                <p style="color:green; font-size:50px;">Pass</p>
+                                            </div>
+                                            <div class=" list-group-item">
+                                                <p><span>Total Question</span>: 10</p>
+                                            </div>
+                                            <div class=" list-group-item">
+                                                <p><span>Total Answer </span>: 5</p>
+                                            </div>
+                                            <div class=" list-group-item">
+                                                <p><span>Total Currect Answer </span>: 0</p>
+                                            </div>
+                                            <div class=" list-group-item">
+                                                <p><span>Total Mark </span>: 10</p>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <p><span>Total Obtained Mark </span>: 0</p>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <p><span>Total Percentage </span>: 50.5%</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div>
+                                                <p style="color:red; font-size:50px">Fail</p>
+                                            </div>
+                                            <div class=" list-group-item">
+                                                <p><span>Total Question</span>: 10</p>
+                                            </div>
+                                            <div class=" list-group-item">
+                                                <p><span>Total Answer </span>: 5</p>
+                                            </div>
+                                            <div class=" list-group-item">
+                                                <p><span>Total Currect Answer </span>: 0</p>
+                                            </div>
+                                            <div class=" list-group-item">
+                                                <p><span>Total Mark </span>: 10</p>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <p><span>Total Obtained Mark </span>: 0</p>
+                                            </div>
+                                            <div class="list-group-item">
+                                                <p><span>Total Percentage </span>: 50.5%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/ExamStation/assets/global/plugins/jquery.min.js"></script>
+</body>
+</html>

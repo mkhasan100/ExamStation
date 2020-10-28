@@ -94,7 +94,7 @@ namespace ExamStation.Controllers
             {
                 _context.Add(questionGroup);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(QuestionGroupList));
             }
             return View(questionGroup);
         }

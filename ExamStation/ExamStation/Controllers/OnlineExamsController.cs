@@ -117,7 +117,7 @@ namespace ExamStation.Controllers
             {
                 _context.Add(onlineExam);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(OnlineExamList));
             }
             return View(onlineExam);
         }
@@ -212,6 +212,12 @@ namespace ExamStation.Controllers
         {
             ViewBag.ExamId = id;
             ViewBag.UserEmail = userManager.FindByNameAsync(userManager.GetUserName(User)).Result.Email;
+            return PartialView();
+        }
+        
+        [HttpGet]
+        public IActionResult _FinishExam()
+        {
             return PartialView();
         }
 

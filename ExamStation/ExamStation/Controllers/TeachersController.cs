@@ -32,8 +32,9 @@ namespace ExamStation.Controllers
             return View(await _context.Teacher.ToListAsync());
         }
 
-        public ActionResult TeacherProfile()
+        public ActionResult TeacherProfile(int id)
         {
+            ViewBag.TeacherId = id;
             return View("TeacherProfile");
         }
 

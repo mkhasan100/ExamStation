@@ -107,7 +107,7 @@ namespace ExamStation.Controllers
             {
                 _context.Add(subject);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(SubjectList));
             }
             return View(subject);
         }

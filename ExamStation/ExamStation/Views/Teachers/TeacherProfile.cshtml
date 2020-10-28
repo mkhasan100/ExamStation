@@ -1,7 +1,16 @@
 ﻿@model ExamStation.Models.Teacher
 
 @{
+    ExamStation.Data.ExamStationDbContext _context = new ExamStation.Data.ExamStationDbContext();
     ViewData["Title"] = "Create";
+
+    int TeacherId = @ViewBag.TeacherId;
+    string teacherName = "";
+    if (!TeacherId.Equals(0))
+    {
+        teacherName = _context.Teacher.Where(t => t.TeacherId == TeacherId).FirstOrDefault().TeacherName;
+    }
+
 }
 
 <h2>Teacher Profile</h2>

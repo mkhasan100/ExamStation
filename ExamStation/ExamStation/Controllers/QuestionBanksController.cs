@@ -105,7 +105,7 @@ namespace ExamStation.Controllers
             {
                 _context.Add(questionBank);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(QuestionBankList));
             }
             return View(questionBank);
         }

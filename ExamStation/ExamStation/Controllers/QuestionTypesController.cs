@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
+using ExamStation.Models.ViewModels;
 
 namespace ExamStation.Controllers
 {
@@ -43,6 +44,37 @@ namespace ExamStation.Controllers
             return View(questionType);
         }
 
+        [HttpGet]
+        public IActionResult QuestionTypeList()
+        {
+            var QuestionTypeListViewModel = new QuestionTypeListViewModel();
+            var questionTypeList = _context.QuestionType
+                                        .Select(qt => new QuestionType
+                                        {
+                                            Id = qt.Id,
+                                            QuestionTypeName = qt.QuestionTypeName,
+                                        }).ToList();
+
+            QuestionTypeListViewModel.QuestionTypeList = questionTypeList;
+            return View(QuestionTypeListViewModel);
+        }
+
+        [HttpPost]
+        public IActionResult QuestionTypeList(QuestionTypeListViewModel questionTypeListViewModel)
+        {
+            var QuestionTypeListViewModel = new QuestionTypeListViewModel();
+            var questionTypeList = _context.QuestionType
+                                        .Select(qt => new QuestionType
+                                        {
+                                            Id = qt.Id,
+                                            QuestionTypeName = qt.QuestionTypeName,
+                                        }).ToList();
+            var QTListViewModel = new QuestionTypeListViewModel();
+            QTListViewModel.QuestionTypeList = questionTypeList;
+            return View(QTListViewModel);
+        }
+
+
         // GET: QuestionTypes/Create
         public IActionResult Create()
         {
@@ -60,7 +92,7 @@ namespace ExamStation.Controllers
             {
                 _context.Add(questionType);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(QuestionTypeList));
             }
             return View(questionType);
         }
@@ -149,5 +181,25 @@ namespace ExamStation.Controllers
         {
             return _context.QuestionType.Any(e => e.Id == id);
         }
+
+        public JsonResult GetTypeList(string questionTypeList)
+        {
+            questionTypeList = questionTypeList.ToUpper();
+            var qTypeList = _context.QuestionType
+                .Where(a => a.QuestionTypeName.ToUpper().Contains(questionTypeList))
+                .Select(a => new { a.Id, a.QuestionTypeName });
+            return Json(qTypeList);
+        }
+
+        public JsonResult GetKeyword(string q)
+        {
+            string QuestionTypeKeyword = q.ToUpper();
+            var qTypeList = _context.QuestionType
+                .Where(a => a.QuestionTypeName.ToUpper().Contains(QuestionTypeKeyword))
+                .Select(a => new { a.Id, a.QuestionTypeName });
+            return Json(qTypeList);
+        }
+
+
     }
 }
