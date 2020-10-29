@@ -79,6 +79,8 @@ namespace ExamStation.Data
 
         public DbSet<ExamStation.Models.Answer> Answers { get; set; }
 
+        public DbSet<ExamStation.Models.QuestionRecord> QuestionRecord { get; set; }
+
 
 
 

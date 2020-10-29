@@ -1,0 +1,134 @@
+﻿@model ExamStation.Models.OnlineExam
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title"><i class="fa fa-puzzle-piece"></i> Associated Question</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-sm-12" id="asso-questions">
+                                <div class="clearfix">
+                                    <div class="question-body">
+                                        <label class="lb-content question-color"><a href="#" target="_blank"><span class="questionNumber10"> 1  </span>. What Is Computer?<br></a></label>
+                                        <label class="lb-mark"> 1 Mark </label>
+                                    </div>
+
+                                    <div class="question-answer">
+                                        <table class="table">
+                                            <tr>
+                                                <td>
+                                                    <input id="option91" value="1" name="Q_option_10" type="radio" checked>
+                                                    <label for="option91">
+                                                        <span class="fa-stack radio-button">
+                                                        </span>
+                                                        <span>   Muslim League</span>
+
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <input id="option92" value="1" name="Q_option_10" type="radio">
+                                                    <label for="option92">
+                                                        <span class="fa-stack radio-button">
+                                                        </span>
+                                                        <span>   Awami League</span>
+
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <input id="option93" value="1" name="Q_option_10" type="radio">
+                                                    <label for="option93">
+                                                        <span class="fa-stack radio-button">
+                                                        </span>
+                                                        <span>   Pakistan People's Party</span>
+
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <span class="pull-right"><button onclick="javascript:void(0);removeQuestion(1)" class="btn btn-danger btn-xs mrg"><i class='fa fa-trash-o'></i> Remove Question <span class="questionNumber10">1</span></button></span>
+                                </div>
+                                <br />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title"><i class="fa fa-puzzle-piece"></i> Online Exam</h3>
+                    </div><!-- /.box-header -->
+                    <!-- form start -->
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="info-box">
+                                    <p>
+                                        <span>Exam Title : </span>
+                                        Class Test
+                                    </p>
+                                    <p>
+                                        <span>Exam Type : </span>
+                                        Only Duration
+                                    </p>
+                                    <p>
+                                        <span>Start Date : </span>
+                                    </p>
+                                    <p>
+                                        <span>End Date : </span>
+                                    </p>
+                                    <p>
+                                        <span>Duration : </span>
+                                        10 Minutes
+                                    </p>
+                                    <p>
+                                        <span>Payment Status : </span>
+                                        Free
+                                    </p>
+                                    <p>
+                                        <span>Description : </span>
+                                    </p>
+                                    <p>
+                                        <span>Mark Type : </span>
+                                        Percentage
+                                    </p>
+                                    <p>
+                                        <span>Pass Value : </span>
+                                        10%
+                                    </p>
+                                    <p>
+                                        <span>Instruction : </span>
+                                    </p>
+                                    <p>
+                                        <span>Class : </span>
+                                    </p>
+                                    <p>
+                                        <span>Section : </span>
+                                    </p>
+                                    <p>
+                                        <span>Student Group : </span>
+                                    </p>
+                                    <p>
+                                        <span>Subject : </span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

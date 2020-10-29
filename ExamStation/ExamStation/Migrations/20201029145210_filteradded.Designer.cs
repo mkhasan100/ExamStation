@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExamStation.Migrations
 {
     [DbContext(typeof(ExamStationDbContext))]
-    [Migration("20201028101413_totaloption")]
-    partial class totaloption
+    [Migration("20201029145210_filteradded")]
+    partial class filteradded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -633,6 +633,9 @@ namespace ExamStation.Migrations
                     b.Property<string>("QuestionType")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("TotalOption")
+                        .HasColumnType("int");
+
                     b.Property<byte[]>("Upload")
                         .HasColumnType("varbinary(max)");
 
@@ -822,6 +825,75 @@ namespace ExamStation.Migrations
                             Id = 4,
                             Title = "Hard"
                         });
+                });
+
+            modelBuilder.Entity("ExamStation.Models.QuestionRecord", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("CorrectAnswer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DifficultyLevelId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ExamId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Option1")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option10")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option3")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option4")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option5")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option6")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option7")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option8")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Option9")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("QuestionGroupId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("QuestionName")
+                        .HasColumnType("int");
+
+                    b.Property<string>("QuestionType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SelectedAnswer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("StudentId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuestionRecord");
                 });
 
             modelBuilder.Entity("ExamStation.Models.QuestionType", b =>

@@ -36,7 +36,7 @@
                         <td>@Html.DisplayFor(modelItem => item.Id)</td>
                         <td>@Html.DisplayFor(modelItem => item.Title)</td>
                         <td>
-                            <a href="/Purchases/Create" type="submit" id="edit" class="btn btn-default" value="Edit">Edit</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-default" value="Edit">Edit</a>
                             <a href="/Purchases/Create" type="submit" id="Delete" class="btn btn-danger" value="Delete">Delete</a>
                         </td>
                     </tr>

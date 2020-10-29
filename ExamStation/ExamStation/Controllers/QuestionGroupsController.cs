@@ -88,7 +88,7 @@ namespace ExamStation.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title")] QuestionGroup questionGroup)
+        public async Task<IActionResult> Create(QuestionGroup questionGroup)
         {
             if (ModelState.IsValid)
             {

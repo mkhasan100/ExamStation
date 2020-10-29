@@ -79,31 +79,69 @@
                                 </small>
                             </p>
                             <div class="panel panel-default">
-                            <div class="panel-heading"><strong>Question No. @ExamId of @totalQuestion [ Mark: @mark ]</strong></div>
+                                <div class="panel-heading"><strong>Question No. @ExamId of @totalQuestion </strong></div>
                                 <div class="table-responsive">
-                                    <table class="table table-striped table">
-                                        <thead>
-                                            <tr>
-                                                <td>
-                                                    <p id="question">@firstQuestion</p>
-                                                    <input type="hidden" id="hdnQuestionBankId" value="@questionBankId" />
-                                                    <input type="hidden" id="hdnUserEmail" value="@userEmail" />
-                                                </td>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>&nbsp;</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <div class="input textarea">
-                                                        <textarea name="data[Exam][answer]" class="form-control" rows="7" cols="30" id="ExamAnswer"></textarea>
+                                    <div class="box">
+                                        <!-- form start -->
+                                        <div class="box-body">
+                                            <div class="row">
+                                                <div class="col-sm-12" id="asso-questions">
+                                                    <div class="clearfix">
+                                                        <div class="question-body">
+                                                            <label class="lb-content question-color">
+                                                                <span class="questionNumber10" id="question">@firstQuestion</span><br>
+                                                            </label>
+                                                            <input type="hidden" id="hdnQuestionBankId" value="@questionBankId" />
+                                                            <input type="hidden" id="hdnUserEmail" value="@userEmail" />
+                                                            <label class="lb-mark"> @mark </label>
+                                                        </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="question-answer">
+                                        <table class="table">
+                                            <tr>
+                                                <td>
+                                                    <input id="option91" value="1" name="Q_option_10" type="radio">
+                                                    <label for="option91">
+                                                        <span class="fa-stack radio-button">
+                                                            <i class="active fa fa-check">
+                                                            </i>
+                                                        </span>
+                                                        <span>   Muslim League</span>
+
+                                                    </label>
+                                                </td>
+                                                <td>
+                                                    <input id="option92" value="1" name="Q_option_10" type="radio">
+                                                    <label for="option92">
+                                                        <span class="fa-stack radio-button">
+                                                            <i class="active fa fa-check">
+                                                            </i>
+                                                        </span>
+                                                        <span>   Awami League</span>
+
+                                                    </label>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                    </table>
+                                            <tr>
+                                                <td>
+                                                    <input id="option93" value="1" name="Q_option_10" type="radio">
+                                                    <label for="option93">
+                                                        <span class="fa-stack radio-button">
+                                                            <i class="active fa fa-check">
+                                                            </i>
+                                                        </span>
+                                                        <span>   Pakistan People's Party</span>
+
+                                                    </label>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    <br />
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
@@ -160,7 +198,7 @@
                                 <div class="panel-body ">
                                     <div class="row">
                                         @{
-                                            var QuestionButtonList = _context.TakeExamMapper.Where(q => q.ExamId == ExamId ).ToList();
+                                            var QuestionButtonList = _context.TakeExamMapper.Where(q => q.ExamId == ExamId).ToList();
 
                                             for (int i = 1; i <= QuestionButtonList.Count; i++)
                                             {
@@ -180,7 +218,7 @@
                         <input type="hidden" name="_method" value="POST">
                     </form>
                     <a href="#" class="btn btn-danger btn-sm btn-block" onclick="window.open('@Url.Action("_FinishExam", "OnlineExams")','name','width=1200,height=700,')"><span class="glyphicon glyphicon-lock"></span>&nbsp;Finish Exam </a>
-                </div>                
+                </div>
             </div>
         </div>
     </div>
@@ -282,7 +320,7 @@
         });
 
         function reset() {
-            var ExamAnswer = document.getElementById('ExamAnswer');
+            var ExamAnswer = document.getElementById('asso-questions');
             if (!ExamAnswer.value || ExamAnswer.value != ExamAnswer.defaultValue && confirm('Are you sure?')) {
                 ExamAnswer.value = ExamAnswer.defaultValue;
             }

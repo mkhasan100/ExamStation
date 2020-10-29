@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace ExamStation.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initital : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -454,7 +454,8 @@ namespace ExamStation.Migrations
                     Upload = table.Column<byte[]>(nullable: true),
                     Hints = table.Column<string>(nullable: true),
                     Mark = table.Column<double>(nullable: false),
-                    QuestionType = table.Column<string>(nullable: true)
+                    QuestionType = table.Column<string>(nullable: true),
+                    TotalOption = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -535,19 +536,19 @@ namespace ExamStation.Migrations
 
             migrationBuilder.InsertData(
                 table: "QuestionBank",
-                columns: new[] { "Id", "DifficultyLevelId", "Explanation", "Hints", "Mark", "Question", "QuestionGroupId", "QuestionType", "Upload" },
+                columns: new[] { "Id", "DifficultyLevelId", "Explanation", "Hints", "Mark", "Question", "QuestionGroupId", "QuestionType", "TotalOption", "Upload" },
                 values: new object[,]
                 {
-                    { 7, 4, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge", null, "Single Answer", null },
-                    { 10, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science Describe it", null, "Multi Answer", null },
-                    { 9, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science", null, "Multi Answer", null },
-                    { 6, 3, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry Describe it", null, "Fill In The Blanks", null },
-                    { 8, 4, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge Describe it", null, "Single Answer", null },
-                    { 4, 2, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math Describe it", null, "Multi Answer", null },
-                    { 3, 2, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math", null, "Multi Answer", null },
-                    { 2, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Describe it", null, "Single Answer", null },
-                    { 1, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer", null, "Single Answer", null },
-                    { 5, 3, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry", null, "Fill In The Blanks", null }
+                    { 7, 4, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge", null, "Single Answer", null, null },
+                    { 10, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science Describe it", null, "Multi Answer", null, null },
+                    { 9, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Science", null, "Multi Answer", null, null },
+                    { 6, 3, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry Describe it", null, "Fill In The Blanks", null, null },
+                    { 8, 4, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is General Knowledge Describe it", null, "Single Answer", null, null },
+                    { 4, 2, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math Describe it", null, "Multi Answer", null, null },
+                    { 3, 2, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Math", null, "Multi Answer", null, null },
+                    { 2, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer Describe it", null, "Single Answer", null, null },
+                    { 1, 1, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Computer", null, "Single Answer", null, null },
+                    { 5, 3, "a programmable electronic device designed to accept data, perform prescribed mathematical and logical operations at high speed, and display the results of these operations.", "Nothing", 40.0, "What is Chemistry", null, "Fill In The Blanks", null, null }
                 });
 
             migrationBuilder.InsertData(

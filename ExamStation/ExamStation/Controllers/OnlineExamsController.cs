@@ -221,6 +221,12 @@ namespace ExamStation.Controllers
             return PartialView();
         }
 
+        [HttpGet]
+        public IActionResult _ShowQuestion()
+        {
+            return View();
+        }
+
         public JsonResult GetQuestionById(int Id)
         {
             string test = "empty";

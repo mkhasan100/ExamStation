@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExamStation.Migrations
 {
     [DbContext(typeof(ExamStationDbContext))]
-    [Migration("20201026143556_initial")]
-    partial class initial
+    [Migration("20201029071045_Initital")]
+    partial class Initital
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -632,6 +632,9 @@ namespace ExamStation.Migrations
 
                     b.Property<string>("QuestionType")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("TotalOption")
+                        .HasColumnType("int");
 
                     b.Property<byte[]>("Upload")
                         .HasColumnType("varbinary(max)");

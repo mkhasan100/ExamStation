@@ -17,6 +17,35 @@
                 <input type="hidden" asp-for="Keyword" value="" />
             </div>
         </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label asp-for="FilterDificultyId" class="control-label">Difficulty Level</label>
+                @*<input asp-for="FilterDificultyId" class="form-control" />*@
+                @Html.DropDownListFor(model => model.FilterDificultyId, new SelectList(ViewBag.QuestionLevelList, "Id", "Title"), "Select Question Level", new { @class = "form-control" })
+                <input type="hidden" asp-for="FilterDificultyId" value="" />
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label asp-for="FilterGroupId" class="control-label"> Question Group</label>
+                @*<input asp-for="FilterGroupId" class="form-control" />*@
+                @Html.DropDownListFor(model => model.FilterGroupId, new SelectList(ViewBag.QuestionGroupList, "Id", "Title"), "Select Question Group", new { @class = "form-control" })
+                <input type="hidden" asp-for="FilterGroupId" value="" />
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                <label asp-for="FilterTypeId" class="control-label"> Question Type</label>
+                @*<input asp-for="FilterTypeId" class="form-control" />*@
+                <select name="FilterTypeId" id='FilterTypeId' class='form-control'>
+                    <option value="0">Please Select</option>
+                    <option value="1">Single Answer</option>
+                    <option value="2">Multi Answer</option>
+                    <option value="3">Fill in the Blanks</option>
+                </select>
+                <input type="hidden" asp-for="FilterTypeId" value="" />
+            </div>
+        </div>
     </div>
     <div class="panel biz-boxed">
         <div class="panel-heading">

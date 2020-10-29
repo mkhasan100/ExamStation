@@ -8,16 +8,18 @@ using Microsoft.EntityFrameworkCore;
 using ExamStation.Data;
 using ExamStation.Models;
 using ExamStation.Models.ViewModels;
+using ExamStation.Helper;
 
 namespace ExamStation.Controllers
 {
     public class QuestionBanksController : Controller
     {
         private readonly ExamStationDbContext _context;
-
+        Utility _utility;
         public QuestionBanksController(ExamStationDbContext context)
         {
             _context = context;
+            _utility = new Utility();
         }
 
         // GET: QuestionBanks
@@ -47,47 +49,89 @@ namespace ExamStation.Controllers
         [HttpGet]
         public IActionResult QuestionBankList()
         {
+            ViewBag.QuestionGroupList = _utility.GetGroupList();
+            ViewBag.QuestionLevelList = _context.QuestionLevel.ToList();
+            ViewBag.QuestionTypeList = _context.QuestionType.ToList();
             var QuestionBankListViewModel = new QuestionBankListViewModel();
-            var questionBankList = _context.QuestionBank
-                .Join(_context.QuestionGroup, qb => qb.QuestionGroup.Id, qg => qg.Id, (qb, qg) => new { qb, qg })
-                .Join(_context.QuestionLevel, qbqg => qbqg.qb.DifficultyLevelId, ql => ql.Id, (qbqg, ql) => new { qbqg, ql })
-                                        .Select(qbl => new QuestionBank
+            var questionBankList = _context.QuestionBank.AsEnumerable()
+                                    .Select(qbl => new QuestionBank
                                         {
-                                            Id = qbl.qbqg.qg.Id,
-                                            Question = qbl.qbqg.qb.Question,
-                                            DifficultyLevel = qbl.ql.Title,
-                                            QuestionGroupName = qbl.qbqg.qg.Title,
-                                            QuestionType = qbl.qbqg.qb.QuestionType
+                                            Id = qbl.Id,
+                                            Question = qbl.Question,
+                                            DifficultyLevel = qbl.DifficultyLevel,
+                                            QuestionGroupName = qbl.QuestionGroupName,
+                                            QuestionType = qbl.QuestionType
                                         }).ToList();
 
             QuestionBankListViewModel.QuestionBankList = questionBankList;
             return View(QuestionBankListViewModel);
         }
 
+        //[HttpGet]
+        //public IActionResult QuestionBankList()
+        //{
+        //    var QuestionBankListViewModel = new QuestionBankListViewModel();
+        //    var questionBankList = _context.QuestionBank
+        //        .Join(_context.QuestionGroup, qb => qb.QuestionGroup.Id, qg => qg.Id, (qb, qg) => new { qb, qg })
+        //        .Join(_context.QuestionLevel, qbqg => qbqg.qb.DifficultyLevelId, ql => ql.Id, (qbqg, ql) => new { qbqg, ql })
+        //                                .Select(qbl => new QuestionBank
+        //                                {
+        //                                    Id = qbl.qbqg.qg.Id,
+        //                                    Question = qbl.qbqg.qb.Question,
+        //                                    DifficultyLevel = qbl.ql.Title,
+        //                                    QuestionGroupName = qbl.qbqg.qg.Title,
+        //                                    QuestionType = qbl.qbqg.qb.QuestionType
+        //                                }).ToList();
+
+        //    QuestionBankListViewModel.QuestionBankList = questionBankList;
+        //    return View(QuestionBankListViewModel);
+        //}
+
         [HttpPost]
-        public IActionResult QuestionGroupList(QuestionGroupListViewModel questionGroupListViewModel)
+        public IActionResult QuestionBankList(QuestionBankListViewModel questionBankListViewModel)
         {
+            ViewBag.QuestionGroupList = _utility.GetGroupList();
+            ViewBag.QuestionLevelList = _context.QuestionLevel.ToList();
+            ViewBag.QuestionTypeList = _context.QuestionType.ToList();
             var QuestionBankListViewModel = new QuestionBankListViewModel();
-            var questionBankList = _context.QuestionBank
-                .Join(_context.QuestionGroup, qb => qb.QuestionGroup.Id, qg => qg.Id, (qb, qg) => new { qb, qg })
-                .Join(_context.QuestionLevel, qbqg => qbqg.qb.DifficultyLevelId, ql => ql.Id, (qbqg, ql) => new { qbqg, ql })
-                                        .Select(qbl => new QuestionBank
-                                        {
-                                            Id = qbl.qbqg.qg.Id,
-                                            Question = qbl.qbqg.qb.Question,
-                                            DifficultyLevel = qbl.ql.Title,
-                                            QuestionGroupName = qbl.qbqg.qg.Title,
-                                            QuestionType = qbl.qbqg.qb.QuestionType
-                                        }).ToList();
+            var questionBankList = _context.QuestionBank.AsEnumerable()
+                                            .Select(qbl => new QuestionBank
+                                            {
+                                                Id = qbl.Id,
+                                                Question = qbl.Question,
+                                                DifficultyLevel = qbl.DifficultyLevel,
+                                                QuestionGroupName = qbl.QuestionGroupName,
+                                                QuestionType = qbl.QuestionType
+                                            }).ToList();
             var QBListViewModel = new QuestionBankListViewModel();
             QBListViewModel.QuestionBankList = questionBankList;
             return View(QBListViewModel);
         }
 
+        //[HttpPost]
+        //public IActionResult QuestionBankList(QuestionBankListViewModel questionBankListViewModel)
+        //{
+        //    var QuestionBankListViewModel = new QuestionBankListViewModel();
+        //    var questionBankList = _context.QuestionBank
+        //        .Join(_context.QuestionGroup, qb => qb.QuestionGroup.Id, qg => qg.Id, (qb, qg) => new { qb, qg })
+        //        .Join(_context.QuestionLevel, qbqg => qbqg.qb.DifficultyLevelId, ql => ql.Id, (qbqg, ql) => new { qbqg, ql })
+        //                                .Select(qbl => new QuestionBank
+        //                                {
+        //                                    Id = qbl.qbqg.qg.Id,
+        //                                    Question = qbl.qbqg.qb.Question,
+        //                                    DifficultyLevel = qbl.ql.Title,
+        //                                    QuestionGroupName = qbl.qbqg.qg.Title,
+        //                                    QuestionType = qbl.qbqg.qb.QuestionType
+        //                                }).ToList();
+        //    var QBListViewModel = new QuestionBankListViewModel();
+        //    QBListViewModel.QuestionBankList = questionBankList;
+        //    return View(QBListViewModel);
+        //}
+
         // GET: QuestionBanks/Create
         public IActionResult Create()
         {
-            ViewBag.QuestionGroupList = _context.QuestionGroup.ToList();
+            ViewBag.QuestionGroupList = _utility.GetGroupList();
             ViewBag.QuestionLevelList = _context.QuestionLevel.ToList();
             ViewBag.QuestionTypeList = _context.QuestionType.ToList();
 
