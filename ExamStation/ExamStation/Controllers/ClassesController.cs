@@ -58,7 +58,7 @@ namespace ExamStation.Controllers
                                             Note = c.Note
                                         }).ToList();
 
-            ClassListViewModel.ClassList = classList;
+           // ClassListViewModel.ClassList = classList;
             return View(ClassListViewModel);
         }
 
@@ -76,7 +76,7 @@ namespace ExamStation.Controllers
                                             Note = c.Note
                                         }).ToList();
             var CListViewModel = new ClassListViewModel();
-            CListViewModel.ClassList = classList;
+            //CListViewModel.ClassList = classList;
             return View(ClassListViewModel);
         }
 

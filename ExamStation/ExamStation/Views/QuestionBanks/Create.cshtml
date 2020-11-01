@@ -3,6 +3,10 @@
 
 @{
     ViewData["Title"] = "Create";
+
+    ExamStation.Data.ExamStationDbContext _context = new ExamStation.Data.ExamStationDbContext();
+
+    ViewBag.QuestionTypeList = _context.QuestionType.ToList();
 }
 
 <h2>Add Question Bank</h2>
@@ -65,16 +69,17 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="type" asp-for="TotalOption" class="col-sm-2 control-label">
+        <label for="type" asp-for="QuestionType" class="col-sm-2 control-label">
             Question Type <span class='text-red'>*</span>
         </label>
         <div class="col-sm-6">
+           @* @Html.DropDownListFor(model => model.QuestionType, new SelectList(ViewBag.QuestionTypeList, "Id", "QuestionTypeName"), "Select Question Type", new { @class = "form-control" })*@
             <select name="type" id='type' class='form-control'>
-                <option value="0">Please Select</option>
-                <option value="1">Single Answer</option>
-                <option value="2">Multi Answer</option>
-                <option value="3">Fill in the Blanks</option>
-            </select>
+            <option value="0">Please Select</option>
+            <option value="1">Single Answer</option>
+            <option value="2">Multi Answer</option>
+            <option value="3">Fill in the Blanks</option>
+        </select>
         </div>
         <span class="col-sm-4 control-label"></span>
     </div>

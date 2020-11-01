@@ -10,6 +10,6 @@ namespace ExamStation.Models.ViewModels
 
         public int? KeywordId { get; set; }
         public string Keyword { get; set; }
-        public List<Class> ClassList { get; set; }
+        public List<QuestionAnswerOption> ClassList { get; set; }
     }
 }

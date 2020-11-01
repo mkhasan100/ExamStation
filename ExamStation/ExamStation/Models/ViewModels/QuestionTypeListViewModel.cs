@@ -9,6 +9,7 @@ namespace ExamStation.Models.ViewModels
     {
         public int? KeywordId { get; set; }
         public string Keyword { get; set; }
+        public int? QuestionTypeId { get; set; }
         public List<QuestionType> QuestionTypeList { get; set; }
     }
 }
