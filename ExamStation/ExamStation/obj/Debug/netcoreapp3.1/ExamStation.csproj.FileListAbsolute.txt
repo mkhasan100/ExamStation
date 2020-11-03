@@ -287,3 +287,4 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.dll
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.pdb
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.genruntimeconfig.cache
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csprojAssemblyReference.cache

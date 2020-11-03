@@ -79,7 +79,7 @@ namespace ExamStation.Data
 
         public DbSet<ExamStation.Models.Answer> Answers { get; set; }
 
-        public DbSet<ExamStation.Models.AnswersOption> QuestionRecord { get; set; }
+        public DbSet<ExamStation.Models.AnswersOption> AnswersOptions { get; set; }
 
 
 

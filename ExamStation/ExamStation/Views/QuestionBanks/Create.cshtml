@@ -12,7 +12,7 @@
 <h2>Add Question Bank</h2>
 <hr />
 
-<form asp-action="Create" role="form" method="post" id="question_bank" enctype="multipart/form-data">
+@*<form asp-action="Create" role="form" method="post" id="question_bank" enctype="multipart/form-data">*@
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group row">
         <label asp-for="QuestionGroup" class="control-label col-sm-2"></label>
@@ -73,13 +73,13 @@
             Question Type <span class='text-red'>*</span>
         </label>
         <div class="col-sm-6">
-           @* @Html.DropDownListFor(model => model.QuestionType, new SelectList(ViewBag.QuestionTypeList, "Id", "QuestionTypeName"), "Select Question Type", new { @class = "form-control" })*@
+            @* @Html.DropDownListFor(model => model.QuestionType, new SelectList(ViewBag.QuestionTypeList, "Id", "QuestionTypeName"), "Select Question Type", new { @class = "form-control" })*@
             <select name="type" id='type' class='form-control'>
-            <option value="0">Please Select</option>
-            <option value="1">Single Answer</option>
-            <option value="2">Multi Answer</option>
-            <option value="3">Fill in the Blanks</option>
-        </select>
+                <option value="0">Please Select</option>
+                <option value="1">Single Answer</option>
+                <option value="2">Multi Answer</option>
+                <option value="3">Fill in the Blanks</option>
+            </select>
         </div>
         <span class="col-sm-4 control-label"></span>
     </div>
@@ -109,10 +109,10 @@
 
     <div class="form-group row">
         <div class="col-sm-offset-2 col-sm-8">
-            <input type="submit" class="btn btn-default" value="Add Question bank">
+            <input id="btnSubmit" type="submit" class="btn btn-default" value="Add Question bank">
         </div>
     </div>
-</form>
+@*</form>*@
 
 
 @section scripts{
@@ -145,6 +145,81 @@
             if (totalOptionID > 0) {
                 $('#totalOptionDiv').show();
             }
+
+            $("#btnSubmit").click(function () {
+                var questionGroup = $("#QuestionGroup").val();
+                var difficultyLevel = $("#DifficultyLevel").val();
+                var question = $("#Question").text();
+                var explanation = $("#Explanation").text();
+                var hints = $("#Hints").val();
+                var mark = $("#Mark").val();
+                var questionType = $("#type").val();
+
+                var optionArray = new Array();
+                $('.answerOption').each(function (index, item) {
+                    optionArray.push($(item).val());
+                });
+              //  console.log(arrText);
+
+
+                var answerArray = new Array();
+                if (questionType == 1) {
+                $('input[type=radio]').each(function (index, item) {
+                    if ($(this).prop("checked")) {
+                        answerArray.push(1);
+                    }
+                    else {
+                        answerArray.push(0);
+                    }
+                });
+                }
+                //console.log(arrRadio);
+
+
+               // var arrCheckBox = new Array();
+                if (questionType == 2) {
+                    $('input[type=checkbox]').each(function (index, item) {
+                        if ($(this).prop("checked")) {
+                            answerArray.push(1);
+                        }
+                        else {
+                            answerArray.push(0);
+                        }
+                    });
+                }
+                //console.log(arrCheckBox);
+
+
+                var questionGroup = $("#QuestionGroup").val();
+                var difficultyLevel = $("#DifficultyLevel").val();
+                var question = $('textarea[name="Question"]').val();// CKEDITOR.instances.Question.getData(); // $("#Question").text();
+                var explanation = $('textarea[name="Explanation"]').val();// CKEDITOR.instances.Explanation.getData(); // $("#Explanation").text();
+                var hints = $("#Hints").val();
+                var mark = $("#Mark").val();
+                var Options = $("#totalOption").val();
+
+                 $.ajax({
+             url: "@Url.Action("SaveQuestions", "QuestionBanks")",
+                     data: { 'questionGroupId': questionGroup, 'difficultyLevel': difficultyLevel, 'question': question, 'explanation': explanation, 'hints': hints, 'mark': mark, 'answerArray': answerArray, 'optionArray': optionArray },
+            //traditional: true,
+             type: 'POST',
+             dataType: 'json',
+             success: function (result) {
+                 console.log(result);
+                //alert(questoinResult);
+             }
+                 });
+
+         @*$.ajax({
+             url: "@Url.Action("SaveQuestions", "QuestionBanks")",
+             data: { 'questionGroupId': questionGroup, 'difficultyLevel': difficultyLevel, 'question': question, 'explanation': explanation, 'hints': hints, 'mark': mark,  'IsAnswer': IsAnswer, 'Option': Options },
+             type: 'POST',
+             dataType: 'json',
+             success: function (result) {
+                 console.log(result);
+             }
+         });*@
+            });
         });
 
         $('#type').change(function () {
@@ -200,21 +275,21 @@
                 type = 'checkbox';
                 required = '';
             } else if (type == 3) {
-                var html = '<div class="form-group row coption" ><label for="answer' + id + '" class="col-sm-2 control-label">Answer ' + id + '</label><div class="col-sm-4"><input type="text" class="form-control" id="answer' + id + '" name="answer[]" value="' + value + '" placeholder="Answer ' + id + '" ></div><div class="col-sm-1"></div><span class="col-sm-4 control-label text-red" id="anserror' + id + '"></span></div>';
+                var html = '<div class="form-group row coption"><label for="answer' + id + '" class="col-sm-2 control-label">Answer ' + id + '</label><div class="col-sm-4"><input type="text" class="form-control" id="answer' + id + '" name="answer[]" value="' + value + '" placeholder="Answer ' + id + '"></div><div class="col-sm-1"></div><span class="col-sm-4 control-label text-red" id="anserror' + id + '"></span></div>';
                 return html;
             }
-            var html = '<div class="form-group row coption" ><label for="option' + id + '" class="col-sm-2 control-label">Option ' + id + '</label><div class="col-sm-4" style="display:inline-table"><input type="text" class="form-control" id="option' + id + '" name="option[]" value="' + value + '" placeholder="Option ' + id + '" ><span class="input-group-addon"><input class="answer" id="ans' + id + '" ' + checked + ' type="' + type + '" name="answer[]" value="' + id + '" data-toggle="tooltip" data-placement="top" title="Correct Answer" ' + required + ' /></span></div><div class="col-sm-3" style="display:inline-table"><input type="file" name="image' + id + '" id="image' + id + '"></div><span class="col-sm-3 control-label text-red" id="anserror' + id + '"></span></div>';
+            var html = '<div class="form-group row coption"><label for="option' + id + '" class="col-sm-2 control-label">Option ' + id + '</label><div class="col-sm-4" style="display:inline-table"><input type="text" class="form-control answerOption"  id="option' + id + '" name="option[]" value="' + value + '" placeholder="Option ' + id + '"><span class="input-group-addon"><input class="answer" id="ans' + id + '" ' + checked + ' type="' + type + '" name="answer[]" value="' + id + '" data-toggle="tooltip" data-placement="top" title="Correct Answer" ' + required + ' /></span></div><div class="col-sm-3" style="display:inline-table"><input type="file" name="image' + id + '" id="image' + id + '"></div><span class="col-sm-3 control-label text-red" id="anserror' + id + '"></span></div>';
             return html;
-        }   
-    
+        }
+
         $(window).load(function () {
             ClassicEditor
                 .create(document.querySelector('#Question'))
                 .catch(error => {
                     console.error(error);
                 });
-        });    
-    
+        });
+
         $(window).load(function () {
             ClassicEditor
                 .create(document.querySelector('#Explanation'))

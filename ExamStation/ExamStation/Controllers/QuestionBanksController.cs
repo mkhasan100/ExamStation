@@ -256,5 +256,53 @@ namespace ExamStation.Controllers
         //        .Select(a => new { a.Id, a.QuestionGroup });
         //    return Json(qBankList);
         //}
+
+        //[HttpPost]
+        //public JsonResult SaveQuestions(string test)
+        //{
+        //    return Json("");
+        //}
+
+        [HttpPost]
+        public JsonResult SaveQuestions(int questionGroupId, int difficultyLevelId, string question, string explanation, string hints, int mark, int[] answerArray, string[] optionArray)
+        {
+            string message = string.Empty;
+            try
+            {
+                QuestionGroup questionGroup = _context.QuestionGroup.Where(q => q.Id == questionGroupId).FirstOrDefault();
+                QuestionBank questionBank = new QuestionBank();
+                questionBank.QuestionGroup = questionGroup;
+                questionBank.DifficultyLevelId = difficultyLevelId;
+                questionBank.Question = question;
+                questionBank.Explanation = explanation;
+                questionBank.Hints = hints;
+                questionBank.Mark = mark;
+
+                _context.Add(questionBank);
+
+                for (int i = 0; i < optionArray.Length; i++)
+                {
+                    AnswersOption answers = new AnswersOption();
+                    answers.QuestionBank = questionBank;
+                    answers.Option = optionArray[i];
+                    answers.IsAnswer = answerArray[i];
+                    
+
+                    _context.Add(answers);
+                    
+                }
+
+                _context.SaveChanges();
+
+
+
+                message = "Question Created";
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message.ToString();
+            }
+            return Json(message);
+        }
     }
 }
