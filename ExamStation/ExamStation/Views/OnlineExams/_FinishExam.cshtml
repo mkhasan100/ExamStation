@@ -1,7 +1,15 @@
-﻿@model ExamStation.Models.OnlineExam
+﻿@*@inject Microsoft.AspNetCore.Identity.UserManager<ExamStation.Areas.Identity.Data.ExamStationUser> UserManager*@
+
+@using ExamStation.Models 
+@model ExamStation.Models.Student
+
 
 @{
+    ExamStation.Data.ExamStationDbContext _context = new ExamStation.Data.ExamStationDbContext();
+    string userEmail = @ViewBag.UserEmail;
+    int ExamId = @ViewBag.ExamId;
     ViewData["Title"] = "Create";
+    
 }
 
 <!DOCTYPE html>
@@ -24,7 +32,6 @@
     <link href="~/CountdownClock/jquerysctipttop.css" rel="stylesheet" />
     <link href="~/CountdownClock/style.css" rel="stylesheet" />
     <!-- END THEME STYLES -->
-    <link rel="shortcut icon" href="favicon.ico" />
 </head>
 <!-- END HEAD -->
 <body>
@@ -36,17 +43,17 @@
                         <div class="box box-primary">
                             <div class="box-body box-profile">
                                 <img class="profile-user-img img-responsive img-circle" src="~/ExamStation/assets/global/img/ProImage.png">
-                                <h3 class="profile-username text-center">Hasan</h3>
+                                <h3 class="profile-username text-center">@Html.DisplayFor(model => model.StudentName)</h3>
                                 <p class="text-muted text-center">Software Engineer</p>
                                 <ul class="list-group list-group-unbordered">
                                     <li class="list-group-item" style="background-color: #FFF">
-                                        <b>Gender</b> <a class="pull-right">Male</a>
+                                        <b>Gender</b> <a class="pull-right">@Html.DisplayFor(model => model.Gender)</a>
                                     </li>
                                     <li class="list-group-item" style="background-color: #FFF">
-                                        <b>Date of Birth</b> <a class="pull-right">01 Aug 1992</a>
+                                        <b>Date of Birth</b> <a class="pull-right">@Html.DisplayFor(model => model.DateOfBirth)</a>
                                     </li>
                                     <li class="list-group-item" style="background-color: #FFF">
-                                        <b>Phone</b> <a class="pull-right">0123456789</a>
+                                        <b>Phone</b> <a class="pull-right">@Html.DisplayFor(model => model.Phone)</a>
                                     </li>
                                 </ul>
                             </div>
@@ -63,49 +70,22 @@
                                     <div class="panel-body profile-view-dis">
                                         <div class="row">
                                             <div>
-                                                <p style="color:green; font-size:50px;">Pass</p>
+                                                <p style="color:green; font-size:50px;">Result</p>
                                             </div>
                                             <div class=" list-group-item">
-                                                <p><span>Total Question</span>: 10</p>
+                                                <p><span>Total Question</span>: @ViewBag.TotalQuestion</p>
                                             </div>
                                             <div class=" list-group-item">
-                                                <p><span>Total Answer </span>: 5</p>
+                                                <p><span>Total Answer </span>: @ViewBag.TotalAnswer</p>
                                             </div>
                                             <div class=" list-group-item">
-                                                <p><span>Total Currect Answer </span>: 0</p>
+                                                <p><span>Total Correct Answer </span>: @ViewBag.TotalCorrect</p>
                                             </div>
                                             <div class=" list-group-item">
-                                                <p><span>Total Mark </span>: 10</p>
+                                                <p><span>Total Mark </span>: @ViewBag.TotalMarks</p>
                                             </div>
                                             <div class="list-group-item">
-                                                <p><span>Total Obtained Mark </span>: 0</p>
-                                            </div>
-                                            <div class="list-group-item">
-                                                <p><span>Total Percentage </span>: 50.5%</p>
-                                            </div>
-                                        </div>
-
-                                        <div class="row">
-                                            <div>
-                                                <p style="color:red; font-size:50px">Fail</p>
-                                            </div>
-                                            <div class=" list-group-item">
-                                                <p><span>Total Question</span>: 10</p>
-                                            </div>
-                                            <div class=" list-group-item">
-                                                <p><span>Total Answer </span>: 5</p>
-                                            </div>
-                                            <div class=" list-group-item">
-                                                <p><span>Total Currect Answer </span>: 0</p>
-                                            </div>
-                                            <div class=" list-group-item">
-                                                <p><span>Total Mark </span>: 10</p>
-                                            </div>
-                                            <div class="list-group-item">
-                                                <p><span>Total Obtained Mark </span>: 0</p>
-                                            </div>
-                                            <div class="list-group-item">
-                                                <p><span>Total Percentage </span>: 50.5%</p>
+                                                <p><span>Total Obtained Mark </span>: @ViewBag.TotalObtainedMarks</p>
                                             </div>
                                         </div>
                                     </div>

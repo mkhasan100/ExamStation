@@ -23,11 +23,17 @@ namespace ExamStation.Models
         public byte[] Upload { get; set; }
         public string Hints { get; set; }
         public double Mark { get; set; }
+        [NotMapped]
         [DisplayName("Question Type")]
         public string QuestionType { get; set; }
+
+        public int QuestionTypeId { get; set; }
         public int? TotalOption { get; set; }
         [NotMapped]
         public string QuestionGroupName { get; set; }
+
+        [NotMapped]
+        public string Answers { get; set; }
 
     }
 }

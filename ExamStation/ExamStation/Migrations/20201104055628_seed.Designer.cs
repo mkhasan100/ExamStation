@@ -4,14 +4,16 @@ using ExamStation.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ExamStation.Migrations
 {
     [DbContext(typeof(ExamStationDbContext))]
-    partial class ExamStationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201104055628_seed")]
+    partial class seed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -651,8 +653,8 @@ namespace ExamStation.Migrations
                     b.Property<int?>("QuestionGroupId")
                         .HasColumnType("int");
 
-                    b.Property<int>("QuestionTypeId")
-                        .HasColumnType("int");
+                    b.Property<string>("QuestionType")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("TotalOption")
                         .HasColumnType("int");
@@ -675,7 +677,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is Computer",
-                            QuestionTypeId = 0
+                            QuestionType = "Single Answer"
                         },
                         new
                         {
@@ -685,7 +687,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is Computer Describe it",
-                            QuestionTypeId = 0
+                            QuestionType = "Single Answer"
                         },
                         new
                         {
@@ -695,7 +697,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is Math",
-                            QuestionTypeId = 0
+                            QuestionType = "Multi Answer"
                         },
                         new
                         {
@@ -705,7 +707,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is Math Describe it",
-                            QuestionTypeId = 0
+                            QuestionType = "Multi Answer"
                         },
                         new
                         {
@@ -715,7 +717,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is Chemistry",
-                            QuestionTypeId = 0
+                            QuestionType = "Fill In The Blanks"
                         },
                         new
                         {
@@ -725,7 +727,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is Chemistry Describe it",
-                            QuestionTypeId = 0
+                            QuestionType = "Fill In The Blanks"
                         },
                         new
                         {
@@ -735,7 +737,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is General Knowledge",
-                            QuestionTypeId = 0
+                            QuestionType = "Single Answer"
                         },
                         new
                         {
@@ -745,7 +747,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is General Knowledge Describe it",
-                            QuestionTypeId = 0
+                            QuestionType = "Single Answer"
                         },
                         new
                         {
@@ -755,7 +757,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is Computer Science",
-                            QuestionTypeId = 0
+                            QuestionType = "Multi Answer"
                         },
                         new
                         {
@@ -765,7 +767,7 @@ namespace ExamStation.Migrations
                             Hints = "Nothing",
                             Mark = 40.0,
                             Question = "What is Computer Science Describe it",
-                            QuestionTypeId = 0
+                            QuestionType = "Multi Answer"
                         });
                 });
 

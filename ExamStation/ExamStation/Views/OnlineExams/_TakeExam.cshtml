@@ -1,4 +1,5 @@
 ﻿@inject Microsoft.AspNetCore.Identity.UserManager<ExamStation.Areas.Identity.Data.ExamStationUser> UserManager
+@model OnlineExam
 @{
     string userEmail = @ViewBag.UserEmail;
     ExamStation.Data.ExamStationDbContext _context = new ExamStation.Data.ExamStationDbContext();
@@ -22,22 +23,28 @@
 
     double mark = 0;
     int questionBankId = 0;
+    int questionTypeId = 0;
     string firstQuestion = string.Empty;
     int totalQuestion = 0;
     int lastQuestionBankId = 0;
     int firstQuestionBankId = 0;
+    List<AnswersOption> answerOptionList=new List<AnswersOption>();
+
     if (!ExamId.Equals(0))
     {
         examTitle = _context.OnlineExam.Where(e => e.Id == ExamId).FirstOrDefault().ExamTitle;
-        mark = _context.QuestionBank.Where(m => m.Id == ExamId).FirstOrDefault().Mark;
         questionBankId = _context.TakeExamMapper.Where(qb => qb.ExamId == ExamId).FirstOrDefault().QuestionBankId;
+        answerOptionList = _context.AnswersOptions.Where(w => w.QuestionBank.Id == questionBankId).ToList();
+        QuestionBank questionBank = _context.QuestionBank.Where(m => m.Id == questionBankId).FirstOrDefault();
+        mark = questionBank.Mark;
         lastQuestionBankId = _context.TakeExamMapper.Where(w => w.ExamId == ExamId).Max(m => m.QuestionBankId);
         firstQuestionBankId = _context.TakeExamMapper.Where(w => w.ExamId == ExamId).Min(m => m.QuestionBankId);
-        firstQuestion = _context.QuestionBank.Where(q => q.Id == questionBankId).FirstOrDefault().Question;
+        firstQuestion = questionBank.Question;
         totalQuestion = _context.TakeExamMapper.Count(tq => tq.ExamId == ExamId);
+        questionTypeId = questionBank.QuestionTypeId;
     }
-
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <!-- BEGIN HEAD -->
@@ -92,6 +99,7 @@
                                                                 <span class="questionNumber10" id="question">@firstQuestion</span><br>
                                                             </label>
                                                             <input type="hidden" id="hdnQuestionBankId" value="@questionBankId" />
+                                                            <input type="hidden" id="hdnQuestionTypeId" value="@questionTypeId" />
                                                             <input type="hidden" id="hdnUserEmail" value="@userEmail" />
                                                             <label class="lb-mark"> @mark </label>
                                                         </div>
@@ -101,44 +109,9 @@
                                         </div>
                                     </div>
                                     <div class="question-answer">
-                                        <table class="table">
+                                        <div id="divAnswerOptions" ></div>
+                                        <table id="tblAnswerOptions" class="table">
                                             <tr>
-                                                <td>
-                                                    <input id="option91" value="1" name="Q_option_10" type="radio">
-                                                    <label for="option91">
-                                                        <span class="fa-stack radio-button">
-                                                            <i class="active fa fa-check">
-                                                            </i>
-                                                        </span>
-                                                        <span>   Muslim League</span>
-
-                                                    </label>
-                                                </td>
-                                                <td>
-                                                    <input id="option92" value="1" name="Q_option_10" type="radio">
-                                                    <label for="option92">
-                                                        <span class="fa-stack radio-button">
-                                                            <i class="active fa fa-check">
-                                                            </i>
-                                                        </span>
-                                                        <span>   Awami League</span>
-
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <input id="option93" value="1" name="Q_option_10" type="radio">
-                                                    <label for="option93">
-                                                        <span class="fa-stack radio-button">
-                                                            <i class="active fa fa-check">
-                                                            </i>
-                                                        </span>
-                                                        <span>   Pakistan People's Party</span>
-
-                                                    </label>
-                                                </td>
-                                            </tr>
                                         </table>
                                     </div>
                                     <br />
@@ -203,7 +176,8 @@
                                             for (int i = 1; i <= QuestionButtonList.Count; i++)
                                             {
                                                 <div class="col-md-3 mrg-1">
-                                                    <a href="#" class="btn btn-info btn-block qb">@i</a>
+                                                    <input type="button" value=@i id=@QuestionButtonList[i-1].QuestionBankId  class="btn btn-info btn-block buttonQuestion" />
+                                                    @*<a href="#" class="btn btn-info btn-block qb">@i</a>*@
                                                 </div>
                                             }
                                         }
@@ -217,7 +191,7 @@
                     <form action="#" name="post_5f87d3ce5481d342512953" id="post_5f87d3ce5481d342512953" style="display:none;" method="post">
                         <input type="hidden" name="_method" value="POST">
                     </form>
-                    <a href="#" class="btn btn-danger btn-sm btn-block" onclick="window.open('@Url.Action("_FinishExam", "OnlineExams")','name','width=1200,height=700,')"><span class="glyphicon glyphicon-lock"></span>&nbsp;Finish Exam </a>
+                    <a href="#" class="btn btn-danger btn-sm btn-block" onclick="window.open('@Url.Action("_FinishExam", "OnlineExams", new { examId = @ExamId })','name','width=1200,height=700,')"><span class="glyphicon glyphicon-lock"></span>&nbsp;Finish Exam </a>
                 </div>
             </div>
         </div>
@@ -245,22 +219,57 @@
              data: { 'questionBankId': questionBankId },
              type: 'GET',
              dataType: 'json',
-             success: function (questionBank) {
-                 console.log(questionBank);
+             success: function (quesAnsOp) {
+                 console.log(quesAnsOp);
                 //alert(questoinResult);
-               //  now ata object hoyese array na
-                $("#question").html(questionBank.question);
-                $("#hdnQuestionBankId").val(questionBank.id);
+                 var queType = quesAnsOp[0];
+                 $("#hdnQuestionBankId").val(quesAnsOp[1]);
+                 $("#hdnQuestionTypeId").val(queType);
+                 $("#question").html(quesAnsOp[2]);
+
+                 var ansOptions = quesAnsOp[3].split(',');
+
+                 var ids = quesAnsOp[4].split(',');
+
+                 var table = "<table class='table'><tr>";
+                 for (var i = 0; i < ansOptions.length; i++) {
+                     table += '<td>';
+                     if (parseInt(queType) == 1) {
+                         table += '<input  value="1" name="Q_option_10" type="radio">';
+                     }
+                     if (parseInt(queType) == 2) {
+                         table += '<input value="' + ids[i]+'" name="Q_option_10" type="checkbox">';
+                     }
+                     if (parseInt(queType) == 3) {
+                         table += '<input id="txtFillBlanks"  class="form-control" type="text">';
+                     }
+                     table += '<label for="option91">';
+                     table += '<span class="fa-stack radio-button">';
+                     table += '<i class="active fa fa-check">';
+                     table += '</i>';
+                     table += '</span>';
+                     if (parseInt(queType) != 3) {
+                         table += '<span>   ' + ansOptions[i] + '</span>';
+                     }
+                     table += '</label>';
+                     table += '</td>';
+                 }
+
+                 table += "</tr></table>"
+
+                 var divAnswerOptions = $("#divAnswerOptions");
+                 divAnswerOptions.html(table);
              }
          });
+
+
         });
 
         $("#btnPrev").click(function () {
-
             var questionBankId = $("#hdnQuestionBankId").val();
 
             if (@firstQuestionBankId==questionBankId) {
-                alert("This is first last question");
+                alert("This is first question");
                 return false;
             }
          $.ajax({
@@ -268,12 +277,43 @@
              data: { 'questionBankId': questionBankId },
              type: 'GET',
              dataType: 'json',
-             success: function (questionBank) {
-                 console.log(questionBank);
+             success: function (quesAnsOp) {
+                 console.log(quesAnsOp);
                 //alert(questoinResult);
+                 var queType = quesAnsOp[0];
+                 $("#hdnQuestionBankId").val(quesAnsOp[1]);
+                 $("#hdnQuestionTypeId").val(queType);
+                 $("#question").html(quesAnsOp[2]);
 
-                $("#question").html(questionBank[0].question);
-                $("#hdnQuestionBankId").val(questionBank[0].id);
+                 var ansOptions = quesAnsOp[3].split(',');
+                 var ids = quesAnsOp[4].split(',');
+
+                 var table = "<table><tr>";
+                 for (var i = 0; i < ansOptions.length; i++) {
+                     table += '<td>';
+                     if (parseInt(queType) == 1) {
+                         table += '<input  value="1" name="Q_option_10" type="radio">';
+                     }
+                     if (parseInt(queType) == 2) {
+                         table += '<input value="' + ids[i] + '" name="Q_option_10" type="checkbox">';
+                     }
+                     if (parseInt(queType) == 3) {
+                         table += '<input id="txtFillBlanks"  class="form-control" type="text">';
+                     }
+                     table += '<label for="option91">';
+                     table += '<span class="fa-stack radio-button">';
+                     table += '<i class="active fa fa-check">';
+                     table += '</i>';
+                     table += '</span>';
+                     if (parseInt(queType) != 3) {
+                         table += '<span>   ' + ansOptions[i] + '</span>';
+                     }
+                     table += '</label>';
+                     table += '</td>';
+                 }
+                 table += "</tr></table>"
+                 var divAnswerOptions = $("#divAnswerOptions");
+                 divAnswerOptions.html(table);
              }
          });
         });
@@ -282,8 +322,44 @@
         $("#btnSave").click(function () {
             //alert("#btnSave");
             var questionBankId = $("#hdnQuestionBankId").val();
+            var questionTypeId = $("#hdnQuestionTypeId").val();
             var userEmail = $("#hdnUserEmail").val();
-            var examAnswer = $("#ExamAnswer").val();
+            var examAnswer = '';// $("#ExamAnswer").val();
+
+            if (parseInt(questionTypeId) == 1) {
+                $('input[type=radio]').each(function (index,item) {
+                    //var $this = $(this),
+                    //val = $this.attr('defaultValue');
+                    if ($(this).prop('checked')) {
+                        examAnswer = item.value;
+                    }
+                    //console.log($this);
+                    //console.log(val);
+                });
+            }
+
+            if (parseInt(questionTypeId) == 2) {
+                $('input[type=checkbox]').each(function (index, item) {
+                    if ($(this).prop("checked")) {
+                        if (index == 0) {
+                            examAnswer = item.value;
+                        }
+                        else {
+                            if (examAnswer != '') {
+                                examAnswer += "," + item.value;
+                            }
+                            else {
+                                examAnswer = item.value;
+                            }
+
+                        }
+                    }
+                });
+            }
+
+            if (parseInt(questionTypeId)==3) {
+                examAnswer = $("#txtFillBlanks").val();
+            }
          $.ajax({
              url: "@Url.Action("SaveAnswers", "OnlineExams")",
              data: { 'StudentEmail': userEmail, 'ExamId':@ExamId, 'QuestionBankId': questionBankId, 'StudentAnswer': examAnswer },
@@ -292,7 +368,7 @@
              dataType: 'json',
              success: function (result) {
                  console.log(result);
-                //alert(questoinResult);
+             //alert(questoinResult);
              }
          });
         });
@@ -312,9 +388,61 @@
              success: function (questionBank) {
                  console.log(questionBank);
                  //alert(questoinResult);
-                 //  now ata object hoyese array na
                  $("#question").html(questionBank.question);
                  $("#hdnQuestionBankId").val(questionBank.id);
+             }
+         });
+        });
+
+        $(".buttonQuestion").click(function () {
+            var questionBankId = this.id;
+
+           
+         $.ajax({
+             url: "@Url.Action("GetQuestionById", "OnlineExams")",
+             data: { 'questionBankId': questionBankId },
+             type: 'GET',
+             dataType: 'json',
+             success: function (quesAnsOp) {
+                 console.log(quesAnsOp);
+                //alert(questoinResult);
+                 var queType = quesAnsOp[0];
+                 $("#hdnQuestionBankId").val(quesAnsOp[1]);
+                 $("#hdnQuestionTypeId").val(queType);
+                 $("#question").html(quesAnsOp[2]);
+
+                 var ansOptions = quesAnsOp[3].split(',');
+
+                 var ids = quesAnsOp[4].split(',');
+
+                 var table = "<table class='table'><tr>";
+                 for (var i = 0; i < ansOptions.length; i++) {
+                     table += '<td>';
+                     if (parseInt(queType) == 1) {
+                         table += '<input  value="1" name="Q_option_10" type="radio">';
+                     }
+                     if (parseInt(queType) == 2) {
+                         table += '<input value="' + ids[i]+'" name="Q_option_10" type="checkbox">';
+                     }
+                     if (parseInt(queType) == 3) {
+                         table += '<input id="txtFillBlanks"  class="form-control" type="text">';
+                     }
+                     table += '<label for="option91">';
+                     table += '<span class="fa-stack radio-button">';
+                     table += '<i class="active fa fa-check">';
+                     table += '</i>';
+                     table += '</span>';
+                     if (parseInt(queType) != 3) {
+                         table += '<span>   ' + ansOptions[i] + '</span>';
+                     }
+                     table += '</label>';
+                     table += '</td>';
+                 }
+
+                 table += "</tr></table>"
+
+                 var divAnswerOptions = $("#divAnswerOptions");
+                 divAnswerOptions.html(table);
              }
          });
         });
@@ -325,7 +453,6 @@
                 ExamAnswer.value = ExamAnswer.defaultValue;
             }
         }
-
     </script>
 </body>
 </html>

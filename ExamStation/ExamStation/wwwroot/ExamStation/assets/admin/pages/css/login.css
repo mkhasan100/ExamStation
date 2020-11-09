@@ -179,15 +179,15 @@ Login page
 }
 
 .login .content .create-account {
-  margin: 0 -40px -40px -40px;
-  padding: 15px 0 17px 0;
-  text-align: center;
-  background-color: #6c7a8d;
-  -webkit-border-radius: 0 0 7px 7px;
-  -moz-border-radius: 0 0 7px 7px;
-  -ms-border-radius: 0 0 7px 7px;
-  -o-border-radius: 0 0 7px 7px;
-  border-radius: 0 0 7px 7px;
+    margin: 17px -40px -66px -40px;
+    padding: 0px 0 11px 0;
+    text-align: center;
+    background-color: #39a9a2;
+    -webkit-border-radius: 0 0 7px 7px;
+    -moz-border-radius: 0 0 7px 7px;
+    -ms-border-radius: 0 0 7px 7px;
+    -o-border-radius: 0 0 7px 7px;
+    border-radius: 0 0 7px 7px;
 }
 
 .login .content .create-account p a {

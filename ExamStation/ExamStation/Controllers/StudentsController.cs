@@ -9,24 +9,28 @@ using ExamStation.Data;
 using ExamStation.Models;
 using ExamStation.Helper;
 using ExamStation.Models.ViewModels;
-using Microsoft.AspNetCore .Hosting;
+using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using Microsoft.AspNetCore.Identity;
+using ExamStation.Areas.Identity.Data;
 
 namespace ExamStation.Controllers
 {
     public class StudentsController : Controller
     {
         private readonly ExamStationDbContext _context;
+        //private readonly UserManager<ExamStationUser> userManager;
         [Obsolete]
         private readonly IHostingEnvironment hostingEnvironment;
         Utility _utility;
 
         [Obsolete]
-        public StudentsController(ExamStationDbContext context,
+        public StudentsController(ExamStationDbContext context, UserManager<ExamStationUser> userManager,
             IHostingEnvironment hostingEnvironment)
         {
             _context = context;
             this.hostingEnvironment = hostingEnvironment;
+            //this.userManager = userManager;
             _utility = new Utility();
         }
 
@@ -36,9 +40,21 @@ namespace ExamStation.Controllers
             return View(await _context.Student.ToListAsync());
         }
 
-        public ActionResult StudentProfile()
+
+        public ActionResult StudentProfile(int? id)
         {
-            return View("StudentProfile");
+            //ViewBag.UserName = userManager.FindByNameAsync(userManager.GetUserName(User)).Result.UserName;
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var student = _context.Student.Find(id);
+            if (student == null)
+            {
+                return NotFound();
+            }
+            return View("StudentProfile",student);
         }
 
         // GET: Students/Details/5

@@ -68,6 +68,10 @@
               "target": "Package",
               "version": "[3.1.4, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            },
             "ckeditor-basic": {
               "target": "Package",
               "version": "[4.15.0, )"

@@ -1,6 +1,5 @@
 ﻿@model ExamStation.Models.QuestionBank
 
-
 @{
     ViewData["Title"] = "Create";
 
@@ -11,112 +10,110 @@
 
 <h2>Add Question Bank</h2>
 <hr />
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group row">
+    <label asp-for="QuestionGroup" class="control-label col-sm-2"></label>
+    <div class="col-sm-6">
+        @*<input asp-for="QuestionGroup" class="form-control" />*@
+        @Html.DropDownListFor(model => model.QuestionGroup, new SelectList(ViewBag.QuestionGroupList, "Id", "Title"), "Select Question Group", new { @class = "form-control" })
+        <span asp-validation-for="QuestionGroup" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row">
+    <label asp-for="DifficultyLevel" class="control-label col-sm-2"></label>
+    <div class="col-sm-6">
+        @*<input asp-for="DifficultyLevel" class="form-control" />*@
+        @Html.DropDownListFor(model => model.DifficultyLevel, new SelectList(ViewBag.QuestionLevelList, "Id", "Title"), "Select Question Level", new { @class = "form-control" })
+        <span asp-validation-for="DifficultyLevel" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row">
+    <label asp-for="Question" class="control-label col-sm-2"></label>
+    <div class="col-sm-6">
+        @*<input asp-for="Question" class="form-control" />*@
+        <textarea id="Question" asp-for="Question"></textarea>
+        @*@Html.TextAreaFor(model => model.Question, new { @id = "FullDescription", @class = "form-control", @rows = "10" })*@
+        <span asp-validation-for="Question" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row">
+    <label asp-for="Explanation" class="control-label col-sm-2"></label>
+    <div class="col-sm-6">
+        @*<input asp-for="Explanation" class="form-control" />*@
+        <textarea id="Explanation" asp-for="Explanation"></textarea>
+        <span asp-validation-for="Explanation" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row">
+    <label asp-for="Upload" class="control-label col-sm-2"></label>
+    <div class="col-sm-6">
+        <input asp-for="Upload" class="form-control" />
+        <span asp-validation-for="Upload" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row">
+    <label asp-for="Hints" class="control-label col-sm-2"></label>
+    <div class="col-sm-6">
+        <input asp-for="Hints" class="form-control" />
+        <span asp-validation-for="Hints" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row">
+    <label asp-for="Mark" class="control-label col-sm-2"></label>
+    <div class="col-sm-6">
+        <input asp-for="Mark" class="form-control" />
+        <span asp-validation-for="Mark" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row">
+    <label for="type" asp-for="QuestionType" class="col-sm-2 control-label">
+        Question Type <span class='text-red'>*</span>
+    </label>
+    <div class="col-sm-6">
+        @* @Html.DropDownListFor(model => model.QuestionType, new SelectList(ViewBag.QuestionTypeList, "Id", "QuestionTypeName"), "Select Question Type", new { @class = "form-control" })*@
+        <select name="type" id='type' class='form-control'>
+            <option value="0">Please Select</option>
+            <option value="1">Single Answer</option>
+            <option value="2">Multi Answer</option>
+            <option value="3">Fill in the Blanks</option>
+        </select>
+    </div>
+    <span class="col-sm-4 control-label"></span>
+</div>
+<div class='form-group row' id='totalOptionDiv'>
+    <label for="totalOption" class="col-sm-2 control-label">
+        Total Option
+    </label>
+    <div class="col-sm-6">
+        <select name="totalOption" id='totalOption' class='form-control'>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+        </select>
+    </div>
+    <span class="col-sm-4 control-label">
+    </span>
+</div>
+<div id="in" class='form-group'></div>
 
-@*<form asp-action="Create" role="form" method="post" id="question_bank" enctype="multipart/form-data">*@
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="form-group row">
-        <label asp-for="QuestionGroup" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            @*<input asp-for="QuestionGroup" class="form-control" />*@
-            @Html.DropDownListFor(model => model.QuestionGroup, new SelectList(ViewBag.QuestionGroupList, "Id", "Title"), "Select Question Group", new { @class = "form-control" })
-            <span asp-validation-for="QuestionGroup" class="text-danger"></span>
-        </div>
+<div class="form-group row">
+    <div class="col-sm-offset-2 col-sm-8">
+        <input id="btnSubmit" type="submit" class="btn btn-default" value="Add Question bank">
     </div>
-    <div class="form-group row">
-        <label asp-for="DifficultyLevel" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            @*<input asp-for="DifficultyLevel" class="form-control" />*@
-            @Html.DropDownListFor(model => model.DifficultyLevel, new SelectList(ViewBag.QuestionLevelList, "Id", "Title"), "Select Question Level", new { @class = "form-control" })
-            <span asp-validation-for="DifficultyLevel" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Question" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            @*<input asp-for="Question" class="form-control" />*@
-            <textarea id="Question" asp-for="Question" style="display:none"></textarea>
-            @*@Html.TextAreaFor(model => model.Question, new { @id = "FullDescription", @class = "form-control", @rows = "10" })*@
-            <span asp-validation-for="Question" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Explanation" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            @*<input asp-for="Explanation" class="form-control" />*@
-            <textarea id="Explanation" asp-for="Explanation" style="display:none"></textarea>
-            <span asp-validation-for="Explanation" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Upload" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            <input asp-for="Upload" class="form-control" />
-            <span asp-validation-for="Upload" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Hints" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            <input asp-for="Hints" class="form-control" />
-            <span asp-validation-for="Hints" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label asp-for="Mark" class="control-label col-sm-2"></label>
-        <div class="col-sm-6">
-            <input asp-for="Mark" class="form-control" />
-            <span asp-validation-for="Mark" class="text-danger"></span>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="type" asp-for="QuestionType" class="col-sm-2 control-label">
-            Question Type <span class='text-red'>*</span>
-        </label>
-        <div class="col-sm-6">
-            @* @Html.DropDownListFor(model => model.QuestionType, new SelectList(ViewBag.QuestionTypeList, "Id", "QuestionTypeName"), "Select Question Type", new { @class = "form-control" })*@
-            <select name="type" id='type' class='form-control'>
-                <option value="0">Please Select</option>
-                <option value="1">Single Answer</option>
-                <option value="2">Multi Answer</option>
-                <option value="3">Fill in the Blanks</option>
-            </select>
-        </div>
-        <span class="col-sm-4 control-label"></span>
-    </div>
-    <div class='form-group row' id='totalOptionDiv'>
-        <label for="totalOption" class="col-sm-2 control-label">
-            Total Option
-        </label>
-        <div class="col-sm-6">
-            <select name="totalOption" id='totalOption' class='form-control'>
-                <option value="0">0</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-                <option value="7">7</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-                <option value="10">10</option>
-            </select>
-        </div>
-        <span class="col-sm-4 control-label">
-        </span>
-    </div>
-    <div id="in" class='form-group'></div>
+</div>
 
-    <div class="form-group row">
-        <div class="col-sm-offset-2 col-sm-8">
-            <input id="btnSubmit" type="submit" class="btn btn-default" value="Add Question bank">
-        </div>
-    </div>
-@*</form>*@
 
 
 @section scripts{
-    <script src="~/js/ckeditor/ckeditor.js"></script>
+    @*<script src="~/js/ckeditor/ckeditor.js"></script>*@
     <script type="text/javascript">
         $('.select2').select2();
         $(document).on('click', '#close-preview', function () {
@@ -134,11 +131,13 @@
             );
         });
 
+
         $('#question').jqte();
         $('#explanation').jqte();
         $(function () {
             $('#totalOptionDiv').hide();
         });
+
 
         $(document).ready(function () {
             var totalOptionID = '0';
@@ -160,7 +159,6 @@
                     optionArray.push($(item).val());
                 });
               //  console.log(arrText);
-
 
                 var answerArray = new Array();
                 if (questionType == 1) {
@@ -189,7 +187,6 @@
                 }
                 //console.log(arrCheckBox);
 
-
                 var questionGroup = $("#QuestionGroup").val();
                 var difficultyLevel = $("#DifficultyLevel").val();
                 var question = $('textarea[name="Question"]').val();// CKEDITOR.instances.Question.getData(); // $("#Question").text();
@@ -199,26 +196,16 @@
                 var Options = $("#totalOption").val();
 
                  $.ajax({
-             url: "@Url.Action("SaveQuestions", "QuestionBanks")",
-                     data: { 'questionGroupId': questionGroup, 'difficultyLevel': difficultyLevel, 'question': question, 'explanation': explanation, 'hints': hints, 'mark': mark, 'answerArray': answerArray, 'optionArray': optionArray },
-            //traditional: true,
-             type: 'POST',
-             dataType: 'json',
-             success: function (result) {
-                 console.log(result);
-                //alert(questoinResult);
-             }
+                     url: "@Url.Action("SaveQuestions", "QuestionBanks")",
+                     data: { 'questionGroupId': questionGroup, 'difficultyLevelId': difficultyLevel, 'question': question, 'explanation': explanation, 'hints': hints, 'mark': mark, 'answerArray': answerArray, 'optionArray': optionArray },
+                     type: 'POST',
+                     dataType: 'json',
+                     success: function (result) {
+                     //console.log(result);
+                         alert(result);
+                         $('textarea[name="Question"]').val("");
+                     }
                  });
-
-         @*$.ajax({
-             url: "@Url.Action("SaveQuestions", "QuestionBanks")",
-             data: { 'questionGroupId': questionGroup, 'difficultyLevel': difficultyLevel, 'question': question, 'explanation': explanation, 'hints': hints, 'mark': mark,  'IsAnswer': IsAnswer, 'Option': Options },
-             type: 'POST',
-             dataType: 'json',
-             success: function (result) {
-                 console.log(result);
-             }
-         });*@
             });
         });
 
@@ -278,26 +265,9 @@
                 var html = '<div class="form-group row coption"><label for="answer' + id + '" class="col-sm-2 control-label">Answer ' + id + '</label><div class="col-sm-4"><input type="text" class="form-control" id="answer' + id + '" name="answer[]" value="' + value + '" placeholder="Answer ' + id + '"></div><div class="col-sm-1"></div><span class="col-sm-4 control-label text-red" id="anserror' + id + '"></span></div>';
                 return html;
             }
-            var html = '<div class="form-group row coption"><label for="option' + id + '" class="col-sm-2 control-label">Option ' + id + '</label><div class="col-sm-4" style="display:inline-table"><input type="text" class="form-control answerOption"  id="option' + id + '" name="option[]" value="' + value + '" placeholder="Option ' + id + '"><span class="input-group-addon"><input class="answer" id="ans' + id + '" ' + checked + ' type="' + type + '" name="answer[]" value="' + id + '" data-toggle="tooltip" data-placement="top" title="Correct Answer" ' + required + ' /></span></div><div class="col-sm-3" style="display:inline-table"><input type="file" name="image' + id + '" id="image' + id + '"></div><span class="col-sm-3 control-label text-red" id="anserror' + id + '"></span></div>';
+            var html = '<div class="form-group row coption"><label for="option' + id + '" class="col-sm-2 control-label">Option ' + id + '</label><div class="col-sm-4" style="display:inline-table"><input type="text" class="form-control answerOption"  id="option' + id + '" name="option[]" value="' + value + '" placeholder="Option ' + id + '"><span class="input-group-addon"><input class="answer" id="ans' + id + '" ' + checked + ' type="' + type + '" name="answer[]" value="' + id + '" data-toggle="tooltip" data-placement="top" title="Correct Answer" ' + required + ' /></span></div><div class="col-sm-3" style="display:inline-table"></div><span class="col-sm-3 control-label text-red" id="anserror' + id + '"></span></div>';
             return html;
         }
-
-        $(window).load(function () {
-            ClassicEditor
-                .create(document.querySelector('#Question'))
-                .catch(error => {
-                    console.error(error);
-                });
-        });
-
-        $(window).load(function () {
-            ClassicEditor
-                .create(document.querySelector('#Explanation'))
-                .catch(error => {
-                    console.error(error);
-                });
-        });
     </script>
 
 }
-

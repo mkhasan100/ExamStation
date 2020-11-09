@@ -6,7 +6,7 @@
 }
 
 <h2>Student List</h2>
-<hr />
+<hr/>
 <form asp-action="PurchaseLists">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="row">
@@ -43,8 +43,8 @@
                     <td>@Html.DisplayFor(modelItem => item.Email)</td>
                     <td><img src="~/images/@Html.DisplayFor(modelItem => item.Photo)" style="height:40px; width:40px;"/></td>
                     <td>
-                        <a href="~/Students/StudentProfile" type="submit" id="edit" class="btn btn-success" value="Edit">View</a>
-                        <a href="#" type="submit" id="edit" class="btn btn-default" value="Edit">Edit</a>
+                        <a asp-action="StudentProfile" asp-route-id="@item.StudentId" type="submit" id="View" class="btn btn-success" value="View">View</a>
+                        <a type="submit" asp-action="Edit" asp-route-id="@item.StudentId" class="btn btn-default" value="Edit">Edit</a>
                         <a href="#" type="submit" id="Delete" class="btn btn-danger" value="Delete">Delete</a>
                     </td>
                 </tr>

@@ -216,22 +216,117 @@ namespace ExamStation.Controllers
         }
         
         [HttpGet]
-        public IActionResult _FinishExam()
+        public IActionResult _FinishExam(int examId)
         {
-            return PartialView();
-        }
 
-        [HttpGet]
+
+            ViewBag.UserEmail = userManager.FindByNameAsync(userManager.GetUserName(User)).Result.Email;
+            ViewBag.ExamId = examId;
+
+            List<TakeExamMapper> examQuestionList = new List<TakeExamMapper>();
+            examQuestionList = _context.TakeExamMapper.Where(w=>w.ExamId==examId).ToList();
+
+            string commaSeparatedQuestion = string.Empty;
+            
+            int[] intQuestionBankId = examQuestionList.Select(s => s.QuestionBankId).ToArray();
+
+            for (int i = 0; i < intQuestionBankId.Length; i++)
+            {
+                if (i==0)
+                {
+                    commaSeparatedQuestion = intQuestionBankId[i].ToString();
+                }
+
+                else
+                {
+                    commaSeparatedQuestion += "," + intQuestionBankId[i].ToString();
+                }
+            }
+
+            List<QuestionBank> questionList = _context.QuestionBank.Where(w=>commaSeparatedQuestion.Contains(w.Id.ToString())).ToList();
+
+            ViewBag.TotalQuestion = questionList.Count;
+            ViewBag.TotalMarks = questionList.Sum(s => s.Mark);
+
+             List<AnswersOption> answerOptionList = _context.AnswersOptions.Where(w => commaSeparatedQuestion.Contains(w.QuestionBank.Id.ToString())).ToList();
+
+            List<Answer> answerList = _context.Answers.Where(w => commaSeparatedQuestion.Contains(w.QuestionBankId.ToString())).ToList();
+
+            ViewBag.TotalAnswer = answerList.Count;
+            int totalCorrect = 0;
+            double totalObtainedMarks = 0;
+            foreach (var item in questionList)
+            {
+                var mark = item.Mark;
+                bool isCorrect = false;
+                if (item.QuestionTypeId==1)
+                {
+                    int answerId = 0;
+                    if (answerList.Count(w => w.QuestionBankId == item.Id) > 0)
+                    {
+                        answerId = Convert.ToInt32(answerList.Where(w => w.QuestionBankId == item.Id).FirstOrDefault().StudentAnswer);
+                    }
+
+                    int count = answerOptionList.Count(w => w.IsAnswer == 1 && w.Id == answerId);
+
+                    if (count>0)
+                    {
+                        isCorrect = true;
+                    }
+                }
+                else if (item.QuestionTypeId==2)
+                {
+                    
+                    if (answerList.Count(w => w.QuestionBankId == item.Id) > 0)
+                    {
+                        int studentAnswerCount =answerList.Where(w => w.QuestionBankId == item.Id).FirstOrDefault().StudentAnswer.Split(',').Length;
+                        int actualAnswerCount = answerOptionList.Count(w => w.IsAnswer == 1 && w.QuestionBank.Id == item.Id);
+
+                        if (studentAnswerCount==actualAnswerCount)
+                        {
+                            isCorrect = true;
+                        }
+                    }
+                }
+                else if (item.QuestionTypeId==3)
+                {
+                    string studentAnswer = string.Empty;
+                    string actualAnswer = answerOptionList.Where(w => w.QuestionBank.Id == item.Id).FirstOrDefault().Option;
+                    if (answerList.Count(w => w.QuestionBankId == item.Id) > 0)
+                    {
+                        studentAnswer = answerList.Where(w => w.QuestionBankId == item.Id).FirstOrDefault().StudentAnswer;
+                        if (string.Compare(studentAnswer,actualAnswer,true)==0)
+                        {
+                            isCorrect = true;
+                        }
+                    }
+                }
+
+                if (isCorrect)
+                {
+                    ++totalCorrect;
+                    totalObtainedMarks += mark;
+                }
+            }
+
+            ViewBag.TotalCorrect = totalCorrect;
+            ViewBag.TotalObtainedMarks = totalObtainedMarks;
+            var student = _context.Student.Find(examId);
+            return PartialView ("_FinishExam", student);
+        }
+        
+
+[HttpGet]
         public IActionResult _ShowQuestion()
         {
             return View();
         }
 
-        public JsonResult GetQuestionById(int Id)
-        {
-            string test = "empty";
-            return Json(test);
-        }
+        //public JsonResult GetQuestionById(int Id)
+        //{
+        //    string test = "empty";
+        //    return Json(test);
+        //}
 
         public JsonResult GetOnlineExamList(string onlineExamList)
         {
@@ -255,7 +350,39 @@ namespace ExamStation.Controllers
         public JsonResult GetNextQuestion(int questionBankId)
         {
             QuestionBank questionBank = GetNextQuestionText(questionBankId);
-            return Json(questionBank);
+
+            var answerOptions = string.Join(',', _context.AnswersOptions.Where(w => w.QuestionBank.Id == questionBank.Id).Select(s => s.Option).ToList());
+            List<String> qa = new List<string>();
+            qa.Add(questionBank.QuestionTypeId.ToString());
+            qa.Add(questionBank.Id.ToString());
+            qa.Add(questionBank.Question); 
+            qa.Add(answerOptions);
+
+            var ids = string.Join(',', _context.AnswersOptions.Where(w => w.QuestionBank.Id == questionBank.Id).Select(s => s.Id).ToList());
+
+            qa.Add(ids);
+
+            return Json(qa);
+        }
+
+
+        [HttpGet]
+        public JsonResult GetQuestionById(int questionBankId)
+        {
+            QuestionBank questionBank = _context.QuestionBank.Where(w=>w.Id==questionBankId).FirstOrDefault();
+
+            var answerOptions = string.Join(',', _context.AnswersOptions.Where(w => w.QuestionBank.Id == questionBank.Id).Select(s => s.Option).ToList());
+            List<String> qa = new List<string>();
+            qa.Add(questionBank.QuestionTypeId.ToString());
+            qa.Add(questionBank.Id.ToString());
+            qa.Add(questionBank.Question);
+            qa.Add(answerOptions);
+
+            var ids = string.Join(',', _context.AnswersOptions.Where(w => w.QuestionBank.Id == questionBank.Id).Select(s => s.Id).ToList());
+
+            qa.Add(ids);
+
+            return Json(qa);
         }
 
 
@@ -268,8 +395,15 @@ namespace ExamStation.Controllers
 
             var questionBank = _context.QuestionBank
                                    .Where(q => q.Id == prevQuestionBankId)
-                                   .Select(s => new {s.Id,s.Question});
-            return Json(questionBank);
+                                   .FirstOrDefault();
+            
+            var answerOptions = string.Join(',', _context.AnswersOptions.Where(w => w.QuestionBank.Id == questionBank.Id).Select(s => s.Option).ToList());
+            List<String> qa = new List<string>();
+            qa.Add(questionBank.QuestionTypeId.ToString());
+            qa.Add(questionBank.Id.ToString());
+            qa.Add(questionBank.Question);
+            qa.Add(answerOptions);
+            return Json(qa);
         }
 
 

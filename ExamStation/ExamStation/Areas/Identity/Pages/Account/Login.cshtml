@@ -64,17 +64,15 @@
                 <input asp-for="Input.Password" type="password" class="form-control" placeholder="Password">
                 <span asp-validation-for="Input.Password" class="text-danger"></span>
             </div>
-            <div class="form-actions">
-                <button type="submit" class="btn btn-success uppercase">Login</button>
+            <div class="form-actions">                
                 <label class="rememberme check">
                     <input type="checkbox" name="remember" value="1" />Remember
                 </label>
                 <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
-            </div>
-            <div class="create-account">
-                <p>
-                    <a id="register" asp-area="Identity" asp-page="/Account/Register" class="uppercase">Create an account</a>
-                </p>
+
+                <div class="create-account">
+                    <button type="submit" class="btn btn-success uppercase btn-block">Login</button>
+                </div>
             </div>
             @Html.AntiForgeryToken()
         </form>
