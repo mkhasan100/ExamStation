@@ -1,7 +1,8 @@
 var TableAdvanced = function () {
 
-    var initTable1 = function () {
-        var table = $('#sample_1');
+    var initTable1 = function (tableId) {
+        //var table = $('#sample_1');
+        var table = tableId;
 
         /* Table tools samples: https://www.datatables.net/release-datatables/extras/TableTools/ */
 
@@ -43,7 +44,7 @@ var TableAdvanced = function () {
             "order": [
                 [0, 'asc']
             ],
-            
+
             "lengthMenu": [
                 [5, 15, 20, -1],
                 [5, 15, 20, "All"] // change per page values here
@@ -83,8 +84,10 @@ var TableAdvanced = function () {
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-    var initTable2 = function () {
-        var table = $('#sample_2');
+    var initTable2 = function (tableId) {
+        //var table = $('#tblQuestionBankList');
+
+        var table = tableId;
 
         /* Table tools samples: https://www.datatables.net/release-datatables/extras/TableTools/ */
 
@@ -159,8 +162,9 @@ var TableAdvanced = function () {
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-    var initTable3 = function () {
-        var table = $('#sample_3');
+    var initTable3 = function (tableId) {
+        // var table = $('#sample_3');
+        var table = tableId;
 
         /* Formatting function for row details */
         function fnFormatDetails(oTable, nTr) {
@@ -248,8 +252,10 @@ var TableAdvanced = function () {
         });
     }
 
-    var initTable4 = function () {
-        var table = $('#sample_4');
+    var initTable4 = function (tableId) {
+        //var table = $('#sample_4');
+
+        var table = tableId;
 
         /* Formatting function for row expanded details */
         function fnFormatDetails(oTable, nTr) {
@@ -269,7 +275,7 @@ var TableAdvanced = function () {
          */
         var nCloneTh = document.createElement('th');
         nCloneTh.className = "table-checkbox";
-        
+
         var nCloneTd = document.createElement('td');
         nCloneTd.innerHTML = '<span class="row-details row-details-close"></span>';
 
@@ -345,9 +351,10 @@ var TableAdvanced = function () {
         });
     }
 
-    var initTable5 = function () {
+    var initTable5 = function (tableId) {
 
-        var table = $('#sample_5');
+        //var table = $('#sample_5');
+        var table = tableId;
 
         /* Fixed header extension: http://datatables.net/extensions/scroller/ */
 
@@ -370,9 +377,11 @@ var TableAdvanced = function () {
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
     }
 
-    var initTable6 = function () {
+    var initTable6 = function (tableId) {
 
-        var table = $('#sample_6');
+        //var table = $('#sample_6');
+
+        var table = tableId;
 
         /* Fixed header extension: http://datatables.net/extensions/keytable/ */
 
@@ -408,10 +417,10 @@ var TableAdvanced = function () {
             }],
             "order": [
                 [1, "asc"]
-            ]           
+            ]
         });
 
-        var oTableColReorder = new $.fn.dataTable.ColReorder( oTable );
+        var oTableColReorder = new $.fn.dataTable.ColReorder(oTable);
 
         var tableWrapper = $('#sample_6_wrapper'); // datatable creates the table wrapper by adding with id {your_table_jd}_wrapper
         tableWrapper.find('.dataTables_length select').select2(); // initialize select2 dropdown
@@ -420,7 +429,7 @@ var TableAdvanced = function () {
     return {
 
         //main function to initiate the module
-        init: function () {
+        init: function (tableId, styleId) {
 
             if (!jQuery().dataTable) {
                 return;
@@ -428,12 +437,28 @@ var TableAdvanced = function () {
 
             console.log('me 1');
 
-            initTable1();
-            initTable2();
-            initTable3();
-            initTable4();
-            initTable5();
-            initTable6();
+            if (styleId == 1) {
+                initTable1(tableId);
+            }
+
+            if (styleId == 2) {
+                initTable2(tableId);
+            }
+
+            if (styleId == 3) {
+                initTable3(tableId);
+            }
+
+            if (styleId == 4) {
+                initTable4(tableId);
+            }
+
+            if (styleId == 5) {
+                initTable5(tableId);
+            }
+            if (styleId == 6) {
+                initTable6(tableId);
+            }
 
             console.log('me 2');
         }

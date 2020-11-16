@@ -46,27 +46,6 @@ namespace ExamStation.Controllers
             return View(questionBank);
         }
 
-        //[HttpGet]
-        //public IActionResult QuestionBankList()
-        //{
-        //    ViewBag.QuestionGroupList = _utility.GetGroupList();
-        //    ViewBag.QuestionLevelList = _context.QuestionLevel.ToList();
-        //    ViewBag.QuestionTypeList = _context.QuestionType.ToList();
-        //    var QuestionBankListViewModel = new QuestionBankListViewModel();
-        //    var questionBankList = _context.QuestionBank.AsEnumerable()
-        //                            .Select(qbl => new QuestionBank
-        //                                {
-        //                                    Id = qbl.Id,
-        //                                    Question = qbl.Question,
-        //                                    DifficultyLevel = qbl.DifficultyLevel,
-        //                                    QuestionGroupName = qbl.QuestionGroupName,
-        //                                    QuestionType = qbl.QuestionType
-        //                                }).ToList();
-
-        //    QuestionBankListViewModel.QuestionBankList = questionBankList;
-        //    return View(QuestionBankListViewModel);
-        //}
-
         [HttpGet]
         public IActionResult QuestionBankList()
         {
@@ -90,28 +69,7 @@ namespace ExamStation.Controllers
             QuestionBankListViewModel.QuestionBankList = questionBankList;
             return View(QuestionBankListViewModel);
         }
-
-        //[HttpPost]
-        //public IActionResult QuestionBankList(QuestionBankListViewModel questionBankListViewModel)
-        //{
-        //    ViewBag.QuestionGroupList = _utility.GetGroupList();
-        //    ViewBag.QuestionLevelList = _context.QuestionLevel.ToList();
-        //    ViewBag.QuestionTypeList = _context.QuestionType.ToList();
-        //    var QuestionBankListViewModel = new QuestionBankListViewModel();
-        //    var questionBankList = _context.QuestionBank.AsEnumerable()
-        //                                    .Select(qbl => new QuestionBank
-        //                                    {
-        //                                        Id = qbl.Id,
-        //                                        Question = qbl.Question,
-        //                                        DifficultyLevel = qbl.DifficultyLevel,
-        //                                        QuestionGroupName = qbl.QuestionGroupName,
-        //                                        QuestionType = qbl.QuestionType
-        //                                    }).ToList();
-        //    var QBListViewModel = new QuestionBankListViewModel();
-        //    QBListViewModel.QuestionBankList = questionBankList;
-        //    return View(QBListViewModel);
-        //}
-
+    
         [HttpPost]
         public IActionResult QuestionBankList(QuestionBankListViewModel questionBankListViewModel)
         {
@@ -130,7 +88,8 @@ namespace ExamStation.Controllers
                                             Question = qbl.qbqg.qb.Question,
                                             DifficultyLevel = qbl.ql.Title,
                                             QuestionGroupName = qbl.qbqg.qg.Title,
-                                            QuestionType = qbl.qbqg.qb.QuestionType
+                                            QuestionType = qbl.qbqg.qb.QuestionType,
+                                            Answers = qbl.qbqg.qb.Answers
                                         }).Where(qb => (dificultyLevelId == null || qb.DifficultyLevelId == dificultyLevelId) && (questionGroupId == null || qb.QuestionGroup.Id == questionGroupId)).ToList();
             var QBListViewModel = new QuestionBankListViewModel();
             QBListViewModel.QuestionBankList = questionBankList;
@@ -273,7 +232,7 @@ namespace ExamStation.Controllers
         //}
 
         [HttpPost]
-        public JsonResult SaveQuestions(int questionGroupId, int difficultyLevelId, string question, string explanation, string hints, int mark, int[] answerArray, string[] optionArray)
+        public JsonResult SaveQuestions(int questionGroupId, int difficultyLevelId, string question, string explanation, string hints, int mark, int questionTypeId, int[] answerArray,  string[] optionArray)
         {
             string message = string.Empty;
             try
@@ -286,6 +245,7 @@ namespace ExamStation.Controllers
                 questionBank.Explanation = explanation;
                 questionBank.Hints = hints;
                 questionBank.Mark = mark;
+                questionBank.QuestionTypeId = questionTypeId;
 
                 _context.Add(questionBank);
 

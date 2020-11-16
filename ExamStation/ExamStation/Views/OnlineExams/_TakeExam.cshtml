@@ -28,7 +28,7 @@
     int totalQuestion = 0;
     int lastQuestionBankId = 0;
     int firstQuestionBankId = 0;
-    List<AnswersOption> answerOptionList=new List<AnswersOption>();
+    List<AnswersOption> answerOptionList = new List<AnswersOption>();
 
     if (!ExamId.Equals(0))
     {
@@ -109,9 +109,34 @@
                                         </div>
                                     </div>
                                     <div class="question-answer">
-                                        <div id="divAnswerOptions" ></div>
-                                        <table id="tblAnswerOptions" class="table">
+                                        <div id="divAnswerOptions"></div>
+                                        <table id="tblAnswerOptions" class="table">                                            
                                             <tr>
+                                                @{
+                                                    for (var i = 0; i < @answerOptionList.Count; i++)
+                                                    {
+                                                        <td>
+                                                            if (questionTypeId == 1)
+                                                            {
+                                                            <input value="1" name="Q_option_10" type="radio">
+                                                            }
+                                                            if (questionTypeId == 2)
+                                                            {
+                                                            <input value="' + ids[i]+'" name="Q_option_10" type="checkbox">
+                                                            }
+                                                            if (questionTypeId == 3)
+                                                            {
+                                                            <input id="txtFillBlanks" class="form-control" type="text">
+                                                            }
+                                                            <label for="option91">
+                                                                <span class="fa-stack radio-button">
+                                                                    <i class="active fa fa-check"></i>
+                                                                </span>
+                                                            </label>
+                                                        </td>
+                                                    }
+                                                }
+                                            </tr>                                               
                                         </table>
                                     </div>
                                     <br />

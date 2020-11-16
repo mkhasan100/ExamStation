@@ -20,7 +20,6 @@ namespace ExamStation.Models
         [Required]
         public string Question { get; set; }
         public string Explanation { get; set; }
-        public byte[] Upload { get; set; }
         public string Hints { get; set; }
         public double Mark { get; set; }
         [NotMapped]

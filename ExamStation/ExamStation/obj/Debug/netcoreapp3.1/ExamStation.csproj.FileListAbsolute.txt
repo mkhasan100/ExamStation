@@ -1,9 +1,6 @@
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\runtimes\osx-x64\native\libe_sqlite3.dylib
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\appsettings.Development.json
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\appsettings.json
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.json
-E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\Properties\serviceDependencies.local.json
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\ExamStation.StaticWebAssets.xml
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\ExamStation.exe
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\bin\Debug\netcoreapp3.1\ExamStation.deps.json
@@ -288,3 +285,4 @@ E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.csproj.CoreCompileInputs.cache
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.MvcApplicationPartsAssemblyInfo.cs
 E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\ExamStation.MvcApplicationPartsAssemblyInfo.cache
+E:\Synesis IT Files\Learning Period\Project1\ExamStation\ExamStation\ExamStation\obj\Debug\netcoreapp3.1\scopedcss\bundle\ExamStation.styles.css

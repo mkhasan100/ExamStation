@@ -657,9 +657,6 @@ namespace ExamStation.Migrations
                     b.Property<int?>("TotalOption")
                         .HasColumnType("int");
 
-                    b.Property<byte[]>("Upload")
-                        .HasColumnType("varbinary(max)");
-
                     b.HasKey("Id");
 
                     b.HasIndex("QuestionGroupId");

@@ -30,25 +30,15 @@
 <div class="form-group row">
     <label asp-for="Question" class="control-label col-sm-2"></label>
     <div class="col-sm-6">
-        @*<input asp-for="Question" class="form-control" />*@
-        <textarea id="Question" asp-for="Question"></textarea>
-        @*@Html.TextAreaFor(model => model.Question, new { @id = "FullDescription", @class = "form-control", @rows = "10" })*@
+        <textarea id="Question" asp-for="Question" rows="8" cols="84"></textarea>
         <span asp-validation-for="Question" class="text-danger"></span>
     </div>
 </div>
 <div class="form-group row">
     <label asp-for="Explanation" class="control-label col-sm-2"></label>
     <div class="col-sm-6">
-        @*<input asp-for="Explanation" class="form-control" />*@
-        <textarea id="Explanation" asp-for="Explanation"></textarea>
+        <textarea id="Explanation" asp-for="Explanation" rows="8" cols="84"></textarea>
         <span asp-validation-for="Explanation" class="text-danger"></span>
-    </div>
-</div>
-<div class="form-group row">
-    <label asp-for="Upload" class="control-label col-sm-2"></label>
-    <div class="col-sm-6">
-        <input asp-for="Upload" class="form-control" />
-        <span asp-validation-for="Upload" class="text-danger"></span>
     </div>
 </div>
 <div class="form-group row">
@@ -70,7 +60,6 @@
         Question Type <span class='text-red'>*</span>
     </label>
     <div class="col-sm-6">
-        @* @Html.DropDownListFor(model => model.QuestionType, new SelectList(ViewBag.QuestionTypeList, "Id", "QuestionTypeName"), "Select Question Type", new { @class = "form-control" })*@
         <select name="type" id='type' class='form-control'>
             <option value="0">Please Select</option>
             <option value="1">Single Answer</option>
@@ -152,7 +141,7 @@
                 var explanation = $("#Explanation").text();
                 var hints = $("#Hints").val();
                 var mark = $("#Mark").val();
-                var questionType = $("#type").val();
+                var questionTypeId = $("#type").val();
 
                 var optionArray = new Array();
                 $('.answerOption').each(function (index, item) {
@@ -161,7 +150,7 @@
               //  console.log(arrText);
 
                 var answerArray = new Array();
-                if (questionType == 1) {
+                if (questionTypeId == 1) {
                 $('input[type=radio]').each(function (index, item) {
                     if ($(this).prop("checked")) {
                         answerArray.push(1);
@@ -175,7 +164,7 @@
 
 
                // var arrCheckBox = new Array();
-                if (questionType == 2) {
+                if (questionTypeId == 2) {
                     $('input[type=checkbox]').each(function (index, item) {
                         if ($(this).prop("checked")) {
                             answerArray.push(1);
@@ -197,7 +186,7 @@
 
                  $.ajax({
                      url: "@Url.Action("SaveQuestions", "QuestionBanks")",
-                     data: { 'questionGroupId': questionGroup, 'difficultyLevelId': difficultyLevel, 'question': question, 'explanation': explanation, 'hints': hints, 'mark': mark, 'answerArray': answerArray, 'optionArray': optionArray },
+                     data: { 'questionGroupId': questionGroup, 'difficultyLevelId': difficultyLevel, 'question': question, 'explanation': explanation, 'hints': hints, 'mark': mark, 'answerArray': answerArray, 'questionTypeId': questionTypeId, 'optionArray': optionArray },
                      type: 'POST',
                      dataType: 'json',
                      success: function (result) {
@@ -268,6 +257,7 @@
             var html = '<div class="form-group row coption"><label for="option' + id + '" class="col-sm-2 control-label">Option ' + id + '</label><div class="col-sm-4" style="display:inline-table"><input type="text" class="form-control answerOption"  id="option' + id + '" name="option[]" value="' + value + '" placeholder="Option ' + id + '"><span class="input-group-addon"><input class="answer" id="ans' + id + '" ' + checked + ' type="' + type + '" name="answer[]" value="' + id + '" data-toggle="tooltip" data-placement="top" title="Correct Answer" ' + required + ' /></span></div><div class="col-sm-3" style="display:inline-table"></div><span class="col-sm-3 control-label text-red" id="anserror' + id + '"></span></div>';
             return html;
         }
+        
     </script>
 
 }
