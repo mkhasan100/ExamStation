@@ -73,12 +73,12 @@ namespace ExamStation.Controllers
         [HttpPost]
         public IActionResult QuestionBankList(QuestionBankListViewModel questionBankListViewModel)
         {
-            var QuestionBankListViewModel = new QuestionBankListViewModel();
+            //var QuestionBankListViewModel = new QuestionBankListViewModel();
             ViewBag.QuestionGroupList = _utility.GetGroupList();
             ViewBag.QuestionLevelList = _context.QuestionLevel.ToList();
             ViewBag.QuestionTypeList = _context.QuestionType.ToList();
-            int? dificultyLevelId = QuestionBankListViewModel.DificultyLevelId;
-            int? questionGroupId = QuestionBankListViewModel.QuestionGroupId;
+            int? dificultyLevelId = questionBankListViewModel.DificultyLevelId;
+            int? questionGroupId = questionBankListViewModel.QuestionGroupId;
             var questionBankList = _context.QuestionBank
                 .Join(_context.QuestionGroup, qb => qb.QuestionGroup.Id, qg => qg.Id, (qb, qg) => new { qb, qg })
                 .Join(_context.QuestionLevel, qbqg => qbqg.qb.DifficultyLevelId, ql => ql.Id, (qbqg, ql) => new { qbqg, ql })
@@ -89,11 +89,16 @@ namespace ExamStation.Controllers
                                             DifficultyLevel = qbl.ql.Title,
                                             QuestionGroupName = qbl.qbqg.qg.Title,
                                             QuestionType = qbl.qbqg.qb.QuestionType,
-                                            Answers = qbl.qbqg.qb.Answers
-                                        }).Where(qb => (dificultyLevelId == null || qb.DifficultyLevelId == dificultyLevelId) && (questionGroupId == null || qb.QuestionGroup.Id == questionGroupId)).ToList();
-            var QBListViewModel = new QuestionBankListViewModel();
-            QBListViewModel.QuestionBankList = questionBankList;
-            return View(QBListViewModel);
+                                            Answers = qbl.qbqg.qb.Answers,
+                                            DifficultyLevelId = qbl.qbqg.qb.DifficultyLevelId,
+                                            QuestionGroup = qbl.qbqg.qb.QuestionGroup,
+                                        })
+                                        .Where(qb => (dificultyLevelId == null || qb.DifficultyLevelId == dificultyLevelId)
+                                        && (questionGroupId == null || qb.QuestionGroup.Id == questionGroupId))
+                                        .ToList();
+            //var QBListViewModel = new QuestionBankListViewModel();
+            questionBankListViewModel.QuestionBankList = questionBankList;
+            return View(questionBankListViewModel);
         }
 
         // GET: QuestionBanks/Create

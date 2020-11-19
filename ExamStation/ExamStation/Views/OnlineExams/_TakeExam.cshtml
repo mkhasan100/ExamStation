@@ -109,35 +109,45 @@
                                         </div>
                                     </div>
                                     <div class="question-answer">
-                                        <div id="divAnswerOptions"></div>
-                                        <table id="tblAnswerOptions" class="table">                                            
-                                            <tr>
-                                                @{
-                                                    for (var i = 0; i < @answerOptionList.Count; i++)
+                                        <div id="divAnswerOptions">
+                                            <table id="tblAnswerOptions" class="table">
+
+                                                <tr>
+                                                    @for (var i = 0; i < answerOptionList.Count; i++)
                                                     {
                                                         <td>
-                                                            if (questionTypeId == 1)
-                                                            {
-                                                            <input value="1" name="Q_option_10" type="radio">
+                                                            @{ if (@questionTypeId == 1)
+                                                                {
+                                                                    <input value=@answerOptionList[i].Id name="radioButton" type="radio">
+                                                                }
                                                             }
-                                                            if (questionTypeId == 2)
-                                                            {
-                                                            <input value="' + ids[i]+'" name="Q_option_10" type="checkbox">
+                                                            @{ if (@questionTypeId == 2)
+                                                                {
+                                                                    <input value=@answerOptionList[i].Id name="radioButton" type="checkbox">
+                                                                }
                                                             }
-                                                            if (questionTypeId == 3)
-                                                            {
-                                                            <input id="txtFillBlanks" class="form-control" type="text">
+                                                            @{ if (@questionTypeId == 3)
+                                                                {
+                                                                    <input id="txtFillBlanks" class="form-control" type="text">
+                                                                }
                                                             }
                                                             <label for="option91">
                                                                 <span class="fa-stack radio-button">
-                                                                    <i class="active fa fa-check"></i>
+                                                                    <i class="active fa fa-check">
+                                                                    </i>
                                                                 </span>
+                                                                @{ if (@questionTypeId != 3)
+                                                                    {
+                                                                        <span>@answerOptionList[i].Option</span>
+                                                                    }
+                                                                }
                                                             </label>
                                                         </td>
                                                     }
-                                                }
-                                            </tr>                                               
-                                        </table>
+                                                </tr>
+
+                                            </table>
+                                        </div>
                                     </div>
                                     <br />
                                 </div>
@@ -157,9 +167,9 @@
                                             </a>
                                         </div>
                                         <div class="col-md-3">
-                                            <a href="#" id=”Reset” onclick="reset()" type=”reset” value=”Reset” class="btn btn-danger btn-sm btn-block">
+                                            <button name="reset" id="Reset" type="reset" value="Reset" class="btn btn-danger btn-sm btn-block">
                                                 <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;Reset Answer
-                                            </a>
+                                            </button>
                                         </div>
                                         <div class="col-md-2">
                                             <button id="btnNext" class="btn btn-default btn-sm btn-block">Next →</button>
@@ -224,12 +234,10 @@
     <script src="~/ExamStation/assets/global/plugins/jquery.min.js"></script>
     <script src="~/CountdownClock/multi-countdown.js"></script>
 
-    <script type="text/javascript">
+    <script type="text/javascript">    
 
-        $(document).ready(function () {
-            $("#Reset").click(function () {
-                $("#ExamAnswer").trigger("reset");
-            });
+        $("#Reset").click(function () {
+            $('input[name="radioButton"]').prop('checked', false);
         });
 
         $("#btnNext").click(function () {
@@ -255,15 +263,16 @@
                  var ansOptions = quesAnsOp[3].split(',');
 
                  var ids = quesAnsOp[4].split(',');
-
+                 var divAnswerOptions = $("#divAnswerOptions");
+                 divAnswerOptions.empty();
                  var table = "<table class='table'><tr>";
                  for (var i = 0; i < ansOptions.length; i++) {
                      table += '<td>';
                      if (parseInt(queType) == 1) {
-                         table += '<input  value="1" name="Q_option_10" type="radio">';
+                         table += '<input  value="1" name="radioButton" type="radio">';
                      }
                      if (parseInt(queType) == 2) {
-                         table += '<input value="' + ids[i]+'" name="Q_option_10" type="checkbox">';
+                         table += '<input value="' + ids[i] +'" name="radioButton" type="checkbox">';
                      }
                      if (parseInt(queType) == 3) {
                          table += '<input id="txtFillBlanks"  class="form-control" type="text">';
@@ -281,8 +290,7 @@
                  }
 
                  table += "</tr></table>"
-
-                 var divAnswerOptions = $("#divAnswerOptions");
+                 
                  divAnswerOptions.html(table);
              }
          });
@@ -317,10 +325,10 @@
                  for (var i = 0; i < ansOptions.length; i++) {
                      table += '<td>';
                      if (parseInt(queType) == 1) {
-                         table += '<input  value="1" name="Q_option_10" type="radio">';
+                         table += '<input  value="1" name="radioButton" type="radio">';
                      }
                      if (parseInt(queType) == 2) {
-                         table += '<input value="' + ids[i] + '" name="Q_option_10" type="checkbox">';
+                         table += '<input value="' + ids[i] + '" name="radioButton" type="checkbox">';
                      }
                      if (parseInt(queType) == 3) {
                          table += '<input id="txtFillBlanks"  class="form-control" type="text">';
@@ -444,10 +452,10 @@
                  for (var i = 0; i < ansOptions.length; i++) {
                      table += '<td>';
                      if (parseInt(queType) == 1) {
-                         table += '<input  value="1" name="Q_option_10" type="radio">';
+                         table += '<input  value="1" name="radioButton" type="radio">';
                      }
                      if (parseInt(queType) == 2) {
-                         table += '<input value="' + ids[i]+'" name="Q_option_10" type="checkbox">';
+                         table += '<input value="' + ids[i] +'" name="radioButton" type="checkbox">';
                      }
                      if (parseInt(queType) == 3) {
                          table += '<input id="txtFillBlanks"  class="form-control" type="text">';
@@ -478,6 +486,8 @@
                 ExamAnswer.value = ExamAnswer.defaultValue;
             }
         }
+
+        
     </script>
 </body>
 </html>

@@ -403,6 +403,11 @@ namespace ExamStation.Controllers
             qa.Add(questionBank.Id.ToString());
             qa.Add(questionBank.Question);
             qa.Add(answerOptions);
+
+
+            var ids = string.Join(',', _context.AnswersOptions.Where(w => w.QuestionBank.Id == questionBank.Id).Select(s => s.Id).ToList());
+
+            qa.Add(ids);
             return Json(qa);
         }
 
